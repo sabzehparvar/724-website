@@ -1,0 +1,90 @@
+@font-face {
+	font-family: Dana;
+	font-style: normal;
+	font-weight: 10;
+	src: url('../fonts/dana-hairline.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: Dana;
+	font-style: normal;
+	font-weight: 100;
+	src: url('../fonts/dana-thin.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: Dana;
+	font-style: normal;
+	font-weight: 200;
+	src: url('../fonts/dana-ultra-light.woff2') format('woff2')
+}
+
+@font-face {
+	font-family: Dana;
+	font-style: normal;
+	font-weight: 300;
+	src: url('../fonts/dana-light.woff2') format('woff2'), ;
+}
+
+@font-face {
+	font-family: Dana;
+	font-style: normal;
+	font-weight: 500;
+	src: url('../fonts/dana-medium.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: Dana;
+	font-style: normal;
+	font-weight: 600;
+	src: url('../fonts/dana-semi-bold.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: Dana;
+	font-style: normal;
+	font-weight: 800;
+	src: url('../fonts/dana-extra-bold.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: Dana;
+	font-style: normal;
+	font-weight: 900;
+	src: url('../fonts/dana-black.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: Dana;
+	font-style: normal;
+	font-weight: 930;
+	src: url('../fonts/dana-extra-black.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: Dana;
+	font-style: normal;
+	font-weight: 960;
+	src: url('../fonts/dana-heavy.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: Dana;
+	font-style: normal;
+	font-weight: 990;
+	src: url('../fonts/dana-fat.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: Dana;
+	font-style: normal;
+	font-weight: bold;
+	src: url('../fonts/dana-bold.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: Dana;
+	font-style: normal;
+	font-weight: normal;
+	src: url('../fonts/dana-regular.woff2') format('woff2');
+}
