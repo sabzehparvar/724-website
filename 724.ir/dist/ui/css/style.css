@@ -848,8 +848,8 @@
   font-size: 30px !important;
 }
 .ui-text-dark {
-  color: #2d354a;
+  color: #2d354a !important;
 }
 .ui-text-dark:hover {
-  color: #081f3c;
+  color: #081f3c !important;
 }
