@@ -853,3 +853,14 @@
 .ui-text-dark:hover {
   color: #081f3c !important;
 }
+.ui-footer-banner {
+  background-image: url('../img/pattern/footer-pattern-2.svg'), linear-gradient(87.67deg, #225EB9 0%, #2B73E3 100%);
+  background-position: center center, center center;
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover, cover;
+  padding-bottom: 55px;
+}
+.ui-button-subtext{
+  top: 100%;
+  left: 64px;
+}
