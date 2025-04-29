@@ -874,5 +874,6 @@
 }
 .ui-button-subtext{
   top: 100%;
-  left: 64px;
+  left: 0;
+  right: 0;
 }
