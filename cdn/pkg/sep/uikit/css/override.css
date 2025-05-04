@@ -502,14 +502,14 @@ a.uk-link-heading:hover {
 
 .uk-button-default {
   color: #2d354a;
-  border: 1px solid #f2f3ff;
+  border: none;
   background-color:#f2f3ff ;
 }
 
 .uk-button-default:hover {
   color: #2d354a;
-  border-color: #b2b2b2;
-  background-color:#f2f3ff ;
+  border: none;
+  background-color:#dfe0ee ;
 
 }
 
@@ -1531,7 +1531,7 @@ a.uk-link-heading:hover {
 }
 
 .uk-text-default {
-  font-size: 14px;
+  font-size: 14px !important;
 }
 
 .uk-text-light {
