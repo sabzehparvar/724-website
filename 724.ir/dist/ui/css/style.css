@@ -902,3 +902,8 @@
   border-radius: 20px 0 0 20px;
   box-shadow: -13px 4px 28px rgba(0, 0, 0, 0.05);
 }
+.ui-features-container{
+  background: linear-gradient(0deg, #3083FF, #3083FF),
+  linear-gradient(86.04deg, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0) 100%);
+  ;
+}
