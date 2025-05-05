@@ -902,8 +902,16 @@
   border-radius: 20px 0 0 20px;
   box-shadow: -13px 4px 28px rgba(0, 0, 0, 0.05);
 }
-.ui-features-container{
+.ui-services-feature-container{
   background: linear-gradient(0deg, #3083FF, #3083FF),
   linear-gradient(86.04deg, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0) 100%);
   ;
+}
+@media (max-width: 960px) {
+  .ui-services-feature-container{
+    padding-top: 40px;
+  }
+}
+.ui-services-img{
+  margin-bottom: -1px;
 }
