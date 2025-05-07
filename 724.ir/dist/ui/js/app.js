@@ -66,19 +66,31 @@ $(document).ready(function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  const navDrop = document.querySelector(".ui-navbar-sub-dropdown");
-  const navbarDropdown = document.querySelector(".ui-navbar-dropdown");
-
-  const observer = new MutationObserver(() => {
-    if (navDrop.classList.contains("uk-open")) {
-      navbarDropdown.style.borderRadius = "0 25px 25px 0";
+ 
+  function updateParentBorder(parent) {
+    const openSubDropdown = parent.querySelector(".ui-navbar-sub-dropdown.uk-open");
+    if (openSubDropdown) {
+      parent.style.borderRadius = "0 25px 25px 0";
     } else {
-      navbarDropdown.style.borderRadius = "";
+      parent.style.borderRadius = "";
     }
-  });
+  }
 
-  observer.observe(navDrop, { attributes: true, attributeFilter: ["class"] });
+  const parentDropdowns = document.querySelectorAll(".ui-navbar-dropdown:not(.ui-navbar-sub-dropdown)");
+
+  parentDropdowns.forEach((parent) => {
+    updateParentBorder(parent);
+    const subDropdowns = parent.querySelectorAll(".ui-navbar-sub-dropdown");
+    subDropdowns.forEach((subDropdown) => {
+      const observer = new MutationObserver(() => {
+        updateParentBorder(parent);
+      });
+
+      observer.observe(subDropdown, { attributes: true, attributeFilter: ["class"] });
+    });
+  });
 });
+
 
 function onLoadFunctions() {
   removePageNumberForNews();

@@ -1233,7 +1233,6 @@ a.uk-link-heading:hover {
   min-width: 200px;
   background: #fff;
   color: #081f3c;
-  box-shadow: 0 4px 28px rgba(0, 0, 0, 0.05);
 }
 
 .uk-navbar-dropdown :focus-visible {
