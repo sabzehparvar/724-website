@@ -33,9 +33,15 @@
   border: 1px solid #f5f7fc;
 }
 
-.ui-navbar-dropdown li a,
+.ui-navbar-dropdown li a{
+  min-width: 230px;
+  border-radius: 10px;
+  height: 45px;
+  padding: 5px 15px;
+}
+
 .ui-navbar-sub-dropdown li a {
-  min-width: 260px;
+  min-width: 150px;
   border-radius: 10px;
   height: 45px;
   padding: 5px 15px;
@@ -47,12 +53,12 @@
 }
 
 .ui-navbar-sub-dropdown {
-  left: -100% !important;
   top: -1px !important;
   height: calc(100% + 2px);
   border: 1px solid #f5f7fc;
   border-radius: 20px 0 0 20px;
-  box-shadow: -5px 5px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: -9px 5px 12px rgba(0, 0, 0, 0.15);
+  min-width: 310px;
 
 }
 

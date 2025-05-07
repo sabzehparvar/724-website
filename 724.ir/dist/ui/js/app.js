@@ -66,9 +66,10 @@ $(document).ready(function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
- 
   function updateParentBorder(parent) {
-    const openSubDropdown = parent.querySelector(".ui-navbar-sub-dropdown.uk-open");
+    const openSubDropdown = parent.querySelector(
+      ".ui-navbar-sub-dropdown.uk-open"
+    );
     if (openSubDropdown) {
       parent.style.borderRadius = "0 25px 25px 0";
     } else {
@@ -76,7 +77,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  const parentDropdowns = document.querySelectorAll(".ui-navbar-dropdown:not(.ui-navbar-sub-dropdown)");
+  const parentDropdowns = document.querySelectorAll(
+    ".ui-navbar-dropdown:not(.ui-navbar-sub-dropdown)"
+  );
 
   parentDropdowns.forEach((parent) => {
     updateParentBorder(parent);
@@ -86,11 +89,23 @@ document.addEventListener("DOMContentLoaded", function () {
         updateParentBorder(parent);
       });
 
-      observer.observe(subDropdown, { attributes: true, attributeFilter: ["class"] });
+      observer.observe(subDropdown, {
+        attributes: true,
+        attributeFilter: ["class"],
+      });
     });
   });
-});
 
+  const subNavbars = document.querySelectorAll('.ui-navbar-sub-dropdown');
+
+  subNavbars.forEach(subNavbar => {
+    const observer = new MutationObserver(() => {
+      subNavbar.style.left = '-' + subNavbar.offsetWidth + 'px';
+    });
+    
+    observer.observe(subNavbar, { attributes: true, attributeFilter: ['style'] });
+  });
+});
 
 function onLoadFunctions() {
   removePageNumberForNews();
