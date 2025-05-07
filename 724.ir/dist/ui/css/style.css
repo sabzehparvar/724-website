@@ -926,8 +926,8 @@
 }
 
 .ui-services-feature-container {
-  background: linear-gradient(0deg, #3083ff, #3083ff),
-    linear-gradient(86.04deg, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(86.04deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%),
+    linear-gradient(0deg, #3083ff, #3083ff);
 }
 @media (max-width: 960px) {
   .ui-services-feature-container {
