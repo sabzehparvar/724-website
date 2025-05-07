@@ -1680,8 +1680,3 @@ a.uk-link-heading:hover {
 .uk-logo:hover {
   color: #081f3c;
 }
-@media (max-width: 639px) {
-  .uk-slider-items{
-    height: 300px !important;
-  }
-}

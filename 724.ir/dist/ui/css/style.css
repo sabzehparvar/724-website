@@ -937,3 +937,12 @@
 .ui-services-img {
   margin-bottom: -1px;
 }
+.ui-slider-border-radius{
+  border-radius: 40px;
+}
+
+@media (max-width: 960px) {
+  .ui-slider-border-radius{
+    border-radius: 16px;
+  }
+}
