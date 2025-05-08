@@ -54,11 +54,11 @@
 
 .ui-navbar-sub-dropdown {
   top: -1px !important;
-  height: calc(100% + 2px);
+  height: calc(100% + 3px);
   border: 1px solid #f5f7fc;
   border-radius: 20px 0 0 20px;
   box-shadow: -9px 5px 12px rgba(0, 0, 0, 0.15);
-  min-width: 355px;
+  width: 315px;
 
 }
 
