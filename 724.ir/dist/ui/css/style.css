@@ -41,7 +41,7 @@
 }
 
 .ui-navbar-sub-dropdown li a {
-  min-width: 150px;
+  min-width: fit-content;
   border-radius: 10px;
   height: 45px;
   padding: 5px 15px;
@@ -58,7 +58,7 @@
   border: 1px solid #f5f7fc;
   border-radius: 20px 0 0 20px;
   box-shadow: -9px 5px 12px rgba(0, 0, 0, 0.15);
-  min-width: 310px;
+  min-width: 355px;
 
 }
 
