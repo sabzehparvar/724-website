@@ -30,10 +30,12 @@
 .ui-navbar-dropdown {
   top: calc(100% - 16px) !important;
   border-radius: 25px;
+  padding: 16px;
+  width: 317px;
 }
 
 .ui-navbar-dropdown > ul > li > a{
-  width: 235px;
+  width: 254px;
   border-radius: 10px;
   height: 45px;
   padding: 5px 15px;
@@ -53,11 +55,10 @@
 
 .ui-navbar-sub-dropdown {
   top: -1px !important;
-  height: calc(100% + 2px);
+  height: calc(100% + 1px);
   border-radius: 25px 0 0 25px;
-
   width: 317px;
-
+  padding: 16px;
 }
 
 .ui-nav-parent-icon {
@@ -934,15 +935,6 @@
 }
 .ui-services-img {
   margin-bottom: -1px;
-}
-.ui-slider-border-radius{
-  border-radius: 40px;
-}
-
-@media (max-width: 960px) {
-  .ui-slider-border-radius{
-    border-radius: 16px;
-  }
 }
 
 .ui-button-gray {

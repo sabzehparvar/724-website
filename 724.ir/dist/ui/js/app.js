@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   subNavbars.forEach(subNavbar => {
     const observer = new MutationObserver(() => {
-      subNavbar.style.left = '-' + subNavbar.offsetWidth + 'px';
+      subNavbar.style.left = '-' + (subNavbar.offsetWidth - 1) + 'px';
     });
     
     observer.observe(subNavbar, { attributes: true, attributeFilter: ['style'] });
