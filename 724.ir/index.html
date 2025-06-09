@@ -411,6 +411,391 @@
           </nav>
         </div>
       </header>
+      <!-- topup  -->
+      <div class="uk-section">
+        <div class="uk-container uk-text-center">
+          <h2 class="uk-text-bold">
+            خرید آســان شارژ انواع سیم&zwnj;کارت اعتباری
+          </h2>
+          <div class="uk-flex uk-flex-middle uk-flex-center">
+            <div class="uk-width-1-2@s uk-margin-medium-top">
+              <div
+                class="uk-card uk-card-default uk-card-body uk-border-rounded uk-position-relative"
+              >
+                <div class="uk-panel">
+                  <div class="uk-text-center uk-margin-medium-bottom">
+                    <h3 class="uk-text-bold">
+                      برای چه سیم&zwnj;کارتی می&zwnj;خوای شارژ بخری؟
+                    </h3>
+                  </div>
+                  <form
+                    id="Topup"
+                    name="Topup"
+                    autocomplete="off"
+                    class="uk-grid-small uk-text-right uk-grid uk-grid-stack"
+                    uk-grid=""
+                    novalidate="novalidate"
+                  >
+                    <div
+                      class="uk-width-1-1 uk-first-column"
+                      uk-tooltip="title: در صورتی که شماره خود را ترابرد کرده&zwnj;اید، اپراتور را تغییر دهید; pos: bottom; delay: 500"
+                      title=""
+                      aria-describedby="uk-tooltip-7"
+                      tabindex="0"
+                    >
+                      <label class="uk-form-label">شماره تلفن همراه</label>
+                      <input
+                        id="CellNumber"
+                        name="CellNumber"
+                        type="tel"
+                        class="uk-input uk-form-large uk-border-rounded uk-text-center uk-text-default uc-letter-spacing"
+                        minlength="11"
+                        maxlength="11"
+                        required=""
+                      />
+                      <div class="uk-text-meta">
+                        در صورتی که شماره خود را ترابرد کرده&zwnj;اید، اپراتور
+                        را تغییر دهید.
+                      </div>
+                    </div>
+                    <div
+                      id="TopupOperator"
+                      class="uk-width-1-1 uk-grid-margin uk-first-column"
+                    >
+                      <ul
+                        id="TopupOperatorSwitcher"
+                        class="uk-subnav uc-subnav-right uk-subnav-pill uk-grid-small uk-child-width-1-2 uk-child-width-1-3@m uc-subnav-pill uk-grid"
+                        uk-grid=""
+                        uk-switcher=""
+                      >
+                        <li id="OperatorItem" class="uk-active uk-first-column">
+                          <a
+                            href="#"
+                            class="uk-link"
+                            data-action="changeTopupOperator"
+                            data-value="1"
+                            aria-expanded="true"
+                          >
+                            <img
+                              src="https://shop.sep.ir/dist/app/icn/icHamrahAvalSimcard.svg?v=new"
+                              width="24"
+                              height="24"
+                              class="uk-preserve"
+                              uk-svg=""
+                              hidden=""
+                            /><svg
+                              version="1.1"
+                              xmlns="http://www.w3.org/2000/svg"
+                              xmlns:xlink="http://www.w3.org/1999/xlink"
+                              x="0px"
+                              y="0px"
+                              viewBox="0 0 24 24"
+                              style="enable-background: new 0 0 24 24"
+                              xml:space="preserve"
+                              class="uk-preserve uk-svg"
+                              width="24"
+                              height="24"
+                            >
+                              <style type="text/css">
+                                .st0 {
+                                  fill: #010101;
+                                }
+                                .st1 {
+                                  fill-rule: evenodd;
+                                  clip-rule: evenodd;
+                                  fill: #0095da;
+                                }
+                              </style>
+                              <path
+                                class="st0"
+                                d="M7,12.6c0-0.6,0.5-1.2,1.1-1.2c1.3-0.2,2.5-0.2,3.8,0c0.6,0.1,1.1,0.6,1.1,1.2v5c0,0.6-0.5,1.2-1.1,1.2
+	c-1.3,0.2-2.5,0.2-3.8,0C7.5,18.9,7,18.3,7,17.7V12.6z"
+                              ></path>
+                              <path
+                                class="st1"
+                                d="M7,2.1c-1.7,0-3.1,1.4-3.1,3.1v13.5c0,1.6,1.2,2.9,2.7,3c3.6,0.4,7.2,0.4,10.7,0c1.6-0.2,2.7-1.5,2.7-3v-9
+	c0-1.2-0.6-2.4-1.5-3.2L14,2.7C13.5,2.3,12.8,2,12.1,2L7,2.1L7,2.1z M2.1,5.2c0-2.7,2.2-4.9,4.9-4.9h5.1c1.1,0,2.2,0.4,3.1,1.1
+	L19.7,5c1.4,1.1,2.2,2.8,2.2,4.6v9c0,2.5-1.9,4.6-4.3,4.8c-3.7,0.4-7.4,0.4-11.1,0C4,23.1,2.2,21,2.2,18.6V5.2H2.1z"
+                              ></path>
+                            </svg>
+                            <span>همراه اول</span>
+                          </a>
+                        </li>
+
+                        <li id="OperatorItem">
+                          <a
+                            href="#"
+                            class="uk-link"
+                            data-action="changeTopupOperator"
+                            data-value="2"
+                            aria-expanded="false"
+                          >
+                            <img
+                              src="https://shop.sep.ir/dist/app/icn/icIrancellSimcard.svg?v=new"
+                              width="24"
+                              height="24"
+                              class="uk-preserve"
+                              uk-svg=""
+                              hidden=""
+                            /><svg
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                              class="uk-preserve uk-svg"
+                            >
+                              <path
+                                d="M7 12.6488C7 12.0123 7.4752 11.476 8.10705 11.3995C9.36442 11.2471 10.6356 11.2471 11.8929 11.3995C12.5248 11.476 13 12.0123 13 12.6488V17.6912C13 18.3277 12.5248 18.864 11.8929 18.9406C10.6356 19.093 9.36442 19.093 8.10705 18.9406C7.4752 18.864 7 18.3277 7 17.6912L7 12.6488Z"
+                                fill="#107CC9"
+                              ></path>
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M7.00001 2.06953C5.28792 2.06953 3.90001 3.45745 3.90001 5.16953L3.90001 18.6208C3.90001 20.1825 5.07425 21.4945 6.62638 21.6669C10.1978 22.0637 13.8022 22.0637 17.3736 21.6669C18.9258 21.4945 20.1 20.1825 20.1 18.6208L20.1 9.57265C20.1 8.32714 19.5338 7.14916 18.5613 6.37109L14.0334 2.74884C13.4838 2.3091 12.8008 2.06953 12.0969 2.06953L7.00001 2.06953ZM2.10001 5.16953C2.10001 2.46334 4.29381 0.269531 7.00001 0.269531L12.0969 0.269531C13.2095 0.269531 14.2891 0.648207 15.1579 1.34327L19.6857 4.96553C21.0853 6.08518 21.9 7.78033 21.9 9.57265L21.9 18.6208C21.9 21.0997 20.0361 23.1822 17.5724 23.4559C13.8689 23.8674 10.1311 23.8674 6.4276 23.4559C3.96389 23.1822 2.10001 21.0997 2.10001 18.6208L2.10001 5.16953Z"
+                                fill="#FAB700"
+                              ></path>
+                            </svg>
+                            <span>ایرانسل</span>
+                          </a>
+                        </li>
+
+                        <li id="OperatorItem" class="">
+                          <a
+                            href="#"
+                            class="uk-link"
+                            data-action="changeTopupOperator"
+                            data-value="3"
+                            aria-expanded="false"
+                          >
+                            <img
+                              src="https://shop.sep.ir/dist/app/icn/icRightelSimcard.svg?v=new"
+                              width="24"
+                              height="24"
+                              class="uk-preserve"
+                              uk-svg=""
+                              hidden=""
+                            /><svg
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                              class="uk-preserve uk-svg"
+                            >
+                              <path
+                                d="M7 12.6488C7 12.0123 7.4752 11.476 8.10705 11.3995C9.36442 11.2471 10.6356 11.2471 11.8929 11.3995C12.5248 11.476 13 12.0123 13 12.6488V17.6912C13 18.3277 12.5248 18.864 11.8929 18.9406C10.6356 19.093 9.36442 19.093 8.10705 18.9406C7.4752 18.864 7 18.3277 7 17.6912L7 12.6488Z"
+                                fill="#B854AF"
+                              ></path>
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M7.0001 2.06953C5.28802 2.06953 3.9001 3.45745 3.9001 5.16953L3.9001 18.6208C3.9001 20.1825 5.07434 21.4945 6.62647 21.6669C10.1979 22.0637 13.8023 22.0637 17.3737 21.6669C18.9259 21.4945 20.1001 20.1825 20.1001 18.6208L20.1001 9.57265C20.1001 8.32714 19.5339 7.14916 18.5613 6.37109L14.0335 2.74884C13.4839 2.3091 12.8009 2.06953 12.097 2.06953L7.0001 2.06953ZM2.1001 5.16953C2.1001 2.46334 4.2939 0.269531 7.0001 0.269531L12.097 0.269531C13.2096 0.269531 14.2891 0.648207 15.158 1.34327L19.6858 4.96553C21.0854 6.08518 21.9001 7.78033 21.9001 9.57265L21.9001 18.6208C21.9001 21.0997 20.0362 23.1822 17.5725 23.4559C13.869 23.8674 10.1312 23.8674 6.42769 23.4559C3.96398 23.1822 2.1001 21.0997 2.1001 18.6208L2.1001 5.16953Z"
+                                fill="#98208E"
+                              ></path>
+                            </svg>
+                            <span>رایتل</span>
+                          </a>
+                        </li>
+
+                        <li
+                          id="OperatorItem"
+                          class="uk-grid-margin uk-first-column"
+                        >
+                          <a
+                            href="#"
+                            class="uk-link"
+                            data-action="changeTopupOperator"
+                            data-value="4"
+                            aria-expanded="false"
+                          >
+                            <img
+                              src="https://shop.sep.ir/dist/app/icn/icSamantelSimcard.svg?v=new"
+                              width="24"
+                              height="24"
+                              class="uk-preserve"
+                              uk-svg=""
+                              hidden=""
+                            /><svg
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                              class="uk-preserve uk-svg"
+                            >
+                              <path
+                                d="M7 12.6488C7 12.0123 7.4752 11.476 8.10705 11.3995C9.36442 11.2471 10.6356 11.2471 11.8929 11.3995C12.5248 11.476 13 12.0123 13 12.6488V17.6912C13 18.3277 12.5248 18.864 11.8929 18.9406C10.6356 19.093 9.36442 19.093 8.10705 18.9406C7.4752 18.864 7 18.3277 7 17.6912L7 12.6488Z"
+                                fill="#8E8D8D"
+                              ></path>
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M7.0001 2.06953C5.28802 2.06953 3.9001 3.45745 3.9001 5.16953L3.9001 18.6208C3.9001 20.1825 5.07434 21.4945 6.62647 21.6669C10.1979 22.0637 13.8023 22.0637 17.3737 21.6669C18.9259 21.4945 20.1001 20.1825 20.1001 18.6208L20.1001 9.57265C20.1001 8.32714 19.5339 7.14916 18.5613 6.37109L14.0335 2.74884C13.4839 2.3091 12.8009 2.06953 12.097 2.06953L7.0001 2.06953ZM2.1001 5.16953C2.1001 2.46334 4.2939 0.269531 7.0001 0.269531L12.097 0.269531C13.2096 0.269531 14.2891 0.648207 15.158 1.34327L19.6858 4.96553C21.0854 6.08518 21.9001 7.78033 21.9001 9.57265L21.9001 18.6208C21.9001 21.0997 20.0362 23.1822 17.5725 23.4559C13.869 23.8674 10.1312 23.8674 6.42769 23.4559C3.96398 23.1822 2.1001 21.0997 2.1001 18.6208L2.1001 5.16953Z"
+                                fill="#FC4F00"
+                              ></path>
+                            </svg>
+                            <span>سامانتل</span>
+                          </a>
+                        </li>
+
+                        <li id="OperatorItem" class="uk-grid-margin">
+                          <a
+                            href="#"
+                            class="uk-link"
+                            data-action="changeTopupOperator"
+                            data-value="5"
+                            aria-expanded="false"
+                          >
+                            <img
+                              src="https://shop.sep.ir/dist/app/icn/icShatelMobileSimcard.svg?v=new"
+                              width="24"
+                              height="24"
+                              class="uk-preserve"
+                              uk-svg=""
+                              hidden=""
+                            /><svg
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                              class="uk-preserve uk-svg"
+                            >
+                              <path
+                                d="M7 12.6488C7 12.0123 7.4752 11.476 8.10705 11.3995C9.36442 11.2471 10.6356 11.2471 11.8929 11.3995C12.5248 11.476 13 12.0123 13 12.6488V17.6912C13 18.3277 12.5248 18.864 11.8929 18.9406C10.6356 19.093 9.36442 19.093 8.10705 18.9406C7.4752 18.864 7 18.3277 7 17.6912L7 12.6488Z"
+                                fill="#F45B22"
+                              ></path>
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M7.0001 2.06953C5.28802 2.06953 3.9001 3.45745 3.9001 5.16953L3.9001 18.6208C3.9001 20.1825 5.07434 21.4945 6.62647 21.6669C10.1979 22.0637 13.8023 22.0637 17.3737 21.6669C18.9259 21.4945 20.1001 20.1825 20.1001 18.6208L20.1001 9.57265C20.1001 8.32714 19.5339 7.14916 18.5613 6.37109L14.0335 2.74884C13.4839 2.3091 12.8009 2.06953 12.097 2.06953L7.0001 2.06953ZM2.1001 5.16953C2.1001 2.46334 4.2939 0.269531 7.0001 0.269531L12.097 0.269531C13.2096 0.269531 14.2891 0.648207 15.158 1.34327L19.6858 4.96553C21.0854 6.08518 21.9001 7.78033 21.9001 9.57265L21.9001 18.6208C21.9001 21.0997 20.0362 23.1822 17.5725 23.4559C13.869 23.8674 10.1312 23.8674 6.42769 23.4559C3.96398 23.1822 2.1001 21.0997 2.1001 18.6208L2.1001 5.16953Z"
+                                fill="#152B77"
+                              ></path>
+                            </svg>
+                            <span>شاتل</span>
+                          </a>
+                        </li>
+
+                        <li id="OperatorItem" class="uk-grid-margin">
+                          <a
+                            href="#"
+                            class="uk-link"
+                            data-action="changeTopupOperator"
+                            data-value="6"
+                            aria-expanded="false"
+                          >
+                            <img
+                              src="https://shop.sep.ir/dist/app/icn/icTelekishSimcard.svg?v=new"
+                              width="24"
+                              height="24"
+                              class="uk-preserve"
+                              uk-svg=""
+                              hidden=""
+                            /><svg
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                              class="uk-preserve uk-svg"
+                            >
+                              <path
+                                d="M7 12.6488C7 12.0123 7.4752 11.476 8.10705 11.3995V11.3995C9.36442 11.2471 10.6356 11.2471 11.8929 11.3995V11.3995C12.5248 11.476 13 12.0123 13 12.6488V17.6912C13 18.3277 12.5248 18.864 11.8929 18.9406V18.9406C10.6356 19.093 9.36442 19.093 8.10705 18.9406V18.9406C7.4752 18.864 7 18.3277 7 17.6912L7 12.6488Z"
+                                fill="#FF9800"
+                              ></path>
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M7.0001 2.06953C5.28802 2.06953 3.9001 3.45745 3.9001 5.16953L3.9001 18.6208C3.9001 20.1825 5.07434 21.4945 6.62647 21.6669C10.1979 22.0637 13.8023 22.0637 17.3737 21.6669C18.9259 21.4945 20.1001 20.1825 20.1001 18.6208L20.1001 9.57265C20.1001 8.32714 19.5339 7.14916 18.5613 6.37109L14.0335 2.74884C13.4839 2.3091 12.8009 2.06953 12.097 2.06953L7.0001 2.06953ZM2.1001 5.16953C2.1001 2.46334 4.2939 0.269531 7.0001 0.269531L12.097 0.269531C13.2096 0.269531 14.2891 0.648207 15.158 1.34327L19.6858 4.96553C21.0854 6.08518 21.9001 7.78033 21.9001 9.57265L21.9001 18.6208C21.9001 21.0997 20.0362 23.1822 17.5725 23.4559C13.869 23.8674 10.1312 23.8674 6.42769 23.4559C3.96398 23.1822 2.1001 21.0997 2.1001 18.6208L2.1001 5.16953Z"
+                                fill="#13A89E"
+                              ></path>
+                            </svg>
+                            <span>تله کیش</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div
+                      id="TopupType"
+                      class="uk-width-1-1 uk-margin uk-margin-remove-bottom uk-flex-inline uk-flex-between uc-hidden"
+                    >
+                      <label
+                        id="ValTopupType"
+                        class="uk-form-label uk-margin-remove"
+                        >%TopupType%</label
+                      >
+                      <label for="TopupAmazing" class="uc-switch-toggle">
+                        <input id="TopupAmazing" type="checkbox" /><span
+                          class="uc-switch-slider"
+                        ></span>
+                      </label>
+                    </div>
+                    <div
+                      id="TopupPackage"
+                      class="uk-width-1-1 uk-margin uk-margin-remove-bottom uc-hidden"
+                    >
+                      <ul
+                        id="TopupPackageSwitcher"
+                        class="uk-subnav uc-subnav-right uk-subnav-pill uk-grid-small uk-child-width-1-1 uk-grid uk-grid-stack"
+                        uk-grid=""
+                        uk-switcher=""
+                      ></ul>
+                    </div>
+                    <div
+                      class="uk-width-1-1 uk-margin-medium uk-margin-remove-bottom uk-text-center uk-grid-margin uk-first-column"
+                    >
+                      <button
+                        id="TopupButton"
+                        name="TopupButton"
+                        class="uk-button uk-button-primary uk-button-large uk-border-rounded"
+                        data-action="getTopupPackage"
+                      >
+                        خرید شارژ سیم&zwnj;کارت
+                      </button>
+                    </div>
+                    <input
+                      id="Operator"
+                      name="Operator"
+                      type="hidden"
+                      class="ignore"
+                    /><input
+                      id="Package"
+                      name="Package"
+                      type="hidden"
+                      class="ignore"
+                    />
+                  </form>
+                </div>
+                <div
+                  class="uk-overlay uk-overlay-default uk-position-cover uk-flex uk-flex-middle"
+                  style="display: none"
+                >
+                  <div
+                    class="uk-position-center uk-icon uk-spinner"
+                    uk-spinner=""
+                  >
+                    <svg
+                      width="30"
+                      height="30"
+                      viewBox="0 0 30 30"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle
+                        fill="none"
+                        stroke="#000"
+                        cx="15"
+                        cy="15"
+                        r="14"
+                      ></circle>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- Footer -->
 
       <footer class="uk-section uk-section-default uk-padding-remove-vertical">
