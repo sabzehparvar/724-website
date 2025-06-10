@@ -34,7 +34,7 @@
   width: 317px;
 }
 
-.ui-navbar-dropdown > ul > li > a{
+.ui-navbar-dropdown > ul > li > a {
   width: 254px;
   border-radius: 10px;
   height: 45px;
@@ -925,7 +925,11 @@
 }
 
 .ui-services-feature-container {
-    background: linear-gradient(86.04deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%),
+  background: linear-gradient(
+      86.04deg,
+      rgba(0, 0, 0, 0.3) 0%,
+      rgba(0, 0, 0, 0) 100%
+    ),
     linear-gradient(0deg, #3083ff, #3083ff);
 }
 @media (max-width: 960px) {
@@ -940,13 +944,13 @@
 .ui-button-gray {
   color: #2d354a;
   border: none;
-  background-color:#f2f3ff ;
+  background-color: #f2f3ff;
 }
 
 .ui-button-gray:hover {
   color: #2d354a;
   border: none;
-  background-color:#dfe0ee ;
+  background-color: #dfe0ee;
 }
 
 .ui-button-gray.uk-active,
@@ -954,6 +958,24 @@
   color: #333;
   border-color: #718e9c;
 }
-.ui-text-small{
+.ui-text-small {
   font-size: 12px !important;
+}
+.ui-topup #CellNumber {
+  background: rgba(245, 246, 252, 1);
+}
+.ui-letter-spacing {
+  letter-spacing: 2.5px !important;
+}
+
+.uk-subnav-pill > * > :first-child {
+  padding: 10px;
+  border: 1px solid rgba(237, 241, 247, 1);
+  border-radius: 14px;
+  color: rgba(45, 53, 74, 1);
+  height: 34px;
+}
+
+.ui-topup {
+  border: 1px solid rgba(237, 241, 247, 1)
 }
