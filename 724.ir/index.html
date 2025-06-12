@@ -412,7 +412,7 @@
       <!-- topup  -->
       <div class="uk-section">
         <div class="uk-container">
-          <div class="uk-flex uk-flex-middle uk-flex-center">
+          <!-- <div class="uk-flex uk-flex-middle uk-flex-center">
             <div
               class="uk-card uk-card-body uk-width-2-3@s uk-border-rounded-large uk-flex uk-flex-middle uk-flex-center ui-topup"
             >
@@ -578,6 +578,168 @@
                       <div class="uk-text-meta">
                         در صورت ترابرد، اپراتورت رو انخاب کن
                       </div>
+
+                      <div
+                        class="uk-width-1-1 uk-margin-medium-top uk-text-center"
+                      >
+                        <button
+                          id="TopupButton"
+                          name="TopupButton"
+                          class="uk-button uk-button-primary uk-button-large uk-border-rounded uk-width-1-1"
+                          data-action="getTopupPackage"
+                        >
+                          نمایش شارژها
+                        </button>
+                      </div>
+                      <input
+                        id="Operator"
+                        name="Operator"
+                        type="hidden"
+                        class="ignore"
+                      /><input
+                        id="Package"
+                        name="Package"
+                        type="hidden"
+                        class="ignore"
+                      />
+                    </form>
+                  </div>
+                  <div
+                    class="uk-overlay uk-overlay-default uk-position-cover uk-flex uk-flex-middle uk-hidden"
+                  >
+                    <div class="uk-position-center uk-icon" uk-spinner></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+          <div class="uk-flex uk-flex-middle uk-flex-center">
+            <div
+              class="uk-card uk-card-body uk-width-2-3@s uk-border-rounded-large uk-flex uk-flex-middle uk-flex-center ui-topup"
+            >
+              <div class="uk-width-2-3@m uk-margin-medium-top">
+                <div class="uk-border-rounded uk-position-relative">
+                  <div class="uk-panel">
+                    <form
+                      id="Topup"
+                      name="Topup"
+                      autocomplete="off"
+                      class="uk-grid-small uk-text-right uk-grid uk-grid-stack"
+                      uk-grid=""
+                      novalidate="novalidate"
+                    >
+                      <div class="uk-form-label uk-text-default">نوع شارژ</div>
+                      
+                      <input
+                        id="CellNumber"
+                        name="CellNumber"
+                        type="tel"
+                        class="uk-input uk-form-large uk-border-rounded uk-text-center uk-text-default ui-letter-spacing fontface-vazir-fa"
+                        minlength="11"
+                        maxlength="11"
+                        required
+                        placeholder="۰۹__ ____ ___"
+                      />
+
+                      <div
+                        id="TopupOperator"
+                        class="uk-width-1-1 uk-grid-margin"
+                      >
+                        <div class="uk-margin-small-top uk-margin-small-bottom">مبلغ شارژ</div>
+                        <ul
+                          id=""
+                          class="uk-subnav uk-subnav-pill uk-grid-small uk-child-width-1-2 uk-child-width-1-3@m uc-subnav-pill uk-grid"
+                          uk-grid
+                          uk-switcher
+                        >
+                          <li id="" class="uk-active">
+                            <a
+                              href="#"
+                              class="uk-link uk-padding uk-flex uk-flex-center uk-flex-middle"
+                              data-action=""
+                              data-value=""
+                              aria-expanded="true"
+                            >
+                              
+                            
+                              <span>1000</span>
+                              <span>تومان</span>
+                            </a>
+                          </li>
+
+                        <li id="" class="uk-active">
+                            <a
+                              href="#"
+                              class="uk-link uk-padding uk-flex uk-flex-center uk-flex-middle"
+                              data-action=""
+                              data-value=""
+                              aria-expanded="true"
+                            >
+                              
+                            
+                              <span>1000</span>
+                              <span>تومان</span>
+                            </a>
+                          </li>
+                          <li id="" class="uk-active">
+                            <a
+                              href="#"
+                              class="uk-link uk-padding uk-flex uk-flex-center uk-flex-middle"
+                              data-action=""
+                              data-value=""
+                              aria-expanded="true"
+                            >
+                              
+                            
+                              <span>1000</span>
+                              <span>تومان</span>
+                            </a>
+                          </li>
+                          <li id="" class="uk-active">
+                            <a
+                              href="#"
+                              class="uk-link uk-padding uk-flex uk-flex-center uk-flex-middle"
+                              data-action=""
+                              data-value=""
+                              aria-expanded="true"
+                            >
+                              
+                            
+                              <span>1000</span>
+                              <span>تومان</span>
+                            </a>
+                          </li>
+                          <li id="" class="uk-active">
+                            <a
+                              href="#"
+                              class="uk-link uk-padding uk-flex uk-flex-center uk-flex-middle"
+                              data-action=""
+                              data-value=""
+                              aria-expanded="true"
+                            >
+                              
+                            
+                              <span>1000</span>
+                              <span>تومان</span>
+                            </a>
+                          </li>
+                          <li id="" class="uk-active">
+                            <a
+                              href="#"
+                              class="uk-link uk-padding uk-flex uk-flex-center uk-flex-middle"
+                              data-action=""
+                              data-value=""
+                              aria-expanded="true"
+                            >
+                              
+                            
+                              <span>1000</span>
+                              <span>تومان</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                
 
                       <div
                         class="uk-width-1-1 uk-margin-medium-top uk-text-center"
