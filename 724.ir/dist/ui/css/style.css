@@ -977,9 +977,12 @@
 }
 
 .ui-topup {
-  border: 1px solid rgba(237, 241, 247, 1)
+  border: 1px solid rgba(237, 241, 247, 1);
 }
+.ui-active-operator{
+  color: rgba(45, 53, 74, 1) !important;
 
+}
 .ui-active-operator[data-value="1"] {
   border: 1px solid #bfefff !important;
   background: #bfefff !important;
@@ -1008,4 +1011,22 @@
 .ui-active-operator[data-value="6"] {
   border: 1px solid #aefffa !important;
   background: #aefffa !important;
+}
+
+.ui-topup-type {
+  background-color: rgba(245, 246, 252, 1);
+  border: 1px solid rgba(237, 241, 247, 1);
+  border-radius: 13px;
+}
+.ui-topup-type li {
+  padding: 3px;
+}
+.ui-topup-type li a {
+  border: none !important;
+}
+.ui-topup-type > .uk-active > a {
+  background: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(237, 241, 247, 1);
+  border-radius: 10px;
+  color: rgba(45, 53, 74, 1);
 }
