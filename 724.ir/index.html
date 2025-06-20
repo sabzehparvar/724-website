@@ -414,17 +414,16 @@
         <div class="uk-container">
           <div class="uk-flex uk-flex-middle uk-flex-center">
             <div
-              class="uk-card uk-card-body uk-width-2-3@s uk-border-rounded-large uk-flex uk-flex-middle uk-flex-center uk-flex-column ui-topup"
+              class="uk-card uk-card-body uk-width-2-3@s uk-border-rounded-large uk-flex uk-flex-middle uk-flex-center uk-flex-column ui-border-grey"
             >
               <div class="uk-width-2-3@m uk-margin-medium-bottom">
-                <div class="uk-border-rounded uk-position-relative">
+                <div class="uk-position-relative">
                   <div class="uk-panel">
                     <form
                       id="Topup"
                       name="Topup"
                       autocomplete="off"
                       class="uk-text-right"
-                      
                       novalidate="novalidate"
                     >
                       <label
@@ -445,7 +444,7 @@
 
                       <div
                         id="TopupOperator"
-                        class="uk-width-1-1 uk-grid-margin"
+                        class="uk-width-1-1 uk-grid-margin ui-border-grey-operator ui-topup-operator"
                       >
                         <div>اپراتور</div>
                         <ul
@@ -564,12 +563,12 @@
                           </li>
                         </ul>
                       </div>
-                      <div class="uk-text-meta">
+                      <div class="uk-text-meta uk-margin-small-top">
                         در صورت ترابرد، اپراتورت رو انخاب کن
                       </div>
-                      <div>
+                      <div class="uk-margin-medium-top">
                         <div class="uk-form-label uk-text-default">
-                          نوع شارژ
+                          نوع سیمکارت
                         </div>
 
                         <ul
@@ -577,14 +576,12 @@
                           uk-switcher
                         >
                           <li class="">
-                            <a href="#" class="uk-flex-center">عادی</a>
+                            <a href="#" class="uk-flex-center">اعتباری</a>
                           </li>
                           <li class="">
-                            <a href="#" class="uk-flex-center">شگفت انگیز</a>
+                            <a href="#" class="uk-flex-center">دائمی</a>
                           </li>
                         </ul>
-
-                      
                       </div>
                       <div
                         class="uk-width-1-1 uk-margin-medium-top uk-text-center"
@@ -595,7 +592,7 @@
                           class="uk-button uk-button-primary uk-button-large uk-border-rounded uk-width-1-1"
                           data-action="getTopupPackage"
                         >
-                          نمایش شارژها
+                          نمایش بسته ها
                         </button>
                       </div>
                       <input
@@ -619,40 +616,135 @@
                 </div>
               </div>
               <div class="uk-width-2-3@m uk-margin-medium-bottom">
-                <div class="uk-border-rounded uk-position-relative">
+                <div class="uk-position-relative">
                   <div class="uk-panel">
-                    <form
-                      id="Topup"
-                      name="Topup"
-                      autocomplete="off"
-                      class="uk-grid-small uk-text-right uk-grid uk-grid-stack"
-                      uk-grid
-                      novalidate="novalidate"
-                    >
-                      <div
-                        class="uk-width-1-1 uk-margin-medium-top uk-text-center"
+                    <div class="uk-margin-bottom">
+                      <a
+                        href="#"
+                        class="uk-text-decoration-none uk-text-secondary"
                       >
-                        <button
-                          id="TopupButton"
-                          name="TopupButton"
-                          class="uk-button uk-button-primary uk-button-large uk-border-rounded uk-width-1-1"
-                          data-action="getTopupPackage"
+                        <i
+                          class="ti ti-arrow-right uk-border-circle uk-margin-small-left ui-return-arrow"
+                        ></i>
+                        بازگشت
+                      </a>
+                    </div>
+                    <div
+                      id=""
+                      class="uk-width-1-1 uk-margin uk-margin-remove-bottom"
+                    >
+                      <ul
+                        id=""
+                        class="uk-subnav uk-subnav-pill uk-grid-small uk-child-width-auto ui-internet-duration"
+                        uk-grid
+                        uk-switcher
+                      >
+                        <li id="" class="">
+                          <a
+                            href="#"
+                            class="uk-link"
+                            data-action="changeInternetDuration"
+                            data-value="1"
+                         
+                          >
+                            <span>ماهانه</span>
+                          </a>
+                        </li>
+                         <li id="" class="">
+                          <a
+                            href="#"
+                            class="uk-link"
+                            data-action="changeInternetDuration"
+                            data-value="1"
+                         
+                          >
+                            <span>۱۵ روزه</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div
+                      id="InternetPackage"
+                      class="uk-width-1-1 uk-margin uk-margin-remove-bottom uk-grid-margin uk-first-column"
+                    >
+                      <ul
+                        id=""
+                        class="uk-subnav uc-subnav-right uk-subnav-pill uk-grid-small uk-child-width-1-1"
+                        uk-grid
+                        uk-switcher
+                        data-operator=""
+                        data-type=""
+                        data-duration=""
+                      >
+                        <li
+                          id=""
+                          class="uk-active"
+                          data-operator=""
+                          data-amount=""
+                          data-text=""
                         >
-                          خرید شارژ
-                        </button>
-                      </div>
-                      <input
-                        id="Operator"
-                        name="Operator"
-                        type="hidden"
-                        class="ignore"
-                      /><input
-                        id="Package"
-                        name="Package"
-                        type="hidden"
-                        class="ignore"
-                      />
-                    </form>
+                          <a href="#" class="uk-link" data-action="">
+                            <div
+                              class="uk-width-1-1 uk-grid-collapse uk-position-relative"
+                              uk-grid
+                            >
+                              <div class="uk-width-expand@m">
+                                <span class="uk-display-block">1 گیگ</span>
+                                <small class="uk-text-meta"
+                                  >مبلغ با احتساب مالیات: 154,770 ریال</small
+                                >
+                                <em class="uk-badge uc-badge-mute" dir="ltr"
+                                  ><i class="ri-hashtag"></i>9846</em
+                                >
+                              </div>
+                              <div class="uk-width-auto@m uk-text-left">
+                                <span class="uk-display-block"
+                                  >154,770 <small>ریال</small></span
+                                >
+                                <small class="uk-text-meta"
+                                  >مدت زمان: 1 ماهه</small
+                                >
+                              </div>
+                            </div>
+                          </a>
+                        </li>
+                        <li
+                          id=""
+                          class=""
+                          data-operator=""
+                          data-amount=""
+                          data-text=""
+                        >
+                          <a href="#" class="uk-link" data-action="">
+                            <div
+                              class="uk-width-1-1 uk-grid-collapse uk-position-relative"
+                              uk-grid
+                            >
+                              <div class="uk-width-expand@m">
+                                <span class="uk-display-block"
+                                  >آلفا+ 12 گیگ</span
+                                >
+                                <small class="uk-text-meta"
+                                  >مبلغ با احتساب مالیات: 154,770 ریال</small
+                                >
+                                <em class="uk-badge uc-badge-mute" dir="ltr"
+                                  ><i class="ri-hashtag"></i>9846</em
+                                >
+                              </div>
+                              <div class="uk-width-auto@m uk-text-left">
+                                <span class="uk-display-block"
+                                  >154,770 <small>ریال</small></span
+                                >
+                                <small class="uk-text-meta"
+                                  >مدت زمان: 1 ماهه</small
+                                >
+                              </div>
+                            </div>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                   <div
                     class="uk-overlay uk-overlay-default uk-position-cover uk-flex uk-flex-middle uk-hidden"
@@ -670,7 +762,7 @@
         <div class="uk-container">
           <div class="uk-flex uk-flex-middle uk-flex-center">
             <div
-              class="uk-card uk-card-body uk-width-2-3@s uk-border-rounded-large uk-flex uk-flex-middle uk-flex-center uk-flex-column ui-topup"
+              class="uk-card uk-card-body uk-width-2-3@s uk-border-rounded-large uk-flex uk-flex-middle uk-flex-center uk-flex-column ui-border-grey"
             >
               <div class="uk-width-2-3@m uk-margin-medium-bottom">
                 <div class="uk-border-rounded uk-position-relative">
@@ -680,7 +772,6 @@
                       name="Topup"
                       autocomplete="off"
                       class="uk-text-right"
-                    
                     >
                       <label
                         for="CellNumber"
@@ -700,7 +791,7 @@
 
                       <div
                         id="TopupOperator"
-                        class="uk-width-1-1 uk-grid-margin"
+                        class="uk-width-1-1 uk-grid-margin ui-border-grey-operator ui-topup-operator"
                       >
                         <div>اپراتور</div>
                         <ul
@@ -858,18 +949,22 @@
               <div class="uk-width-2-3@m uk-margin-medium-bottom">
                 <div class="uk-border-rounded uk-position-relative">
                   <div class="uk-panel">
-                    <div class="uk-margin-bottom">
-                      <i
-                        class="ti ti-arrow-right uk-border-circle uk-margin-small-left ui-return-arrow"
-                      ></i>
-                      بازگشت
+                   <div class="uk-margin-bottom">
+                      <a
+                        href="#"
+                        class="uk-text-decoration-none uk-text-secondary"
+                      >
+                        <i
+                          class="ti ti-arrow-right uk-border-circle uk-margin-small-left ui-return-arrow"
+                        ></i>
+                        بازگشت
+                      </a>
                     </div>
                     <form
                       id="Topup"
                       name="Topup"
                       autocomplete="off"
                       class="uk-text-right"
-                      
                       novalidate="novalidate"
                     >
                       <div class="uk-form-label uk-text-default">نوع شارژ</div>
