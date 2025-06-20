@@ -1058,3 +1058,12 @@
   color: #225eb9;
   border: 1px solid #6e8ab32a;
 }
+.ui-internet-package ul li a {
+  padding: 18px 15px !important;
+}
+
+.ui-internet-package ul li.uk-active a {
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #1e87f0;
+}
