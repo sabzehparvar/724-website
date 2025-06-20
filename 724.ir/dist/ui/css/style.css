@@ -1024,18 +1024,18 @@
 
 }
 
-.ui-topup-type {
+.ui-switcher-tab {
   background-color: rgba(245, 246, 252, 1);
   border: 1px solid rgba(237, 241, 247, 1);
   border-radius: 13px;
 }
-.ui-topup-type li {
+.ui-switcher-tab li {
   padding: 3px;
 }
-.ui-topup-type li a {
+.ui-switcher-tab li a {
   border: none !important;
 }
-.ui-topup-type > .uk-active > a {
+.ui-switcher-tab > .uk-active > a {
   background: rgba(255, 255, 255, 1);
   border: 1px solid rgba(237, 241, 247, 1);
   border-radius: 10px;
