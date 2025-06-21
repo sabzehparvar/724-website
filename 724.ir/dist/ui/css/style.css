@@ -1054,9 +1054,16 @@
   border-radius: 10px !important;
 }
 .ui-internet-duration li.uk-active a {
-  background-color: #b6d3ffa2;
-  color: #225eb9;
-  border: 1px solid #6e8ab32a;
+  background-color: rgba(238, 244, 253, 1);
+  color: rgba(43, 115, 227, 1);
+  border: 1px solid rgba(208, 224, 249, 1);
+}
+.ui-internet-duration li.uk-active a span::before {
+  content: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='rgba(43,115,227,1)'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%20class='icon%20icon-tabler%20icons-tabler-outline%20icon-tabler-circle-check'%3E%3Cpath%20stroke='none'%20d='M0%200h24v24H0z'%20fill='none'/%3E%3Cpath%20d='M12%2012m-9%200a9%209%200%201%200%2018%200a9%209%200%201%200%20-18%200'%20/%3E%3Cpath%20d='M9%2012l2%202l4%20-4'%20/%3E%3C/svg%3E");
+  width: 25px;
+  height: 25px;
+  margin-left: 5px;
+
 }
 .ui-internet-package ul li a {
   padding: 18px 15px !important;
