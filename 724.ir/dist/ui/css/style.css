@@ -1067,9 +1067,6 @@
   color: #333;
   border: 1px solid #1e87f0;
 }
-.ui-box-shadow{
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.316) !important;
-}
 .ui-bg-green{
   background-color: rgb(64 191 110 / 87%);
 }
