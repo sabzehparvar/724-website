@@ -1076,3 +1076,6 @@
 .ui-bg-light-green{
   background-color: rgba(64, 191, 111, 0.151);
 }
+.ui-receipt-table tr td {
+    padding: 7px 0px;
+}
