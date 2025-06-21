@@ -1067,12 +1067,15 @@
   color: #333;
   border: 1px solid #1e87f0;
 }
-.ui-bg-green{
-  background-color: rgb(64 191 110 / 87%);
+.ui-success-receipt-title {
+  background-color: rgba(0, 186, 139, 1);
+  padding: 9px 12px;
+  position: absolute;
+  bottom: calc(100% - 22px);
 }
-.ui-bg-light-green{
-  background-color: rgba(64, 191, 111, 0.151);
+.ui-bg-light-green {
+  background-color: rgba(238, 251, 245, 1);
 }
 .ui-receipt-table tr td {
-    padding: 7px 0px;
+  padding: 7px 0px;
 }
