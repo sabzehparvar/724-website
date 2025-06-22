@@ -961,7 +961,7 @@
 .ui-text-small {
   font-size: 12px !important;
 }
-#CellNumber {
+.ui-bg-grey {
   background: rgba(245, 246, 252, 1);
 }
 .ui-letter-spacing {
@@ -1023,7 +1023,7 @@
 }
 .ui-switcher-tab li a {
   border: none !important;
-  padding: 2px !important;
+  padding: 9px !important;
 }
 .ui-switcher-tab > .uk-active > a {
   background: rgba(255, 255, 255, 1);
@@ -1038,6 +1038,7 @@
 .ui-topup-operator ul li a {
   padding: 12px 8px !important;
   border-radius: 14px;
+  border: 1px solid rgba(237, 241, 247, 1);
 }
 @media (max-width: 960px) {
   .ui-topup-operator ul li a {
@@ -1058,7 +1059,7 @@
 }
 .ui-internet-duration li.uk-active a {
   background-color: rgba(238, 244, 253, 1);
-  color: rgba(43, 115, 227, 1);
+  color: rgba(43, 115, 227, 1) !important;
   border: 1px solid rgba(208, 224, 249, 1);
 }
 .ui-internet-duration li.uk-active a span::before {
@@ -1091,4 +1092,16 @@
 }
 .ui-receipt-table tr td {
   padding: 7px 0px;
+}
+.ui-subnav-pill li a {
+  padding: 15px 5px !important;
+  border-radius: 14px;
+  border: 1px solid rgba(237, 241, 247, 1);
+  color: rgba(45, 53, 74, 1) !important;
+}
+.ui-subnav-pill li.uk-active a {
+  
+  border: none;
+  color: #fff !important;
+
 }

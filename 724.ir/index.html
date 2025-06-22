@@ -417,9 +417,9 @@
               class="uk-card uk-card-default uk-card-body uk-width-2-3@s uk-width-1-2@m uk-border-rounded-large uk-flex uk-flex-middle uk-flex-center"
             >
               <div class="uk-width-4-5@m">
-                <div class="uk-panel">
+                <div class="uk-panel uk-margin-top">
                   <div
-                    class="uk-border-rounded uk-width-expand uk-text-center uk-margin-bottom uk-position-relative ui-bg-light-green uk-flex uk-flex-column uk-flex-middle uk-flex-center"
+                    class="uk-border-rounded uk-width-expand uk-text-center uk-margin-bottom uk-flex uk-flex-column uk-flex-middle uk-flex-center ui-bg-light-green"
                   >
                     <div
                       class="uk-text-center uk-width-max-content uk-border-rounded uk-text-white ui-success-receipt-title"
@@ -495,14 +495,11 @@
                       </tbody>
                     </table>
                   </div>
-
-                  <div class="uk-text-center">
-                    <button
-                      class="uk-button uk-button-primary uk-button-large uk-border-rounded uk-width-1-1"
-                    >
-                      بازگشت به خانه
-                    </button>
-                  </div>
+                  <button
+                    class="uk-button uk-button-primary uk-button-large uk-border-rounded uk-width-1-1"
+                  >
+                    بازگشت به خانه
+                  </button>
                 </div>
               </div>
             </div>
@@ -520,22 +517,16 @@
                 <div class="uk-position-relative">
                   <div class="uk-panel">
                     <form
-                      id="Topup"
-                      name="Topup"
                       autocomplete="off"
                       class="uk-text-right"
                       novalidate="novalidate"
                     >
-                      <label
-                        for="CellNumber"
-                        class="uk-form-label uk-text-default"
+                      <label class="uk-form-label uk-text-default"
                         >شماره موبایل رو وارد کن</label
                       >
                       <input
-                        id="CellNumber"
-                        name="CellNumber"
                         type="tel"
-                        class="uk-input uk-form-large uk-border-rounded uk-text-center uk-text-default ui-letter-spacing fontface-vazir-fa"
+                        class="uk-input uk-form-large uk-border-rounded uk-text-center uk-text-default uk-margin-small-top ui-letter-spacing fontface-vazir-fa ui-bg-grey"
                         minlength="11"
                         maxlength="11"
                         required
@@ -543,26 +534,20 @@
                       />
 
                       <div
-                        id="TopupOperator"
                         class="uk-width-1-1 uk-grid-margin ui-border-grey-operator ui-topup-operator"
                       >
-                        <div>اپراتور</div>
+                        <div class="uk-margin-small-bottom">اپراتور</div>
                         <ul
-                          id="TopupOperatorSwitcher"
                           class="uk-subnav uk-subnav-pill uk-grid-small uk-child-width-1-3 uk-grid"
                           uk-grid
                           uk-switcher
                         >
-                          <li id="OperatorItem">
-                            <a
-                              href="#"
-                              class="uk-link"
-                              data-action="changeTopupOperator"
-                              data-value="1"
-                            >
+                          <li>
+                            <a href="#" data-value="1">
                               <img
                                 src="./dist/ui/img/icon/topup/ic-hamrah-aval.svg"
-                                width="24px"
+                                width="24"
+                                height="24"
                                 class="uk-preserve"
                                 uk-svg
                               />
@@ -570,16 +555,12 @@
                             </a>
                           </li>
 
-                          <li id="OperatorItem">
-                            <a
-                              href="#"
-                              class="uk-link"
-                              data-action="changeTopupOperator"
-                              data-value="2"
-                            >
+                          <li>
+                            <a href="#" data-value="2">
                               <img
                                 src="./dist/ui/img/icon/topup/ic-irancell.svg"
-                                width="24px"
+                                width="24"
+                                height="24"
                                 class="uk-preserve"
                                 uk-svg
                               />
@@ -587,13 +568,8 @@
                             </a>
                           </li>
 
-                          <li id="OperatorItem" class="">
-                            <a
-                              href="#"
-                              class="uk-link"
-                              data-action="changeTopupOperator"
-                              data-value="3"
-                            >
+                          <li>
+                            <a href="#" data-value="3">
                               <img
                                 src="./dist/ui/img/icon/topup/ic-rightel.svg"
                                 width="24"
@@ -605,16 +581,8 @@
                             </a>
                           </li>
 
-                          <li
-                            id="OperatorItem"
-                            class="uk-grid-margin uk-first-column"
-                          >
-                            <a
-                              href="#"
-                              class="uk-link"
-                              data-action="changeTopupOperator"
-                              data-value="4"
-                            >
+                          <li>
+                            <a href="#" data-value="4">
                               <img
                                 src="./dist/ui/img/icon/topup/ic-samantel.svg"
                                 width="24"
@@ -626,13 +594,8 @@
                             </a>
                           </li>
 
-                          <li id="OperatorItem" class="uk-grid-margin">
-                            <a
-                              href="#"
-                              class="uk-link"
-                              data-action="changeTopupOperator"
-                              data-value="5"
-                            >
+                          <li>
+                            <a href="#" data-value="5">
                               <img
                                 src="./dist/ui/img/icon/topup/ic-shatel.svg"
                                 width="24"
@@ -643,13 +606,8 @@
                               <span>شاتل</span>
                             </a>
                           </li>
-                          <li id="OperatorItem" class="uk-grid-margin">
-                            <a
-                              href="#"
-                              class="uk-link"
-                              data-action="changeTopupOperator"
-                              data-value="6"
-                            >
+                          <li>
+                            <a href="#" data-value="6">
                               <img
                                 src="./dist/ui/img/icon/topup/ic-telekish.svg"
                                 width="24"
@@ -663,21 +621,20 @@
                         </ul>
                       </div>
                       <div class="uk-text-meta uk-margin-small-top">
-                        در صورت ترابرد، اپراتورت رو انخاب کن
+                        در صورت ترابرد، اپراتورت رو انتخاب کن
                       </div>
                       <div class="uk-margin-medium-top">
                         <div class="uk-form-label uk-text-default">
                           نوع سیمکارت
                         </div>
-
                         <ul
                           class="uk-subnav uk-subnav-pill uk-width-1-1 uk-child-width-1-2 uk-margin-auto ui-switcher-tab"
                           uk-switcher
                         >
-                          <li class="">
+                          <li>
                             <a href="#" class="uk-flex-center">اعتباری</a>
                           </li>
-                          <li class="">
+                          <li>
                             <a href="#" class="uk-flex-center">دائمی</a>
                           </li>
                         </ul>
@@ -723,34 +680,30 @@
                         بازگشت
                       </a>
                     </div>
-                    <div
-                      id=""
-                      class="uk-width-1-1 uk-margin uk-margin-remove-bottom"
-                    >
+                    <div class="uk-width-1-1 uk-margin uk-margin-remove-bottom">
                       <ul
-                        id=""
                         class="uk-subnav uk-subnav-pill uk-grid-small uk-child-width-auto ui-internet-duration"
                         uk-grid
                         uk-switcher
                       >
-                        <li id="" class="">
-                          <a
-                            href="#"
-                            class="uk-link"
-                            data-action="changeInternetDuration"
-                            data-value="1"
-                          >
+                        <li>
+                          <a href="#">
                             <span class="uk-flex uk-flex-middle">ماهانه</span>
                           </a>
                         </li>
-                        <li id="" class="">
-                          <a
-                            href="#"
-                            class="uk-link"
-                            data-action="changeInternetDuration"
-                            data-value="1"
-                          >
+                        <li>
+                          <a href="#">
                             <span class="uk-flex uk-flex-middle">۱۵ روزه</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#">
+                            <span class="uk-flex uk-flex-middle">هفتگی</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#">
+                            <span class="uk-flex uk-flex-middle">روزانه</span>
                           </a>
                         </li>
                       </ul>
@@ -771,14 +724,14 @@
                               class="uk-width-1-1 uk-grid-collapse uk-flex-middle"
                               uk-grid
                             >
-                              <div class="uk-margin-small-left">
+                              <div class="uk-margin-left">
                                 <img
                                   src="./dist/ui/img/icon/app/ic-irancell.svg"
-                                  width="24px"
+                                  width="24"
                                 />
                               </div>
-                              <div class="uk-width-expand">
-                                <span class="uk-display-block"
+                              <div class="uk-width-expand uk-margin-small-left">
+                                <span class="uk-display-block uk-width-2-3@m"
                                   >آلفا+ ۲ گیگ + ۲۰۰ مگ هدیه صبحانت (۶ صبح تا ۱۲
                                   ظهر)</span
                                 >
@@ -799,14 +752,14 @@
                               class="uk-width-1-1 uk-grid-collapse uk-flex-middle"
                               uk-grid
                             >
-                              <div class="uk-margin-small-left">
+                              <div class="uk-margin-left">
                                 <img
                                   src="./dist/ui/img/icon/app/ic-irancell.svg"
-                                  width="24px"
+                                   width="24"
                                 />
                               </div>
-                              <div class="uk-width-expand">
-                                <span class="uk-display-block"
+                              <div class="uk-width-expand uk-margin-small-left">
+                                <span class="uk-display-block uk-width-2-3@m"
                                   >آلفا+ ۲ گیگ + ۲۰۰ مگ هدیه صبحانت</span
                                 >
                                 <small>۱ ماهه</small>
@@ -859,7 +812,7 @@
                         id="CellNumber"
                         name="CellNumber"
                         type="tel"
-                        class="uk-input uk-form-large uk-border-rounded uk-text-center uk-text-default ui-letter-spacing fontface-vazir-fa"
+                        class="uk-input uk-form-large uk-border-rounded uk-text-center uk-text-default uk-margin-small-top ui-letter-spacing fontface-vazir-fa"
                         minlength="11"
                         maxlength="11"
                         required
@@ -870,37 +823,27 @@
                         id="TopupOperator"
                         class="uk-width-1-1 uk-grid-margin ui-border-grey-operator ui-topup-operator"
                       >
-                        <div>اپراتور</div>
+                        <div class="uk-margin-small-bottom">اپراتور</div>
                         <ul
-                          id="TopupOperatorSwitcher"
                           class="uk-subnav uk-subnav-pill uk-grid-small uk-child-width-1-3 uk-grid"
                           uk-grid
                           uk-switcher
                         >
-                          <li id="OperatorItem">
-                            <a
-                              href="#"
-                              class="uk-link"
-                              data-action="changeTopupOperator"
-                              data-value="1"
-                            >
+                          <li>
+                            <a href="#" data-value="1">
                               <img
                                 src="./dist/ui/img/icon/topup/ic-hamrah-aval.svg"
                                 width="24"
                                 height="24"
                                 class="uk-preserve"
+                                uk-svg
                               />
                               <span>همراه اول</span>
                             </a>
                           </li>
 
-                          <li id="OperatorItem">
-                            <a
-                              href="#"
-                              class="uk-link"
-                              data-action="changeTopupOperator"
-                              data-value="2"
-                            >
+                          <li>
+                            <a href="#" data-value="2">
                               <img
                                 src="./dist/ui/img/icon/topup/ic-irancell.svg"
                                 width="24"
@@ -912,13 +855,8 @@
                             </a>
                           </li>
 
-                          <li id="OperatorItem" class="">
-                            <a
-                              href="#"
-                              class="uk-link"
-                              data-action="changeTopupOperator"
-                              data-value="3"
-                            >
+                          <li>
+                            <a href="#" data-value="3">
                               <img
                                 src="./dist/ui/img/icon/topup/ic-rightel.svg"
                                 width="24"
@@ -930,16 +868,8 @@
                             </a>
                           </li>
 
-                          <li
-                            id="OperatorItem"
-                            class="uk-grid-margin uk-first-column"
-                          >
-                            <a
-                              href="#"
-                              class="uk-link"
-                              data-action="changeTopupOperator"
-                              data-value="4"
-                            >
+                          <li>
+                            <a href="#" data-value="4">
                               <img
                                 src="./dist/ui/img/icon/topup/ic-samantel.svg"
                                 width="24"
@@ -951,13 +881,8 @@
                             </a>
                           </li>
 
-                          <li id="OperatorItem" class="uk-grid-margin">
-                            <a
-                              href="#"
-                              class="uk-link"
-                              data-action="changeTopupOperator"
-                              data-value="5"
-                            >
+                          <li>
+                            <a href="#" data-value="5">
                               <img
                                 src="./dist/ui/img/icon/topup/ic-shatel.svg"
                                 width="24"
@@ -968,13 +893,8 @@
                               <span>شاتل</span>
                             </a>
                           </li>
-                          <li id="OperatorItem" class="uk-grid-margin">
-                            <a
-                              href="#"
-                              class="uk-link"
-                              data-action="changeTopupOperator"
-                              data-value="6"
-                            >
+                          <li>
+                            <a href="#" data-value="6">
                               <img
                                 src="./dist/ui/img/icon/topup/ic-telekish.svg"
                                 width="24"
@@ -988,7 +908,7 @@
                         </ul>
                       </div>
                       <div class="uk-text-meta uk-margin-small-top">
-                        در صورت ترابرد، اپراتورت رو انخاب کن
+                        در صورت ترابرد، اپراتورت رو انتخاب کن
                       </div>
 
                       <div class="uk-margin-medium-top uk-text-center">
@@ -1062,16 +982,14 @@
                           </div>
                           <ul
                             id=""
-                            class="uk-subnav uk-subnav-pill uk-grid-small uk-child-width-1-2 uk-child-width-1-3@m uk-grid"
+                            class="uk-subnav uk-subnav-pill uk-grid-small uk-child-width-1-2 uk-child-width-1-3@m uk-grid fontface-vazir-fa ui-subnav-pill"
                             uk-grid
                             uk-switcher
                           >
                             <li id="">
                               <a
                                 href="#"
-                                class="uk-link uk-padding uk-flex uk-flex-center uk-flex-middle"
-                                data-action=""
-                                data-value=""
+                                class="uk-padding uk-flex uk-flex-center uk-flex-middle"
                               >
                                 <span>1000</span>
                                 <span>تومان</span>
@@ -1144,7 +1062,7 @@
                           </div>
                           <ul
                             id=""
-                            class="uk-subnav uk-subnav-pill uk-grid-small uk-child-width-1-2 uk-child-width-1-3@m"
+                            class="uk-subnav uk-subnav-pill uk-grid-small uk-child-width-1-2 uk-child-width-1-3@m fontface-vazir-fa ui-subnav-pill"
                             uk-grid
                             uk-switcher
                           >
