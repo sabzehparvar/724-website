@@ -968,14 +968,6 @@
   letter-spacing: 2.5px !important;
 }
 
-.uk-subnav-pill > * > :first-child {
-  padding: 10px;
-  border: 1px solid rgba(237, 241, 247, 1);
-  border-radius: 14px;
-  color: rgba(45, 53, 74, 1);
-  height: 34px;
-}
-
 .ui-active-operator {
   color: rgba(45, 53, 74, 1) !important;
 }
@@ -1044,14 +1036,25 @@
   padding: 4px;
 }
 .ui-topup-operator ul li a {
-  padding: 5px !important;
+  padding: 12px 8px !important;
+  border-radius: 14px;
+}
+@media (max-width: 960px) {
+  .ui-topup-operator ul li a {
+    padding: 10px 6px !important;
+    font-size: 12px !important;
+    display: flex;
+    justify-content: center;
+  }
 }
 .ui-border-grey {
   border: 1px solid rgba(237, 241, 247, 1);
 }
 .ui-internet-duration li a {
-  padding: 3px 10px !important;
+  padding: 9px 11px !important;
   border-radius: 10px !important;
+  border: 1px solid rgba(237, 241, 247, 1);
+  color: rgba(45, 53, 74, 1) !important;
 }
 .ui-internet-duration li.uk-active a {
   background-color: rgba(238, 244, 253, 1);
@@ -1063,10 +1066,13 @@
   width: 25px;
   height: 25px;
   margin-left: 5px;
-
 }
 .ui-internet-package ul li a {
-  padding: 18px 15px !important;
+  padding: 12px !important;
+  border: 1px solid rgba(237, 241, 247, 1);
+  border-radius: 14px;
+  color: rgba(45, 53, 74, 1) !important;
+  min-height: 75px;
 }
 
 .ui-internet-package ul li.uk-active a {
