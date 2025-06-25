@@ -1105,3 +1105,6 @@
   color: #fff !important;
 
 }
+.ui-hidden{
+  display: none;
+}
