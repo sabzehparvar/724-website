@@ -642,7 +642,11 @@ function validateCellNumber(value, checkRegex = false) {
         return operator;
       }
     } else {
-      if (value.length == 11 && value.match(regex[operator]) && !/(.)\1{6,}/.test(value)) {
+      if (
+        value.length == 11 &&
+        value.match(regex[operator]) &&
+        !/(.)\1{6,}/.test(value)
+      ) {
         return operator;
       }
     }
@@ -650,8 +654,11 @@ function validateCellNumber(value, checkRegex = false) {
   return false;
 }
 
+function toggleWizard(currentWizard) {
+  $(".ui-card-wizard").hide();
+  $(`.ui-card-wizard[data-wizard="${currentWizard}"]`).fadeIn();
+}
 $(document).ready(function () {
-
   $.validator.addMethod(
     "cellNumber",
     function (value, element) {
@@ -682,7 +689,9 @@ $(document).ready(function () {
       $(element).removeClass("uk-form-danger");
     },
     errorPlacement: function (error, element) {
-      element.parent().parent().hasClass("cu-module") ? undefined : error.appendTo(element.closest("div"));
+      element.parent().parent().hasClass("cu-module")
+        ? undefined
+        : error.appendTo(element.closest("div"));
     },
   });
 });
@@ -896,6 +905,16 @@ $(document).ready(function () {
             }
             e.preventDefault();
             break;
+
+          case "getPackages":
+            toggleWizard("second-card");
+            e.preventDefault();
+            break;
+            case "returnFirstCard":
+            toggleWizard("first-card");
+            e.preventDefault();
+            break;
+            
         }
       }
     }
@@ -920,7 +939,8 @@ $(document).ready(function () {
         .replace("%IconSrc%", iconUrl)
         .replaceAll("%Name%", item.Description);
     });
-    $("#TopupOperator").removeClass("ui-hidden") & $("#TopupOperator ul").empty().append(items);
+    $("#TopupOperator").removeClass("ui-hidden") &
+      $("#TopupOperator ul").empty().append(items);
   }
 
   function getTopupPackages() {

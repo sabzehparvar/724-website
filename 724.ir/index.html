@@ -409,103 +409,6 @@
           </nav>
         </div>
       </header>
-      <!--  Successful Transaction Receipt  -->
-      <div class="uk-section">
-        <div class="uk-container">
-          <div class="uk-flex uk-flex-middle uk-flex-center">
-            <div
-              class="uk-card uk-card-default uk-card-body uk-width-2-3@s uk-width-1-2@m uk-border-rounded-large uk-flex uk-flex-middle uk-flex-center"
-            >
-              <div class="uk-width-4-5@m">
-                <div class="uk-panel uk-margin-top">
-                  <div
-                    class="uk-border-rounded uk-width-expand uk-text-center uk-margin-bottom uk-flex uk-flex-column uk-flex-middle uk-flex-center ui-bg-light-green"
-                  >
-                    <div
-                      class="uk-text-center uk-width-max-content uk-border-rounded uk-text-white ui-success-receipt-title"
-                    >
-                      <i class="ti ti-circle-check-filled"></i>
-                      تراکنش موفق
-                    </div>
-                    <p class="uk-text-large uk-padding-small">
-                      آلفا+ ۲ گیگ + ۲۰۰ مگ هدیه صبحانت (۶ صبح تا ۱۲ ظهر) - ۱
-                      ماهه
-                    </p>
-                  </div>
-
-                  <div class="ui-receipt-table">
-                    <table class="uk-table uk-table-divider fontface-vazir-fa">
-                      <tbody>
-                        <tr>
-                          <td class="uk-text-muted">مبلغ</td>
-                          <td class="uk-text-left">۱۰,۹۰۰ <span>ریال</span></td>
-                        </tr>
-                        <tr>
-                          <td class="uk-text-muted">برای شماره</td>
-                          <td class="uk-text-left" dir="ltr">۰۹۳۷ ۱۴۲۰ ۹۸۷</td>
-                        </tr>
-                        <tr>
-                          <td class="uk-text-muted">اپراتور</td>
-                          <td class="uk-text-left">ایرانسل</td>
-                        </tr>
-                        <tr>
-                          <td class="uk-text-muted">حجم بسته</td>
-                          <td class="uk-text-left">
-                            آلفا+ ۲ گیگ + ۲۰۰ مگ هدیه صبحانت (۶ صبح تا ۱۲ ظهر)
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="uk-text-muted">مدت بسته</td>
-                          <td class="uk-text-left">۱ ماهه</td>
-                        </tr>
-                        <tr>
-                          <td class="uk-text-muted">پرداخت با کارت</td>
-                          <td class="uk-text-left" dir="ltr">
-                            ۶۲۱۹ ۸۶•• •••• ۰۴۸۲
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="uk-text-muted">تاریخ و زمان</td>
-                          <td class="uk-text-left" dir="ltr">
-                            ۱۴۰۱/۳/۲۵ - ۱۴:۳۷
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="uk-text-muted">شماره پیگیری</td>
-                          <td class="uk-text-left">۹۶۸۱۲۲۰۰۱</td>
-                        </tr>
-                        <tr>
-                          <td class="uk-text-muted uk-text-nowrap">
-                            <img
-                              src="./dist/ui/img/logo-724.svg"
-                              width="32px"
-                              alt="اپلیکیشن پرداخت ۷۲۴"
-                            />
-                            <small>ساده ترین روش کارت به کارت</small>
-                          </td>
-                          <td class="uk-text-left">
-                            <a href="#">
-                              <img
-                                src="./dist/ui/img/receipt-url.svg"
-                                alt="اپلیکیشن پرداخت ۷۲۴"
-                              />
-                            </a>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <button
-                    class="uk-button uk-button-primary uk-button-large uk-border-rounded uk-width-1-1"
-                  >
-                    بازگشت به خانه
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <!-- Topup  -->
       <div class="uk-section">
         <div class="uk-container">
@@ -513,7 +416,10 @@
             <div
               class="uk-card uk-card-body uk-card-small uk-width-2-3@s uk-border-rounded-large uk-flex uk-flex-middle uk-flex-center uk-flex-column ui-border-grey"
             >
-              <div class="uk-width-2-3@m uk-margin-medium-bottom">
+              <div
+                class="uk-width-2-3@m uk-margin-medium-bottom ui-card-wizard"
+                data-wizard="first-card"
+              >
                 <div class="uk-border-rounded uk-position-relative">
                   <div class="uk-panel">
                     <form id="Topup" autocomplete="off" class="uk-text-right">
@@ -551,6 +457,7 @@
                       <div class="uk-margin-medium-top uk-text-center">
                         <button
                           class="uk-button uk-button-primary uk-button-large uk-border-rounded uk-width-1-1"
+                          data-action="getPackages"
                         >
                           نمایش شارژها
                         </button>
@@ -570,13 +477,17 @@
                   </div>
                 </div>
               </div>
-              <div class="uk-width-2-3@m uk-margin-medium-bottom">
+              <div
+                class="uk-width-2-3@m uk-margin-medium-bottom ui-card-wizard"
+                data-wizard="second-card"
+              >
                 <div class="uk-border-rounded uk-position-relative">
                   <div class="uk-panel">
                     <div class="uk-margin-bottom">
                       <a
                         href="#"
-                        class="uk-text-decoration-none uk-text-secondary"
+                        class="uk-text-decoration-none uk-text-secondary uk-link"
+                        data-action="returnFirstCard"
                       >
                         <i
                           class="ti ti-arrow-right uk-border-circle uk-margin-small-left ui-return-arrow"
@@ -752,6 +663,104 @@
           </div>
         </div>
       </div>
+      <!--  Successful Transaction Receipt  -->
+      <div class="uk-section">
+        <div class="uk-container">
+          <div class="uk-flex uk-flex-middle uk-flex-center">
+            <div
+              class="uk-card uk-card-default uk-card-body uk-width-2-3@s uk-width-1-2@m uk-border-rounded-large uk-flex uk-flex-middle uk-flex-center"
+            >
+              <div class="uk-width-4-5@m">
+                <div class="uk-panel uk-margin-top">
+                  <div
+                    class="uk-border-rounded uk-width-expand uk-text-center uk-margin-bottom uk-flex uk-flex-column uk-flex-middle uk-flex-center ui-bg-light-green"
+                  >
+                    <div
+                      class="uk-text-center uk-width-max-content uk-border-rounded uk-text-white ui-success-receipt-title"
+                    >
+                      <i class="ti ti-circle-check-filled"></i>
+                      تراکنش موفق
+                    </div>
+                    <p class="uk-text-large uk-padding-small">
+                      آلفا+ ۲ گیگ + ۲۰۰ مگ هدیه صبحانت (۶ صبح تا ۱۲ ظهر) - ۱
+                      ماهه
+                    </p>
+                  </div>
+
+                  <div class="ui-receipt-table">
+                    <table class="uk-table uk-table-divider fontface-vazir-fa">
+                      <tbody>
+                        <tr>
+                          <td class="uk-text-muted">مبلغ</td>
+                          <td class="uk-text-left">۱۰,۹۰۰ <span>ریال</span></td>
+                        </tr>
+                        <tr>
+                          <td class="uk-text-muted">برای شماره</td>
+                          <td class="uk-text-left" dir="ltr">۰۹۳۷ ۱۴۲۰ ۹۸۷</td>
+                        </tr>
+                        <tr>
+                          <td class="uk-text-muted">اپراتور</td>
+                          <td class="uk-text-left">ایرانسل</td>
+                        </tr>
+                        <tr>
+                          <td class="uk-text-muted">حجم بسته</td>
+                          <td class="uk-text-left">
+                            آلفا+ ۲ گیگ + ۲۰۰ مگ هدیه صبحانت (۶ صبح تا ۱۲ ظهر)
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="uk-text-muted">مدت بسته</td>
+                          <td class="uk-text-left">۱ ماهه</td>
+                        </tr>
+                        <tr>
+                          <td class="uk-text-muted">پرداخت با کارت</td>
+                          <td class="uk-text-left" dir="ltr">
+                            ۶۲۱۹ ۸۶•• •••• ۰۴۸۲
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="uk-text-muted">تاریخ و زمان</td>
+                          <td class="uk-text-left" dir="ltr">
+                            ۱۴۰۱/۳/۲۵ - ۱۴:۳۷
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="uk-text-muted">شماره پیگیری</td>
+                          <td class="uk-text-left">۹۶۸۱۲۲۰۰۱</td>
+                        </tr>
+                        <tr>
+                          <td class="uk-text-muted uk-text-nowrap">
+                            <img
+                              src="./dist/ui/img/logo-724.svg"
+                              width="32px"
+                              alt="اپلیکیشن پرداخت ۷۲۴"
+                            />
+                            <small>ساده ترین روش کارت به کارت</small>
+                          </td>
+                          <td class="uk-text-left">
+                            <a href="#">
+                              <img
+                                src="./dist/ui/img/receipt-url.svg"
+                                alt="اپلیکیشن پرداخت ۷۲۴"
+                              />
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <button
+                    class="uk-button uk-button-primary uk-button-large uk-border-rounded uk-width-1-1"
+                  >
+                    بازگشت به خانه
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Buy Internet Package  -->
       <div class="uk-section">
         <div class="uk-container">
