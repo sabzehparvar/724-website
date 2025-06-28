@@ -968,7 +968,7 @@
   letter-spacing: 2.5px !important;
 }
 .ui-topup-operator .uk-active > a{
-  background: unset !important;
+  background: unset;
   color: #718e9c;
 }
 .ui-active-operator {
