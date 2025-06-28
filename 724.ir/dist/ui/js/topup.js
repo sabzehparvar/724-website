@@ -617,6 +617,15 @@ var langs = {
   fileEmptyError: "فایل آپلود شده محتوایی ندارد",
   fileContentLenghtError: "فایل آپلود شده با فایل نمونه مطابقت ندارد",
 };
+var validationMessage = {
+  nationalId: "کد ملی وارد شده معتبر نیست.",
+  legalId: "شناسه حقوقی وارد شده معتبر نیست.",
+  cardNumber: "شماره کارت وارد شده معتبر نیست.",
+  sheba: "شماره شبا وارد شده معتبر نیست.",
+  sheba: "شماره شبا وارد شده معتبر نیست.",
+  cellNumber: "شماره تلفن همراه وارد شده معتبر نیست.",
+  mciPostPaidNumbers: "شماره تلفن همراه وارد شده از نوع دائمی نیست.",
+};
 function validateCellNumber(value, checkRegex = false) {
   var value = normalize(value.trim()).toString(),
     regex = {
@@ -641,42 +650,42 @@ function validateCellNumber(value, checkRegex = false) {
   return false;
 }
 
-// $(document).ready(function () {
+$(document).ready(function () {
 
-//   $.validator.addMethod(
-//     "cellNumber",
-//     function (value, element) {
-//       return this.optional(element) || validateCellNumber(value);
-//     },
-//     validationMessage.cellNumber
-//   );
+  $.validator.addMethod(
+    "cellNumber",
+    function (value, element) {
+      return this.optional(element) || validateCellNumber(value);
+    },
+    validationMessage.cellNumber
+  );
 
-//   $.validator.addMethod(
-//     "mciPostPaidNumber",
-//     function (value, element) {
-//       return this.optional(element) || validateMciPostPaidNumber(value);
-//     },
-//     validationMessage.mciPostPaidNumber
-//   );
+  $.validator.addMethod(
+    "mciPostPaidNumber",
+    function (value, element) {
+      return this.optional(element) || validateMciPostPaidNumber(value);
+    },
+    validationMessage.mciPostPaidNumber
+  );
 
-//   $.validator.setDefaults({
-//     errorElement: "div",
-//     errorClass: "uk-text-danger uk-text-small",
-//     ignore: ".ignore",
-//     onkeyup: function (element) {
-//       this.element(element);
-//     },
-//     highlight: function (element) {
-//       $(element).addClass("uk-form-danger");
-//     },
-//     unhighlight: function (element) {
-//       $(element).removeClass("uk-form-danger");
-//     },
-//     errorPlacement: function (error, element) {
-//       element.parent().parent().hasClass("cu-module") ? undefined : error.appendTo(element.closest("div"));
-//     },
-//   });
-// });
+  $.validator.setDefaults({
+    errorElement: "div",
+    errorClass: "uk-text-danger uk-text-small",
+    ignore: ".ignore",
+    onkeyup: function (element) {
+      this.element(element);
+    },
+    highlight: function (element) {
+      $(element).addClass("uk-form-danger");
+    },
+    unhighlight: function (element) {
+      $(element).removeClass("uk-form-danger");
+    },
+    errorPlacement: function (error, element) {
+      element.parent().parent().hasClass("cu-module") ? undefined : error.appendTo(element.closest("div"));
+    },
+  });
+});
 
 $(document).ready(function () {
   const operatorIcons = {
@@ -690,11 +699,11 @@ $(document).ready(function () {
 
   if (document.getElementById("Topup")) {
     getOperators();
-    // $("#Topup").validate({
-    //   rules: {
-    //     CellNumber: { digits: true, cellNumber: true },
-    //   },
-    // });
+    $("#Topup").validate({
+      rules: {
+        CellNumber: { digits: true, cellNumber: true },
+      },
+    });
 
     $("#CellNumber").keyup(function (e) {
       const value = normalize($(this).val());
@@ -715,9 +724,9 @@ $(document).ready(function () {
       } else if (value.length < 4) {
         $("#Operator").val(operatorId) &
           removeOperatorActiveItem() &
-          $("#TopupPackage").addClass("uc-hidden") &
+          $("#TopupPackage").addClass("ui-hidden") &
           $("#TopupPackageSwitcher").empty() &
-          $("#TopupType").addClass("uc-hidden");
+          $("#TopupType").addClass("ui-hidden");
       }
     });
 
