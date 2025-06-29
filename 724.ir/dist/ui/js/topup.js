@@ -461,7 +461,7 @@ const topupPackages = [
     IsAPP: true,
   },
 ];
-var langs = {
+const langs = {
   success: "درخواست شما با موفقیت انجام شد",
   confrim: "تایید",
   cancel: "انصراف",
@@ -617,7 +617,7 @@ var langs = {
   fileEmptyError: "فایل آپلود شده محتوایی ندارد",
   fileContentLenghtError: "فایل آپلود شده با فایل نمونه مطابقت ندارد",
 };
-var validationMessage = {
+const validationMessage = {
   nationalId: "کد ملی وارد شده معتبر نیست.",
   legalId: "شناسه حقوقی وارد شده معتبر نیست.",
   cardNumber: "شماره کارت وارد شده معتبر نیست.",
@@ -626,6 +626,15 @@ var validationMessage = {
   cellNumber: "شماره تلفن همراه وارد شده معتبر نیست.",
   mciPostPaidNumbers: "شماره تلفن همراه وارد شده از نوع دائمی نیست.",
 };
+const operatorIcons = {
+  1: "ic-hamrah-aval",
+  2: "ic-irancell",
+  3: "ic-rightel",
+  4: "ic-samantel",
+  5: "ic-shatel",
+  6: "ic-telekish",
+};
+
 function validateCellNumber(value, checkRegex = false) {
   var value = normalize(value.trim()).toString(),
     regex = {
@@ -653,12 +662,31 @@ function validateCellNumber(value, checkRegex = false) {
   }
   return false;
 }
+function validateMciPostPaidNumber(value) {
+  var value = normalize(value.trim()).toString().padStart(11, "0"),
+    regex = {
+      1: /^0910|0911|0912|0913|0914|0915|0916|0917|0918|0919$/,
+    };
+  for (var operator in regex) {
+    if (
+      value.length == 11 &&
+      value.match(regex[operator]) &&
+      !/(.)\1{6,}/.test(value)
+    ) {
+      return true;
+    }
+  }
+  return false;
+}
 
 function toggleWizard(currentWizard) {
   $(".ui-card-wizard").hide();
   $(`.ui-card-wizard[data-wizard="${currentWizard}"]`).fadeIn();
 }
+
 $(document).ready(function () {
+  let operatorId;
+
   $.validator.addMethod(
     "cellNumber",
     function (value, element) {
@@ -672,12 +700,12 @@ $(document).ready(function () {
     function (value, element) {
       return this.optional(element) || validateMciPostPaidNumber(value);
     },
-    validationMessage.mciPostPaidNumber
+    validationMessage.mciPostPaidNumbers
   );
 
   $.validator.setDefaults({
     errorElement: "div",
-    errorClass: "uk-text-danger uk-text-small",
+    errorClass: "uk-text-danger uk-text-small uk-margin-small-top",
     ignore: ".ignore",
     onkeyup: function (element) {
       this.element(element);
@@ -689,22 +717,9 @@ $(document).ready(function () {
       $(element).removeClass("uk-form-danger");
     },
     errorPlacement: function (error, element) {
-      element.parent().parent().hasClass("cu-module")
-        ? undefined
-        : error.appendTo(element.closest("div"));
+      error.appendTo(element.closest("div"));
     },
   });
-});
-
-$(document).ready(function () {
-  const operatorIcons = {
-    1: "ic-hamrah-aval",
-    2: "ic-irancell",
-    3: "ic-rightel",
-    4: "ic-samantel",
-    5: "ic-shatel",
-    6: "ic-telekish",
-  };
 
   if (document.getElementById("Topup")) {
     getOperators();
@@ -713,12 +728,11 @@ $(document).ready(function () {
         CellNumber: { digits: true, cellNumber: true },
       },
     });
-
     $("#CellNumber").keyup(function (e) {
       const value = normalize($(this).val());
 
       if (value.length >= 4) {
-        const operatorId = validateCellNumber(value, true);
+        operatorId = validateCellNumber(value, true);
         if (operatorId) {
           var operatorActiveItem = $("#TopupOperator")
             .children()
@@ -910,11 +924,10 @@ $(document).ready(function () {
             toggleWizard("second-card");
             e.preventDefault();
             break;
-            case "returnFirstCard":
+          case "returnFirstCard":
             toggleWizard("first-card");
             e.preventDefault();
             break;
-            
         }
       }
     }
