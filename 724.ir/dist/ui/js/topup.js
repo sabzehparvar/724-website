@@ -748,8 +748,8 @@ $(document).ready(function () {
         $("#Operator").val(operatorId) &
           removeOperatorActiveItem() &
           // $("#TopupPackage").addClass("ui-hidden") &
-          $("#TopupPackageSwitcher").empty()
-          // $("#TopupType").addClass("ui-hidden");
+          $("#TopupPackageSwitcher").empty();
+        // $("#TopupType").addClass("ui-hidden");
       }
     });
 
@@ -922,6 +922,7 @@ $(document).ready(function () {
 
           case "getPackages":
             toggleWizard("second-card");
+            getTopupPackages()
             e.preventDefault();
             break;
           case "returnFirstCard":
@@ -957,6 +958,7 @@ $(document).ready(function () {
   }
 
   function getTopupPackages() {
+    console.log('1111')
     var operatorId = hasValue($("#Operator").val())
         ? $("#Operator").val().trim()
         : null,
@@ -965,7 +967,12 @@ $(document).ready(function () {
       )
         ? $("#TopupPackageSwitcher").attr("data-operator").trim()
         : null;
+    console.log(operatorId)
+        
+    console.log(currentOperator)
+
     if (currentOperator != operatorId) {
+      console.log('222')
       // ajaxHandler(
       //   asmxUrl + "/eChargeController.asmx/getNormalPackages",
       //   "GET",
@@ -1032,6 +1039,7 @@ $(document).ready(function () {
           operatorId == 3 ? langs.topupExcitingPkg : langs.topupAmazingPkg;
       $("#TopupAmazing").prop("checked", false);
       if (topupPackages.length) {
+        console.log('hhh')
         $.each(topupPackages.sort(sortByType), function (index, item) {
           if (hasValue(item.amount)) {
             var className =
@@ -1056,15 +1064,15 @@ $(document).ready(function () {
                     : item.amount
                 )
               )
-              .replace("%Amount%", commaSeparator(item.amount))
+              // .replace("%Amount%", commaSeparator(item.amount))
               .replace("%ChargeAmount%", item.amount);
           }
         });
-        $("#TopupPackage").removeClass("uc-hidden") &
-          $("#TopupPackageSwitcher")
-            .empty()
-            .attr("data-operator", operatorId)
-            .append(items);
+        // $("#TopupPackage").removeClass("uc-hidden") &
+        $("#TopupPackageSwitcher")
+          .empty()
+          .attr("data-operator", operatorId)
+          .append(items);
       } else {
         $("#TopupPackage").removeClass("uc-hidden") &
           $("#TopupPackageSwitcher")
@@ -1072,10 +1080,9 @@ $(document).ready(function () {
             .removeAttr("data-operator")
             .append($("#EmptyTopup").html());
       }
-      hasAmazing
-        ? $("#TopupType").removeClass("uc-hidden") &
-          $("#ValTopupType").text(amazingLabel)
-        : $("#TopupType").addClass("uc-hidden");
+      hasAmazing ? $("#TopupType").removeClass("ui-hidden") 
+      // & $("#ValTopupType").text(amazingLabel)
+        : $("#TopupType").addClass("ui-hidden");
     }
   }
 
