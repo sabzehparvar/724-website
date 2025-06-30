@@ -3,6 +3,14 @@
 $(document).ready(function () {
   let operatorId;
   const asmxUrl = "https://shop.sep.ir/controllers";
+  var operatorTypes = {
+    1: "همراه اول",
+    2: "ایرانسل",
+    3: "رایتل",
+    4: "سامانتل",
+    5: "شاتل",
+    6: "تله کیش",
+  };
   const operatorsList = [
     {
       __type: "Sep.SamanEpay.Domain.Entity.TelecomOperator",
@@ -681,6 +689,12 @@ $(document).ready(function () {
     }
     return false;
   }
+  function commaSeparator(value) {
+    while (/(\d+)(\d{3})/.test(value.toString())) {
+      value = value.toString().replace(/(\d+)(\d{3})/, "$1" + "," + "$2");
+    }
+    return value;
+  }
 
   function toggleWizard(currentWizard) {
     $(".ui-card-wizard").hide();
@@ -740,7 +754,7 @@ $(document).ready(function () {
           if (!operatorActiveItem.hasClass("ui-active-operator")) {
             $("#Operator").val(operatorId) &
               removeOperatorActiveItem() &
-              getTopupPackages() &
+              // getTopupPackages() &
               operatorActiveItem.addClass("ui-active-operator");
           }
         }
@@ -922,7 +936,7 @@ $(document).ready(function () {
 
           case "getPackages":
             toggleWizard("second-card");
-            getTopupPackages()
+            getTopupPackages();
             e.preventDefault();
             break;
           case "returnFirstCard":
@@ -958,7 +972,7 @@ $(document).ready(function () {
   }
 
   function getTopupPackages() {
-    console.log('1111')
+    console.log("1111");
     var operatorId = hasValue($("#Operator").val())
         ? $("#Operator").val().trim()
         : null,
@@ -967,12 +981,12 @@ $(document).ready(function () {
       )
         ? $("#TopupPackageSwitcher").attr("data-operator").trim()
         : null;
-    console.log(operatorId)
-        
-    console.log(currentOperator)
+    console.log(operatorId);
+
+    console.log(currentOperator);
 
     if (currentOperator != operatorId) {
-      console.log('222')
+      console.log("222");
       // ajaxHandler(
       //   asmxUrl + "/eChargeController.asmx/getNormalPackages",
       //   "GET",
@@ -1039,16 +1053,17 @@ $(document).ready(function () {
           operatorId == 3 ? langs.topupExcitingPkg : langs.topupAmazingPkg;
       $("#TopupAmazing").prop("checked", false);
       if (topupPackages.length) {
-        console.log('hhh')
         $.each(topupPackages.sort(sortByType), function (index, item) {
-          if (hasValue(item.amount)) {
+          console.log("hhh");
+
+          if (hasValue(item.Amount)) {
             var className =
-                item.chargeType == 0
+                item.ChargeType == 0
                   ? "uc-normal-package"
                   : "uc-amazing-package",
               chargeType =
-                item.chargeType == 0 ? langs.topupNormalPkg : amazingLabel;
-            item.chargeType == 1 ? hasAmazing++ : undefined;
+                item.ChargeType == 0 ? langs.topupNormalPkg : amazingLabel;
+            item.ChargeType == 1 ? hasAmazing++ : undefined;
             items += $("#Packages")
               .html()
               .replace("%Class%", className)
@@ -1059,9 +1074,9 @@ $(document).ready(function () {
               .replaceAll(
                 "%Description%",
                 commaSeparator(
-                  hasValue(item.amountWithoutVAT)
-                    ? item.amountWithoutVAT
-                    : item.amount
+                  hasValue(item.AmountWithoutVAT)
+                    ? item.AmountWithoutVAT
+                    : item.Amount
                 )
               )
               // .replace("%Amount%", commaSeparator(item.amount))
@@ -1080,9 +1095,10 @@ $(document).ready(function () {
             .removeAttr("data-operator")
             .append($("#EmptyTopup").html());
       }
-      hasAmazing ? $("#TopupType").removeClass("ui-hidden") 
-      // & $("#ValTopupType").text(amazingLabel)
-        : $("#TopupType").addClass("ui-hidden");
+      hasAmazing
+        ? $("#TopupType").removeClass("ui-hidden")
+        : // & $("#ValTopupType").text(amazingLabel)
+          $("#TopupType").addClass("ui-hidden");
     }
   }
 
