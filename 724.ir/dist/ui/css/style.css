@@ -1114,15 +1114,13 @@
   scrollbar-width: none;            
   -ms-overflow-style: none; 
   scroll-behavior: smooth;
-  scrollbar-color: rgb(190, 190, 194) #ffffff;
+  scrollbar-color: rgba(113, 142, 156, 0.631) rgba(237, 241, 247, 1);
 
 
 }
 .ui-overflow-scroll:hover{
   scrollbar-width: auto;
-
 }
-
 .ui-overflow-scroll ::-webkit-scrollbar-track {
   background: #ffffff;
 }
