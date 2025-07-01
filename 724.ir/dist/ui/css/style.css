@@ -967,44 +967,44 @@
 .ui-letter-spacing {
   letter-spacing: 2.5px !important;
 }
-.ui-topup-operator .uk-active > a{
+.ui-topup-operator .uk-active > a {
   background: unset;
   color: #718e9c;
 }
 .ui-active-operator {
   color: rgba(45, 53, 74, 1) !important;
 }
-.ui-active-operator[data-value="1"]{
+.ui-active-operator[data-value="1"] {
   border: 1px solid #bfefff !important;
   background: #bfefff !important;
   color: rgba(45, 53, 74, 1) !important;
 }
 
-.ui-active-operator[data-value="2"]{
+.ui-active-operator[data-value="2"] {
   border: 1px solid #f9e8b0 !important;
   background: #f9e8b0 !important;
   color: rgba(45, 53, 74, 1) !important;
 }
 
-.ui-active-operator[data-value="3"]{
+.ui-active-operator[data-value="3"] {
   border: 1px solid #d9befa !important;
   background: #d9befa !important;
   color: rgba(45, 53, 74, 1) !important;
 }
 
-.ui-active-operator[data-value="4"]{
+.ui-active-operator[data-value="4"] {
   border: 1px solid #ffcbad !important;
   background: #ffcbad !important;
   color: rgba(45, 53, 74, 1) !important;
 }
 
-.ui-active-operator[data-value="5"]{
+.ui-active-operator[data-value="5"] {
   border: 1px solid #cce4ff !important;
   background: #cce4ff !important;
   color: rgba(45, 53, 74, 1) !important;
 }
 
-.ui-active-operator[data-value="6"]{
+.ui-active-operator[data-value="6"] {
   border: 1px solid #aefffa !important;
   background: #aefffa !important;
   color: rgba(45, 53, 74, 1) !important;
@@ -1097,15 +1097,33 @@
   color: rgba(45, 53, 74, 1) !important;
 }
 .ui-subnav-pill li.uk-active a {
-  
   border: none;
   color: #fff !important;
-
 }
-.ui-hidden{
+.ui-hidden {
   display: none;
 }
 
 .ui-card-wizard:not(:first-child) {
   display: none;
 }
+.ui-overflow-scroll {
+  max-height: 520px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;            
+  -ms-overflow-style: none; 
+  scroll-behavior: smooth;
+  scrollbar-color: rgb(190, 190, 194) #ffffff;
+
+
+}
+.ui-overflow-scroll:hover{
+  scrollbar-width: auto;
+
+}
+
+.ui-overflow-scroll ::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
