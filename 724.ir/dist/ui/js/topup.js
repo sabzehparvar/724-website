@@ -80,21 +80,21 @@ $(document).ready(function () {
       ProviderID: 4,
       IsAPP: false,
     },
-    {
-      __type: "WebApplication1.ECharge.Models.ChargePackages.TopUpPackage",
-      SepChargeCode: 128,
-      Description: "50000",
-      Amount: 55000.0,
-      AmountWithoutVAT: 50000.0,
-      Duration: null,
-      DurationType: null,
-      IsPrepaid: true,
-      ChargeTypeDescription: "Wow",
-      ChargeType: 1,
-      OperatorId: 2,
-      ProviderID: 4,
-      IsAPP: false,
-    },
+    // {
+    //   __type: "WebApplication1.ECharge.Models.ChargePackages.TopUpPackage",
+    //   SepChargeCode: 128,
+    //   Description: "50000",
+    //   Amount: 55000.0,
+    //   AmountWithoutVAT: 50000.0,
+    //   Duration: null,
+    //   DurationType: null,
+    //   IsPrepaid: true,
+    //   ChargeTypeDescription: "Wow",
+    //   ChargeType: 1,
+    //   OperatorId: 2,
+    //   ProviderID: 4,
+    //   IsAPP: false,
+    // },
     {
       __type: "WebApplication1.ECharge.Models.ChargePackages.TopUpPackage",
       SepChargeCode: 129,
@@ -110,21 +110,21 @@ $(document).ready(function () {
       ProviderID: 4,
       IsAPP: false,
     },
-    {
-      __type: "WebApplication1.ECharge.Models.ChargePackages.TopUpPackage",
-      SepChargeCode: 132,
-      Description: "100000",
-      Amount: 110000.0,
-      AmountWithoutVAT: 100000.0,
-      Duration: null,
-      DurationType: null,
-      IsPrepaid: true,
-      ChargeTypeDescription: "Wow",
-      ChargeType: 1,
-      OperatorId: 2,
-      ProviderID: 4,
-      IsAPP: false,
-    },
+    // {
+    //   __type: "WebApplication1.ECharge.Models.ChargePackages.TopUpPackage",
+    //   SepChargeCode: 132,
+    //   Description: "100000",
+    //   Amount: 110000.0,
+    //   AmountWithoutVAT: 100000.0,
+    //   Duration: null,
+    //   DurationType: null,
+    //   IsPrepaid: true,
+    //   ChargeTypeDescription: "Wow",
+    //   ChargeType: 1,
+    //   OperatorId: 2,
+    //   ProviderID: 4,
+    //   IsAPP: false,
+    // },
     {
       __type: "WebApplication1.ECharge.Models.ChargePackages.TopUpPackage",
       SepChargeCode: 133,
@@ -185,21 +185,21 @@ $(document).ready(function () {
       ProviderID: 4,
       IsAPP: false,
     },
-    {
-      __type: "WebApplication1.ECharge.Models.ChargePackages.TopUpPackage",
-      SepChargeCode: 4083,
-      Description: "200000",
-      Amount: 220000.0,
-      AmountWithoutVAT: 200000.0,
-      Duration: null,
-      DurationType: null,
-      IsPrepaid: true,
-      ChargeTypeDescription: "Wow",
-      ChargeType: 1,
-      OperatorId: 2,
-      ProviderID: 4,
-      IsAPP: false,
-    },
+    // {
+    //   __type: "WebApplication1.ECharge.Models.ChargePackages.TopUpPackage",
+    //   SepChargeCode: 4083,
+    //   Description: "200000",
+    //   Amount: 220000.0,
+    //   AmountWithoutVAT: 200000.0,
+    //   Duration: null,
+    //   DurationType: null,
+    //   IsPrepaid: true,
+    //   ChargeTypeDescription: "Wow",
+    //   ChargeType: 1,
+    //   OperatorId: 2,
+    //   ProviderID: 4,
+    //   IsAPP: false,
+    // },
     {
       __type: "WebApplication1.ECharge.Models.ChargePackages.TopUpPackage",
       SepChargeCode: 5799,
@@ -230,21 +230,21 @@ $(document).ready(function () {
       ProviderID: 4,
       IsAPP: true,
     },
-    {
-      __type: "WebApplication1.ECharge.Models.ChargePackages.TopUpPackage",
-      SepChargeCode: 5806,
-      Description: "50000",
-      Amount: 55000.0,
-      AmountWithoutVAT: 50000.0,
-      Duration: null,
-      DurationType: null,
-      IsPrepaid: true,
-      ChargeTypeDescription: "Wow",
-      ChargeType: 1,
-      OperatorId: 2,
-      ProviderID: 4,
-      IsAPP: true,
-    },
+    // {
+    //   __type: "WebApplication1.ECharge.Models.ChargePackages.TopUpPackage",
+    //   SepChargeCode: 5806,
+    //   Description: "50000",
+    //   Amount: 55000.0,
+    //   AmountWithoutVAT: 50000.0,
+    //   Duration: null,
+    //   DurationType: null,
+    //   IsPrepaid: true,
+    //   ChargeTypeDescription: "Wow",
+    //   ChargeType: 1,
+    //   OperatorId: 2,
+    //   ProviderID: 4,
+    //   IsAPP: true,
+    // },
     {
       __type: "WebApplication1.ECharge.Models.ChargePackages.TopUpPackage",
       SepChargeCode: 5807,
@@ -260,21 +260,21 @@ $(document).ready(function () {
       ProviderID: 4,
       IsAPP: true,
     },
-    {
-      __type: "WebApplication1.ECharge.Models.ChargePackages.TopUpPackage",
-      SepChargeCode: 5810,
-      Description: "100000",
-      Amount: 110000.0,
-      AmountWithoutVAT: 100000.0,
-      Duration: null,
-      DurationType: null,
-      IsPrepaid: true,
-      ChargeTypeDescription: "Wow",
-      ChargeType: 1,
-      OperatorId: 2,
-      ProviderID: 4,
-      IsAPP: true,
-    },
+    // {
+    //   __type: "WebApplication1.ECharge.Models.ChargePackages.TopUpPackage",
+    //   SepChargeCode: 5810,
+    //   Description: "100000",
+    //   Amount: 110000.0,
+    //   AmountWithoutVAT: 100000.0,
+    //   Duration: null,
+    //   DurationType: null,
+    //   IsPrepaid: true,
+    //   ChargeTypeDescription: "Wow",
+    //   ChargeType: 1,
+    //   OperatorId: 2,
+    //   ProviderID: 4,
+    //   IsAPP: true,
+    // },
     {
       __type: "WebApplication1.ECharge.Models.ChargePackages.TopUpPackage",
       SepChargeCode: 5811,
@@ -365,51 +365,51 @@ $(document).ready(function () {
       ProviderID: 4,
       IsAPP: false,
     },
-    {
-      __type: "WebApplication1.ECharge.Models.ChargePackages.TopUpPackage",
-      SepChargeCode: 5761,
-      Description: "50000",
-      Amount: 55000.0,
-      AmountWithoutVAT: 50000.0,
-      Duration: null,
-      DurationType: null,
-      IsPrepaid: true,
-      ChargeTypeDescription: "Wow",
-      ChargeType: 1,
-      OperatorId: 2,
-      ProviderID: 4,
-      IsAPP: false,
-    },
-    {
-      __type: "WebApplication1.ECharge.Models.ChargePackages.TopUpPackage",
-      SepChargeCode: 5762,
-      Description: "100000",
-      Amount: 110000.0,
-      AmountWithoutVAT: 100000.0,
-      Duration: null,
-      DurationType: null,
-      IsPrepaid: true,
-      ChargeTypeDescription: "Wow",
-      ChargeType: 1,
-      OperatorId: 2,
-      ProviderID: 4,
-      IsAPP: false,
-    },
-    {
-      __type: "WebApplication1.ECharge.Models.ChargePackages.TopUpPackage",
-      SepChargeCode: 5763,
-      Description: "200000",
-      Amount: 220000.0,
-      AmountWithoutVAT: 200000.0,
-      Duration: null,
-      DurationType: null,
-      IsPrepaid: true,
-      ChargeTypeDescription: "Wow",
-      ChargeType: 1,
-      OperatorId: 2,
-      ProviderID: 4,
-      IsAPP: false,
-    },
+    // {
+    //   __type: "WebApplication1.ECharge.Models.ChargePackages.TopUpPackage",
+    //   SepChargeCode: 5761,
+    //   Description: "50000",
+    //   Amount: 55000.0,
+    //   AmountWithoutVAT: 50000.0,
+    //   Duration: null,
+    //   DurationType: null,
+    //   IsPrepaid: true,
+    //   ChargeTypeDescription: "Wow",
+    //   ChargeType: 1,
+    //   OperatorId: 2,
+    //   ProviderID: 4,
+    //   IsAPP: false,
+    // },
+    // {
+    //   __type: "WebApplication1.ECharge.Models.ChargePackages.TopUpPackage",
+    //   SepChargeCode: 5762,
+    //   Description: "100000",
+    //   Amount: 110000.0,
+    //   AmountWithoutVAT: 100000.0,
+    //   Duration: null,
+    //   DurationType: null,
+    //   IsPrepaid: true,
+    //   ChargeTypeDescription: "Wow",
+    //   ChargeType: 1,
+    //   OperatorId: 2,
+    //   ProviderID: 4,
+    //   IsAPP: false,
+    // },
+    // {
+    //   __type: "WebApplication1.ECharge.Models.ChargePackages.TopUpPackage",
+    //   SepChargeCode: 5763,
+    //   Description: "200000",
+    //   Amount: 220000.0,
+    //   AmountWithoutVAT: 200000.0,
+    //   Duration: null,
+    //   DurationType: null,
+    //   IsPrepaid: true,
+    //   ChargeTypeDescription: "Wow",
+    //   ChargeType: 1,
+    //   OperatorId: 2,
+    //   ProviderID: 4,
+    //   IsAPP: false,
+    // },
     {
       __type: "WebApplication1.ECharge.Models.ChargePackages.TopUpPackage",
       SepChargeCode: 6910,
@@ -762,27 +762,47 @@ $(document).ready(function () {
         $("#Operator").val(operatorId) &
           removeOperatorActiveItem() &
           // $("#TopupPackage").addClass("ui-hidden") &
-          $("#TopupPackageSwitcher").empty();
+
+          $("#NormalTopup ul").empty();
+        $("#AmazingTopup ul").empty();
         // $("#TopupType").addClass("ui-hidden");
       }
     });
 
-    $("#TopupAmazing").change(function () {
-      $("#PackageItem").removeClass("uc-amazing-package");
-      if (this.checked) {
-        document.querySelectorAll("#PackageItem").forEach((item) => {
-          item.classList.contains("uc-amazing-package")
-            ? (item.style.display = "block")
-            : (item.style.display = "none");
-        });
-      } else {
-        document.querySelectorAll("#PackageItem").forEach((item) => {
-          item.classList.contains("uc-normal-package")
-            ? (item.style.display = "block")
-            : (item.style.display = "none");
-        });
-      }
-    });
+    // $("#TopupAmazing").change(function () {
+    //   // $("#PackageItem").removeClass("uc-amazing-package");
+    //   if (this.checked) {
+    //     document.querySelectorAll("#PackageItem").forEach((item) => {
+    //       item.classList.contains("uc-amazing-package")
+    //         ? (item.style.display = "block")
+    //         : (item.style.display = "none");
+    //     });
+    //   } else {
+    //     document.querySelectorAll("#PackageItem").forEach((item) => {
+    //       item.classList.contains("uc-normal-package")
+    //         ? (item.style.display = "block")
+    //         : (item.style.display = "none");
+    //     });
+    //   }
+    // });
+    // Listen for the 'show' event on the uk-switcher
+    // $("#NormalPackage, #AmazingPackage").on("click", function () {
+    //   if ($("#NormalPackage").hasClass("uk-active")) {
+    //     // Show only amazing packages
+    //     document.querySelectorAll("#PackageItem").forEach((item) => {
+    //       item.classList.contains("uc-amazing-package")
+    //         ? (item.style.display = "block")
+    //         : (item.style.display = "none");
+    //     });
+    //   } else if ( $("#AmazingPackage").hasClass("uk-active")) {
+    //     // Show only normal packages
+    //     document.querySelectorAll("#PackageItem").forEach((item) => {
+    //       item.classList.contains("uc-normal-package")
+    //         ? (item.style.display = "block")
+    //         : (item.style.display = "none");
+    //     });
+    //   }
+    // });
   }
 
   $(document).on("click", ".uk-button, .uk-link", function (e) {
@@ -972,7 +992,6 @@ $(document).ready(function () {
   }
 
   function getTopupPackages() {
-    console.log("1111");
     var operatorId = hasValue($("#Operator").val())
         ? $("#Operator").val().trim()
         : null,
@@ -981,12 +1000,8 @@ $(document).ready(function () {
       )
         ? $("#TopupPackageSwitcher").attr("data-operator").trim()
         : null;
-    console.log(operatorId);
-
-    console.log(currentOperator);
 
     if (currentOperator != operatorId) {
-      console.log("222");
       // ajaxHandler(
       //   asmxUrl + "/eChargeController.asmx/getNormalPackages",
       //   "GET",
@@ -1047,26 +1062,20 @@ $(document).ready(function () {
       //       : $("#TopupType").addClass("uc-hidden");
       //   }
       // );
-      var items = "",
-        hasAmazing = 0,
+      var normalItems = "",
+        amazingItems = "",
         amazingLabel =
           operatorId == 3 ? langs.topupExcitingPkg : langs.topupAmazingPkg;
-      $("#TopupAmazing").prop("checked", false);
-      if (topupPackages.length) {
-        $.each(topupPackages.sort(sortByType), function (index, item) {
-          console.log("hhh");
 
+      if (topupPackages.length) {
+        console.log('topupPackages');
+        $.each(topupPackages.sort(sortByType), function (index, item) {
+          console.log(item);
           if (hasValue(item.Amount)) {
-            var className =
-                item.ChargeType == 0
-                  ? "uc-normal-package"
-                  : "uc-amazing-package",
-              chargeType =
-                item.ChargeType == 0 ? langs.topupNormalPkg : amazingLabel;
-            item.ChargeType == 1 ? hasAmazing++ : undefined;
-            items += $("#Packages")
+            var chargeType =
+              item.ChargeType == 0 ? langs.topupNormalPkg : amazingLabel;
+            var html = $("#Packages")
               .html()
-              .replace("%Class%", className)
               .replace("%Operator%", operatorId)
               .replaceAll("%Code%", item.sepChargeCode)
               .replace("%OperatorName%", operatorTypes[operatorId])
@@ -1079,32 +1088,48 @@ $(document).ready(function () {
                     : item.Amount
                 )
               )
-              // .replace("%Amount%", commaSeparator(item.amount))
-              .replace("%ChargeAmount%", item.amount);
+              .replace("%ChargeAmount%", item.Amount);
+
+            if (item.ChargeType == 1) {
+              amazingItems += html;
+            } else {
+              normalItems += html;
+            }
+            console.log(normalItems, amazingItems);
           }
         });
-        // $("#TopupPackage").removeClass("uc-hidden") &
-        $("#TopupPackageSwitcher")
+        $("#TopupPackageSwitcher").attr("data-operator", operatorId);
+
+        $("#NormalTopup ul")
           .empty()
-          .attr("data-operator", operatorId)
-          .append(items);
+          .append(normalItems);
+
+        $("#AmazingTopup ul")
+          .empty()
+          .append(amazingItems);
       } else {
-        $("#TopupPackage").removeClass("uc-hidden") &
-          $("#TopupPackageSwitcher")
-            .empty()
-            .removeAttr("data-operator")
-            .append($("#EmptyTopup").html());
+        $("#NormalTopup ul")
+          .empty()
+          .append($("#EmptyTopup").html());
+        $("#AmazingTopup ul").addClass("ui-hidden");
       }
-      hasAmazing
-        ? $("#TopupType").removeClass("ui-hidden")
-        : // & $("#ValTopupType").text(amazingLabel)
-          $("#TopupType").addClass("ui-hidden");
+
+      amazingItems.length
+        ? $(".ui-topup-type-title").removeClass("ui-hidden") &
+          $("#ValTopupType").text(amazingLabel)
+        : // &
+          // document.querySelectorAll("#PackageItem").forEach((item) => {
+          //   item.classList.contains("uc-amazing-package")
+          //     ? (item.style.display = "none")
+          //     : (item.style.display = "block");
+          // })
+          $(".ui-topup-type-title").addClass("ui-hidden");
     }
   }
 
   function sortByType(firstList, secondList) {
-    var firstFilter = firstList.chargeType,
-      secondFilter = secondList.chargeType;
+    var firstFilter = firstList.ChargeType,
+      secondFilter = secondList.ChargeType;
     return firstFilter < secondFilter ? -1 : firstFilter > secondFilter ? 1 : 0;
   }
 
