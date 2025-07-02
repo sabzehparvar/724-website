@@ -2,7 +2,8 @@
 
 $(document).ready(function () {
   let operatorId;
-  const asmxUrl = "https://shop.sep.ir/controllers";
+  const asmxUrl = "http://172.31.51.12:43197/controllers";
+
   var operatorTypes = {
     1: "همراه اول",
     2: "ایرانسل",
