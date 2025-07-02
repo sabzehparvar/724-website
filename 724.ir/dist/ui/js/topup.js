@@ -12,44 +12,6 @@ $(document).ready(function () {
     5: "شاتل",
     6: "تله کیش",
   };
-  const operatorsList = [
-    {
-      __type: "Sep.SamanEpay.Domain.Entity.TelecomOperator",
-      Code: 1,
-      Name: "MCI",
-      Description: "همراه اول",
-    },
-    {
-      __type: "Sep.SamanEpay.Domain.Entity.TelecomOperator",
-      Code: 2,
-      Name: "MTN",
-      Description: "ایرانسل",
-    },
-    {
-      __type: "Sep.SamanEpay.Domain.Entity.TelecomOperator",
-      Code: 3,
-      Name: "RighTel",
-      Description: "رایتل",
-    },
-    {
-      __type: "Sep.SamanEpay.Domain.Entity.TelecomOperator",
-      Code: 4,
-      Name: "Samantel",
-      Description: "سامانتل",
-    },
-    {
-      __type: "Sep.SamanEpay.Domain.Entity.TelecomOperator",
-      Code: 5,
-      Name: "Shatel",
-      Description: "شاتل",
-    },
-    {
-      __type: "Sep.SamanEpay.Domain.Entity.TelecomOperator",
-      Code: 6,
-      Name: "TeleKish",
-      Description: "تله کیش",
-    },
-  ];
   const topupPackages = [
     {
       __type: "WebApplication1.ECharge.Models.ChargePackages.TopUpPackage",
@@ -977,31 +939,19 @@ $(document).ready(function () {
       null,
       function (callback) {
         var items = "";
-        $.each(callback, function (index, item) {
+        $.each(callback.d, function (index, item) {
           var iconUrl =
-            appUrl + "/dist/app/icn/" + operatorIcons[item.code] + ".svg?v=new";
+            "./dist/ui/img/icon/operators/" + operatorIcons[item.Code] + ".svg";
           items += $("#Operators")
             .html()
-            .replaceAll("%Code%", item.code)
+            .replace("%Code%", item.Code)
             .replace("%IconSrc%", iconUrl)
-            .replace("%Name%", item.description);
+            .replaceAll("%Name%", item.Description);
         });
-        $("#TopupOperator").removeClass("uc-hidden") &
-          $("#TopupOperatorSwitcher").empty().append(items);
+        $("#TopupOperator").removeClass("ui-hidden") &
+          $("#TopupOperator ul").empty().append(items);
       }
     );
-    var items = "";
-    $.each(operatorsList, function (index, item) {
-      var iconUrl =
-        "./dist/ui/img/icon/operators/" + operatorIcons[item.Code] + ".svg";
-      items += $("#Operators")
-        .html()
-        .replace("%Code%", item.Code)
-        .replace("%IconSrc%", iconUrl)
-        .replaceAll("%Name%", item.Description);
-    });
-    $("#TopupOperator").removeClass("ui-hidden") &
-      $("#TopupOperator ul").empty().append(items);
   }
 
   function getTopupPackages() {
