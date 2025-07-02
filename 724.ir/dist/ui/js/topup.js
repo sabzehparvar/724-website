@@ -969,14 +969,26 @@ $(document).ready(function () {
   });
 
   function getOperators() {
-    // ajaxHandler(asmxUrl + '/eChargeController.asmx/getOperators', 'GET', null, null, function (callback) {
-    //   var items = '';
-    //   $.each(callback, function (index, item) {
-    //     var iconUrl = appUrl + '/dist/app/icn/' + operatorIcons[item.code] + '.svg?v=new';
-    //     items += $('#Operators').html().replaceAll('%Code%', item.code).replace('%IconSrc%', iconUrl).replace('%Name%', item.description);
-    //   });
-    //   $('#TopupOperator').removeClass('uc-hidden') & $('#TopupOperatorSwitcher').empty().append(items);
-    // });
+    ajaxHandler(
+      asmxUrl + "/eChargeController.asmx/getOperators",
+      "GET",
+      null,
+      null,
+      function (callback) {
+        var items = "";
+        $.each(callback, function (index, item) {
+          var iconUrl =
+            appUrl + "/dist/app/icn/" + operatorIcons[item.code] + ".svg?v=new";
+          items += $("#Operators")
+            .html()
+            .replaceAll("%Code%", item.code)
+            .replace("%IconSrc%", iconUrl)
+            .replace("%Name%", item.description);
+        });
+        $("#TopupOperator").removeClass("uc-hidden") &
+          $("#TopupOperatorSwitcher").empty().append(items);
+      }
+    );
     var items = "";
     $.each(operatorsList, function (index, item) {
       var iconUrl =
@@ -1002,128 +1014,74 @@ $(document).ready(function () {
         : null;
 
     if (currentOperator != operatorId) {
-      // ajaxHandler(
-      //   asmxUrl + "/eChargeController.asmx/getNormalPackages",
-      //   "GET",
-      //   {
-      //     chargeOperatorCode: operatorId,
-      //   },
-      //   null,
-      //   function (callback) {
-      //     var items = "",
-      //       hasAmazing = 0,
-      //       amazingLabel =
-      //         operatorId == 3 ? langs.topupExcitingPkg : langs.topupAmazingPkg;
-      //     $("#TopupAmazing").prop("checked", false);
-      //     if (callback.length) {
-      //       $.each(callback.sort(sortByType), function (index, item) {
-      //         if (hasValue(item.amount)) {
-      //           var className =
-      //               item.chargeType == 0
-      //                 ? "uc-normal-package"
-      //                 : "uc-amazing-package",
-      //             chargeType =
-      //               item.chargeType == 0 ? langs.topupNormalPkg : amazingLabel;
-      //           item.chargeType == 1 ? hasAmazing++ : undefined;
-      //           items += $("#Packages")
-      //             .html()
-      //             .replace("%Class%", className)
-      //             .replace("%Operator%", operatorId)
-      //             .replaceAll("%Code%", item.sepChargeCode)
-      //             .replace("%OperatorName%", operatorTypes[operatorId])
-      //             .replaceAll("%Type%", chargeType)
-      //             .replaceAll(
-      //               "%Description%",
-      //               commaSeparator(
-      //                 hasValue(item.amountWithoutVAT)
-      //                   ? item.amountWithoutVAT
-      //                   : item.amount
-      //               )
-      //             )
-      //             .replace("%Amount%", commaSeparator(item.amount))
-      //             .replace("%ChargeAmount%", item.amount);
-      //         }
-      //       });
-      //       $("#TopupPackage").removeClass("uc-hidden") &
-      //         $("#TopupPackageSwitcher")
-      //           .empty()
-      //           .attr("data-operator", operatorId)
-      //           .append(items);
-      //     } else {
-      //       $("#TopupPackage").removeClass("uc-hidden") &
-      //         $("#TopupPackageSwitcher")
-      //           .empty()
-      //           .removeAttr("data-operator")
-      //           .append($("#EmptyTopup").html());
-      //     }
-      //     hasAmazing
-      //       ? $("#TopupType").removeClass("uc-hidden") &
-      //         $("#ValTopupType").text(amazingLabel)
-      //       : $("#TopupType").addClass("uc-hidden");
-      //   }
-      // );
-      var normalItems = "",
-        amazingItems = "",
-        amazingLabel =
-          operatorId == 3 ? langs.topupExcitingPkg : langs.topupAmazingPkg;
+      ajaxHandler(
+        asmxUrl + "/eChargeController.asmx/getNormalPackages",
+        "GET",
+        {
+          chargeOperatorCode: operatorId,
+        },
+        null,
+        function (callback) {
+          var normalItems = "",
+            amazingItems = "",
+            amazingLabel =
+              operatorId == 3 ? langs.topupExcitingPkg : langs.topupAmazingPkg;
 
-      if (topupPackages.length) {
-        console.log('topupPackages');
-        $.each(topupPackages.sort(sortByType), function (index, item) {
-          console.log(item);
-          if (hasValue(item.Amount)) {
-            var chargeType =
-              item.ChargeType == 0 ? langs.topupNormalPkg : amazingLabel;
-            var html = $("#Packages")
-              .html()
-              .replace("%Operator%", operatorId)
-              .replaceAll("%Code%", item.sepChargeCode)
-              .replace("%OperatorName%", operatorTypes[operatorId])
-              .replaceAll("%Type%", chargeType)
-              .replaceAll(
-                "%Description%",
-                commaSeparator(
-                  hasValue(item.AmountWithoutVAT)
-                    ? item.AmountWithoutVAT
-                    : item.Amount
-                )
-              )
-              .replace("%ChargeAmount%", item.Amount);
+          if (topupPackages.length) {
+            console.log("topupPackages");
+            $.each(topupPackages.sort(sortByType), function (index, item) {
+              console.log(item);
+              if (hasValue(item.Amount)) {
+                var chargeType =
+                  item.ChargeType == 0 ? langs.topupNormalPkg : amazingLabel;
+                var html = $("#Packages")
+                  .html()
+                  .replace("%Operator%", operatorId)
+                  .replaceAll("%Code%", item.sepChargeCode)
+                  .replace("%OperatorName%", operatorTypes[operatorId])
+                  .replaceAll("%Type%", chargeType)
+                  .replaceAll(
+                    "%Description%",
+                    commaSeparator(
+                      hasValue(item.AmountWithoutVAT)
+                        ? item.AmountWithoutVAT
+                        : item.Amount
+                    )
+                  )
+                  .replace("%ChargeAmount%", item.Amount);
 
-            if (item.ChargeType == 1) {
-              amazingItems += html;
-            } else {
-              normalItems += html;
-            }
-            console.log(normalItems, amazingItems);
+                if (item.ChargeType == 1) {
+                  amazingItems += html;
+                } else {
+                  normalItems += html;
+                }
+                console.log(normalItems, amazingItems);
+              }
+            });
+            $("#TopupPackageSwitcher").attr("data-operator", operatorId);
+
+            $("#NormalTopup ul").empty().append(normalItems);
+
+            $("#AmazingTopup ul").empty().append(amazingItems);
+          } else {
+            $("#NormalTopup ul").empty().append($("#EmptyTopup").html());
+            $("#AmazingTopup ul").addClass("ui-hidden");
           }
-        });
-        $("#TopupPackageSwitcher").attr("data-operator", operatorId);
 
-        $("#NormalTopup ul")
-          .empty()
-          .append(normalItems);
+          amazingItems.length
+            ? $(".ui-topup-type-title").removeClass("ui-hidden") &
+              $("#ValTopupType").text(amazingLabel)
+            : // &
+              // document.querySelectorAll("#PackageItem").forEach((item) => {
+              //   item.classList.contains("uc-amazing-package")
+              //     ? (item.style.display = "none")
+              //     : (item.style.display = "block");
+              // })
+              $(".ui-topup-type-title").addClass("ui-hidden");
+        }
+      );
 
-        $("#AmazingTopup ul")
-          .empty()
-          .append(amazingItems);
-      } else {
-        $("#NormalTopup ul")
-          .empty()
-          .append($("#EmptyTopup").html());
-        $("#AmazingTopup ul").addClass("ui-hidden");
-      }
-
-      amazingItems.length
-        ? $(".ui-topup-type-title").removeClass("ui-hidden") &
-          $("#ValTopupType").text(amazingLabel)
-        : // &
-          // document.querySelectorAll("#PackageItem").forEach((item) => {
-          //   item.classList.contains("uc-amazing-package")
-          //     ? (item.style.display = "none")
-          //     : (item.style.display = "block");
-          // })
-          $(".ui-topup-type-title").addClass("ui-hidden");
+      //////
     }
   }
 
