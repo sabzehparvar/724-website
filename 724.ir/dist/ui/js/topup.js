@@ -938,19 +938,35 @@ $(document).ready(function () {
       null,
       null,
       function (callback) {
-        var items = "";
-        $.each(callback.d, function (index, item) {
-          var iconUrl =
-            "./dist/ui/img/icon/operators/" + operatorIcons[item.Code] + ".svg";
-          items += $("#Operators")
-            .html()
-            .replace("%Code%", item.Code)
-            .replace("%IconSrc%", iconUrl)
-            .replaceAll("%Name%", item.Description);
-        });
-        $("#TopupOperator").removeClass("ui-hidden") &
-          $("#TopupOperator ul").empty().append(items);
-      }
+        if (
+          hasValue(callback) &&
+          callback.hasOwnProperty("d") &&
+          hasValue(callback.d)
+        ) {
+          console.log("success");
+          var items = "";
+          $.each(callback.d, function (index, item) {
+            var iconUrl =
+              "./dist/ui/img/icon/operators/" +
+              operatorIcons[item.Code] +
+              ".svg";
+            items += $("#Operators")
+              .html()
+              .replace("%Code%", item.Code)
+              .replace("%IconSrc%", iconUrl)
+              .replaceAll("%Name%", item.Description);
+          });
+          $("#TopupOperator").removeClass("ui-hidden") &
+            $("#TopupOperator ul").empty().append(items);
+        } else {
+          UIkit.notification(langs.serviceException, {
+            status: "danger",
+            pos: "bottom-center",
+            timeout: 7000,
+          });
+        }
+      },
+      true
     );
   }
 
