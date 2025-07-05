@@ -62,55 +62,16 @@ $(document).ready(function () {
           if (!operatorActiveItem.hasClass("ui-active-operator")) {
             $("#Operator").val(operatorId) &
               removeOperatorActiveItem() &
-              // getTopupPackages() &
               operatorActiveItem.addClass("ui-active-operator");
           }
         }
       } else if (value.length < 4) {
         $("#Operator").val(operatorId) &
           removeOperatorActiveItem() &
-          // $("#TopupPackage").addClass("ui-hidden") &
-
           $("#NormalTopup ul").empty();
         $("#AmazingTopup ul").empty();
-        // $("#TopupType").addClass("ui-hidden");
       }
     });
-
-    // $("#TopupAmazing").change(function () {
-    //   // $("#PackageItem").removeClass("uc-amazing-package");
-    //   if (this.checked) {
-    //     document.querySelectorAll("#PackageItem").forEach((item) => {
-    //       item.classList.contains("uc-amazing-package")
-    //         ? (item.style.display = "block")
-    //         : (item.style.display = "none");
-    //     });
-    //   } else {
-    //     document.querySelectorAll("#PackageItem").forEach((item) => {
-    //       item.classList.contains("uc-normal-package")
-    //         ? (item.style.display = "block")
-    //         : (item.style.display = "none");
-    //     });
-    //   }
-    // });
-    // Listen for the 'show' event on the uk-switcher
-    // $("#NormalPackage, #AmazingPackage").on("click", function () {
-    //   if ($("#NormalPackage").hasClass("uk-active")) {
-    //     // Show only amazing packages
-    //     document.querySelectorAll("#PackageItem").forEach((item) => {
-    //       item.classList.contains("uc-amazing-package")
-    //         ? (item.style.display = "block")
-    //         : (item.style.display = "none");
-    //     });
-    //   } else if ( $("#AmazingPackage").hasClass("uk-active")) {
-    //     // Show only normal packages
-    //     document.querySelectorAll("#PackageItem").forEach((item) => {
-    //       item.classList.contains("uc-normal-package")
-    //         ? (item.style.display = "block")
-    //         : (item.style.display = "none");
-    //     });
-    //   }
-    // });
   }
 
   $(document).on("click", ".uk-button, .uk-link", function (e) {
@@ -121,18 +82,17 @@ $(document).ready(function () {
           : null;
       if (action) {
         switch (action) {
-          case "changeTopupOperator":
-            var cellNumber = hasValue($("#CellNumber").val())
+          case "changeTopupOperator": {
+            const cellNumber = hasValue($("#CellNumber").val())
               ? normalize($("#CellNumber").val().trim())
               : null;
             if ($("#TopupNumber").valid()) {
-              var value = hasValue($(this).attr("data-value"))
+              const value = hasValue($(this).attr("data-value"))
                 ? $(this).attr("data-value").trim()
                 : null;
               $("#Operator").val(value) &
                 removeOperatorActiveItem() &
-                getTopupPackages() &
-                selfThis.addClass("uc-active-operator");
+                selfThis.addClass("ui-active-operator");
             } else {
               if (!cellNumber || !validateCellNumber(cellNumber)) {
                 UIkit.notification(
@@ -150,8 +110,12 @@ $(document).ready(function () {
             }
             e.preventDefault();
             break;
-          case "getTopupPackage":
-            var cellNumber = hasValue($("#CellNumber").val()) ? normalize($("#CellNumber").val().trim()) : null,
+          }
+
+          case "getTopupPackage": {
+            var cellNumber = hasValue($("#CellNumber").val())
+                ? normalize($("#CellNumber").val().trim())
+                : null,
               operatorId = null,
               chargeCode = null,
               packageAmount = 0,
@@ -244,7 +208,11 @@ $(document).ready(function () {
               }
             } else {
               if (!cellNumber || !validateCellNumber(cellNumber)) {
-                UIkit.notification( !cellNumber ? langs.requiredCellNumber : langs.invalidCellNumber, {
+                UIkit.notification(
+                  !cellNumber
+                    ? langs.requiredCellNumber
+                    : langs.invalidCellNumber,
+                  {
                     status: "primary",
                     pos: "bottom-center",
                     timeout: 7000,
@@ -255,22 +223,21 @@ $(document).ready(function () {
             }
             e.preventDefault();
             break;
+          }
+          case "getPackages": {
+            if ($("#TopupNumber").valid()) {
+              getTopupPackages();
+              toggleWizard("second-card");
+            }
 
-          case "getPackages":
-
-                if ($("#TopupNumber").valid()) {
-
-                  getTopupPackages();
-                  toggleWizard("second-card");
-
-                }
-          
             e.preventDefault();
             break;
-          case "returnFirstCard":
+          }
+          case "returnFirstCard": {
             toggleWizard("first-card");
             e.preventDefault();
             break;
+          }
         }
       }
     }
