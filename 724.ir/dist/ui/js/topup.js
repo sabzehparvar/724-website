@@ -43,7 +43,7 @@ $(document).ready(function () {
     },
   });
 
-  if (document.getElementById("Topup")) {
+  if (document.getElementById("TopupNumber")) {
     getOperators();
     $("#TopupNumber").validate({
       rules: {
@@ -190,10 +190,7 @@ $(document).ready(function () {
       if (hasValue(callback) && callback.hasOwnProperty("d") && hasValue(callback.d)) {
         let items = "";
         $.each(callback.d, function (index, item) {
-          const iconUrl =
-            "./dist/ui/img/icon/operators/" +
-            operatorIcons[item.Code] +
-            ".svg";
+          const iconUrl = "./dist/ui/img/icon/operators/" + operatorIcons[item.Code] + ".svg";
           items += $("#Operators").html().replace("%Code%", item.Code).replace("%IconSrc%", iconUrl).replaceAll("%Name%", item.Description);
         });
         $("#TopupOperator").removeClass("ui-hidden") & $("#TopupOperator ul").empty().append(items);
