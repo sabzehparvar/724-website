@@ -2,7 +2,7 @@
 
 $(document).ready(function () {
   let operatorId;
-  const asmxUrl = "http://172.31.51.12:43197/controllers";
+  const asmxUrl = "http://172.31.51.12:43197";
 
   function toggleWizard(currentWizard) {
     $(".ui-card-wizard").hide();
@@ -102,119 +102,73 @@ $(document).ready(function () {
             break;
           }
 
-          case "getTopupPackage": {
-            var cellNumber = hasValue($("#CellNumber").val())
-              ? normalize($("#CellNumber").val().trim())
-              : null,
-              operatorId = null,
+          case "buyTopupPackage": {
+
+            const cellNumber = hasValue($("#CellNumber").val()) ? normalize($("#CellNumber").val().trim()) : null;
+            let operatorId = null,
               chargeCode = null,
               packageAmount = 0,
               packageText = null;
-            if ($("#Topup").valid()) {
-              document.querySelectorAll("#PackageItem").forEach((item) => {
-                if (item.classList.contains("uk-active")) {
-                  operatorId = hasValue(item.getAttribute("data-operator"))
-                    ? item.getAttribute("data-operator")
-                    : null;
-                  chargeCode = hasValue(item.getAttribute("data-charge"))
-                    ? item.getAttribute("data-charge")
-                    : null;
-                  packageAmount = hasValue(item.getAttribute("data-amount"))
-                    ? item.getAttribute("data-amount")
-                    : null;
-                  packageText = hasValue(item.getAttribute("data-text"))
-                    ? item.getAttribute("data-text")
-                    : null;
-                  return false;
-                }
-              });
-              if (operatorId && chargeCode && packageText) {
-                var formData = new FormData();
 
-                formData.append(
-                  "CellNumberListFile",
-                  new Blob([cellNumber], { type: "text/plain" }),
-                  cellNumber + ".txt"
-                );
-                formData.append("ChargeCode", chargeCode);
-                formData.append("ChargeOperatorCode", operatorId);
-                formData.append("ChargeDescription", packageText);
-
-                ajaxHandler(
-                  asmxUrl + "/eChargeController.asmx/CreateBatchChargeOrder",
-                  "POST",
-                  formData,
-                  selfThis,
-                  function (callback) {
-                    var fileIdentifier = callback.data.userFileIdentifier;
-                    ajaxHandler(
-                      serviceUrl + "/ipg-top-up/create-token",
-                      "POST",
-                      {
-                        amount: packageAmount,
-                        cellNumber,
-                        operatorId,
-                        sepChargeCode: chargeCode,
-                        topUpType: "Charge",
-                        fileIdentifier,
-                      },
-                      selfThis,
-                      function (callback) {
-                        UIkit.modal("#iPGModal").show();
-                        setTimeout(function () {
-                          $.redirect(
-                            callback.data.ipgUrl,
-                            {
-                              GetMethod: callback.data.getMethod,
-                              FriendsCellNumber:
-                                callback.data.friendsCellNumber,
-                              Amount: callback.data.amount,
-                              RedirectUrl: callback.data.redirectUrl,
-                              SepChargeCode: callback.data.sepChargeCode,
-                              ResNum: callback.data.resNum,
-                              ResNum1: callback.data.resNum1,
-                              TerminalId: callback.data.terminalId,
-                              TranType: callback.data.tranType,
-                              MID: callback.data.mID,
-                              OperatorID: callback.data.operatorID,
-                              OtherCellNumber: callback.data.otherCellNumber,
-                            },
-                            "POST"
-                          );
-                        }, 2000);
-                      }
-                    );
-                  },
-                  false,
-                  true,
-                  true
-                );
-              } else {
-                UIkit.notification(langs.selectingTopupPackage, {
-                  status: "danger",
-                  pos: "bottom-center",
-                  timeout: 7000,
-                });
-              }
-            } else {
-              if (!cellNumber || !validateCellNumber(cellNumber)) {
-                UIkit.notification(
-                  !cellNumber
-                    ? langs.requiredCellNumber
-                    : langs.invalidCellNumber,
-                  {
-                    status: "primary",
-                    pos: "bottom-center",
-                    timeout: 7000,
-                  }
-                );
-                return false;
+            const items = document.querySelectorAll("#PackageItem");
+            for (const item of items) {
+              if (item.classList.contains("uk-active")) {
+                operatorId = hasValue(item.getAttribute("data-operator")) ? item.getAttribute("data-operator") : null;
+                chargeCode = hasValue(item.getAttribute("data-charge")) ? item.getAttribute("data-charge") : null;
+                packageAmount = hasValue(item.getAttribute("data-amount")) ? normalize(item.getAttribute("data-amount")) : null;
+                packageText = hasValue(item.getAttribute("data-text")) ? item.getAttribute("data-text") : null;
+                break;
               }
             }
+            if (operatorId && chargeCode && packageText && cellNumber && packageAmount) {
+
+              const tokenParams = {
+                CellNumber: cellNumber,
+                ChargeCode: chargeCode,
+                ChargeOperatorCode: operatorId,
+                ChargeDescription: packageText,
+                Amount: packageAmount,
+                TopUpType: "Charge",
+                // ThirdPartyCallBack: "https://724.ir"
+              };
+
+              ajaxHandler(
+                asmxUrl + '/api/v1/ipg-top-up/get-token', 'GET', tokenParams, null, function (response) {
+
+                  if (response && response.IsSuccess && response.Data) {
+                    console.log(response)
+                    const { IpgUrl, GetMethod, Value, ResNum } = response.Data;
+
+                    setTimeout(function () {
+                      $.redirect(
+                        IpgUrl,
+                        { token: Value, ResNum: ResNum },
+                        GetMethod ? 'GET' : 'POST'
+                      );
+                    }, 2000);
+
+                  } else {
+                    UIkit.notification(langs.serviceException, {
+                      status: "danger",
+                      pos: "bottom-center",
+                      timeout: 7000,
+                    });
+                  }
+                }, true, true, true);
+
+
+            } else {
+              UIkit.notification(langs.selectingTopupPackage, {
+                status: "danger",
+                pos: "bottom-center",
+                timeout: 7000,
+              });
+            }
+
             e.preventDefault();
             break;
           }
-          case "getPackages": {
+          case "getTopupPackage": {
             if ($("#TopupNumber").valid()) {
               getTopupPackages();
             }
@@ -232,7 +186,7 @@ $(document).ready(function () {
   });
 
   function getOperators() {
-    ajaxHandler(asmxUrl + "/eChargeController.asmx/getOperators", "GET", null, null, function (callback) {
+    ajaxHandler(asmxUrl + "/controllers/eChargeController.asmx/getOperators", "GET", null, null, function (callback) {
       if (hasValue(callback) && callback.hasOwnProperty("d") && hasValue(callback.d)) {
         let items = "";
         $.each(callback.d, function (index, item) {
@@ -263,9 +217,10 @@ $(document).ready(function () {
       return toggleWizard("second-card");
     }
 
-    ajaxHandler(asmxUrl + "/eChargeController.asmx/getNormalPackages", "GET", { chargeOperatorCode: operatorId, }, null, function (callback) {
+    ajaxHandler(asmxUrl + "/controllers/eChargeController.asmx/getNormalPackages", "GET", { chargeOperatorCode: operatorId, }, null, function (callback) {
       if (hasValue(callback) && callback.hasOwnProperty("d")) {
         if (hasValue(callback.d)) {
+
           let normalItems = "", amazingItems = "",
             amazingLabel = operatorId == 3 ? langs.topupExcitingPkg : langs.topupAmazingPkg;
           const topupPackages = callback.d
@@ -276,7 +231,7 @@ $(document).ready(function () {
                 const chargeType = item.ChargeType == 0 ? langs.topupNormalPkg : amazingLabel;
                 const html = $("#Packages").html()
                   .replace("%Operator%", operatorId)
-                  .replaceAll("%Code%", item.sepChargeCode)
+                  .replaceAll("%Code%", item.SepChargeCode)
                   .replace("%OperatorName%", operatorTypes[operatorId])
                   .replaceAll("%Type%", chargeType)
                   .replaceAll("%Description%",
