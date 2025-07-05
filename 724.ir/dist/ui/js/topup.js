@@ -259,60 +259,63 @@ $(document).ready(function () {
     const operatorId = hasValue($("#Operator").val()) ? $("#Operator").val().trim() : null,
       currentOperator = hasValue($("#TopupPackageSwitcher").attr("data-operator")) ? $("#TopupPackageSwitcher").attr("data-operator").trim() : null;
 
-    if (currentOperator != operatorId) {
+    if (currentOperator === operatorId) {
+      return toggleWizard("second-card");
+    }
 
-      ajaxHandler(asmxUrl + "/eChargeController.asmx/getNormalPackages", "GET", { chargeOperatorCode: operatorId, }, null, function (callback) {
-        if (hasValue(callback) && callback.hasOwnProperty("d")) {
-          if (hasValue(callback.d)) {
-            let normalItems = "", amazingItems = "",
-              amazingLabel = operatorId == 3 ? langs.topupExcitingPkg : langs.topupAmazingPkg;
-            const topupPackages = callback.d
-            if (topupPackages.length) {
-              $.each(topupPackages.sort(sortByType), function (index, item) {
+    ajaxHandler(asmxUrl + "/eChargeController.asmx/getNormalPackages", "GET", { chargeOperatorCode: operatorId, }, null, function (callback) {
+      if (hasValue(callback) && callback.hasOwnProperty("d")) {
+        if (hasValue(callback.d)) {
+          let normalItems = "", amazingItems = "",
+            amazingLabel = operatorId == 3 ? langs.topupExcitingPkg : langs.topupAmazingPkg;
+          const topupPackages = callback.d
+          if (topupPackages.length) {
+            $.each(topupPackages.sort(sortByType), function (index, item) {
 
-                if (hasValue(item.Amount)) {
-                  const chargeType = item.ChargeType == 0 ? langs.topupNormalPkg : amazingLabel;
-                  const html = $("#Packages").html()
-                    .replace("%Operator%", operatorId)
-                    .replaceAll("%Code%", item.sepChargeCode)
-                    .replace("%OperatorName%", operatorTypes[operatorId])
-                    .replaceAll("%Type%", chargeType)
-                    .replaceAll("%Description%",
-                      commaSeparator(hasValue(item.AmountWithoutVAT) ? item.AmountWithoutVAT : item.Amount))
-                    .replace("%ChargeAmount%", item.Amount);
+              if (hasValue(item.Amount)) {
+                const chargeType = item.ChargeType == 0 ? langs.topupNormalPkg : amazingLabel;
+                const html = $("#Packages").html()
+                  .replace("%Operator%", operatorId)
+                  .replaceAll("%Code%", item.sepChargeCode)
+                  .replace("%OperatorName%", operatorTypes[operatorId])
+                  .replaceAll("%Type%", chargeType)
+                  .replaceAll("%Description%",
+                    commaSeparator(hasValue(item.AmountWithoutVAT) ? item.AmountWithoutVAT : item.Amount))
+                  .replace("%ChargeAmount%", item.Amount);
 
-                  if (item.ChargeType == 1) {
-                    amazingItems += html;
-                  } else {
-                    normalItems += html;
-                  }
+                if (item.ChargeType == 1) {
+                  amazingItems += html;
+                } else {
+                  normalItems += html;
                 }
-              });
-              $("#TopupPackageSwitcher").attr("data-operator", operatorId);
-              $("#NormalTopup ul").empty().append(normalItems);
-              $("#AmazingTopup ul").empty().append(amazingItems);
-            }
-            amazingItems.length ? $(".ui-topup-type-title").removeClass("ui-hidden") & $("#ValTopupType").text(amazingLabel) : $(".ui-topup-type-title").addClass("ui-hidden");
-          } else {
-            return UIkit.notification(langs.topupNoMatchFound, {
-              status: "primary",
-              pos: "bottom-center",
-              timeout: 7000,
+              }
             });
+            $("#TopupPackageSwitcher").attr("data-operator", operatorId);
+            $("#NormalTopup ul").empty().append(normalItems);
+            $("#AmazingTopup ul").empty().append(amazingItems);
           }
+          amazingItems.length ? $(".ui-topup-type-title").removeClass("ui-hidden") & $("#ValTopupType").text(amazingLabel) : $(".ui-topup-type-title").addClass("ui-hidden");
+          toggleWizard("second-card");
 
         } else {
-          return UIkit.notification(langs.serviceException, {
-            status: "danger",
+          return UIkit.notification(langs.topupNoMatchFound, {
+            status: "primary",
             pos: "bottom-center",
             timeout: 7000,
           });
         }
 
-      }, true
-      );
-    }
-    toggleWizard("second-card");
+      } else {
+        return UIkit.notification(langs.serviceException, {
+          status: "danger",
+          pos: "bottom-center",
+          timeout: 7000,
+        });
+      }
+
+    }, true
+    );
+
 
   }
 
