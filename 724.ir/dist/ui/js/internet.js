@@ -167,6 +167,8 @@ $(document).ready(function () {
           }
           case "returnFirstCard": {
             toggleWizard("first-card");
+            $('#Duration').val('')
+            $('#InternetPackageList ul').empty()
             e.preventDefault();
             break;
           }
@@ -244,39 +246,72 @@ $(document).ready(function () {
     }, true);
   }
   function getInternetPackages() {
-    var operatorId = hasValue($('#Operator').val()) ? $('#Operator').val().trim() : null,
+    const operatorId = hasValue($('#Operator').val()) ? $('#Operator').val().trim() : null,
       typeId = hasValue($('#SimType').val()) ? $('#SimType').val().trim() : 1,
-      durationId = hasValue($('#Duration').val()) ? $('#Duration').val().trim() : 4;
-
-    var currentOperator = hasValue($('#InternetPackage ul').attr('data-operator')) ? $('#InternetPackage ul').attr('data-operator').trim() : null,
+      durationId = hasValue($('#Duration').val()) ? $('#Duration').val().trim() : 4,
+      currentOperator = hasValue($('#InternetPackage ul').attr('data-operator')) ? $('#InternetPackage ul').attr('data-operator').trim() : null,
       currentType = hasValue($('#InternetSimType ul').attr('data-type')) ? $('#InternetSimType ul').attr('data-type').trim() : 1,
       currentDuration = hasValue($('#InternetDuration ul').attr('data-duration')) ? $('#InternetDuration ul').attr('data-duration').trim() : null;
 
-
     if (operatorId && (currentOperator != operatorId || currentType != typeId || currentDuration != durationId)) {
       ajaxHandler(asmxUrl + '/controllers//eChargeController.asmx/getInternetPackages', 'GET', {
-        chargeOperatorCode: operatorId, simCardType: typeId, durationType: durationId
+        chargeOperatorCode: operatorId,
+        simCardType: typeId,
+        durationType: durationId
       }, null, function (callback) {
-        if (hasValue(callback) && callback.hasOwnProperty("d") && hasValue(callback.d)) {
-          const response = callback.d
-          var items = '';
-          if (response.length) {
-            $.each(response.sort(sortByDuration), function (index, item) {
-              if (hasValue(item.Amount)) {
-                items += $('#InternetPackages').html().replace('%Operator%', operatorId).replaceAll('%Code%', item.SepChargeCode).replace('%OperatorName%', operatorTypes[operatorId]).replace('%Duration%', item.Duration).replace('%DurationType%', durationTypes[item.durationType]).replaceAll('%Description%', item.Description).replaceAll('%Amount%', commaSeparator(item.Amount)).replace('%ChargeAmount%', item.Amount);
+        if (hasValue(callback) && callback.hasOwnProperty("d")) {
+          if (hasValue(callback.d)) {
+            const response = callback.d;
+            let grouped = {};
+
+            response.forEach(item => {
+              if (!grouped[item.Duration]) {
+                grouped[item.Duration] = [];
               }
+              grouped[item.Duration].push(item);
             });
-            $('#InternetPackageList ul').empty().append(items);
-            $('#InternetPackageList ul').attr('data-operator', operatorId).attr('data-type', typeId).attr('data-duration', durationId);
+            const sortedDurations = Object.keys(grouped).map(Number).sort((a, b) => a - b);
+            let items = '';
+
+            sortedDurations.forEach(duration => {
+              const labelText = `${duration} ${durationTypes[durationId]}`;
+              items += `<li class="uk-disabled"><div class="uk-padding-small">${labelText}</div></li>`;
+
+              grouped[duration].sort(sortByDuration).forEach(item => {
+                if (hasValue(item.Amount)) {
+
+                  const iconUrl = "./dist/ui/img/icon/app/" + operatorIcons[operatorId] + ".svg";
+
+                  items += $('#InternetPackages').html()
+                    .replace('%Operator%', operatorId)
+                    .replace("%IconSrc%", iconUrl)
+                    .replaceAll("%Name%", operatorTypes[operatorId])
+                    .replaceAll('%Code%', item.SepChargeCode)
+                    .replace('%OperatorName%', operatorTypes[operatorId])
+                    .replace('%Duration%', item.Duration)
+                    .replace('%DurationType%', durationTypes[item.DurationType])
+                    .replaceAll('%Description%', item.Description)
+                    .replaceAll('%Amount%', commaSeparator(item.Amount))
+                    .replace('%ChargeAmount%', item.Amount);
+                }
+              });
+            });
+
+            $('#InternetPackageList ul')
+              .empty()
+              .append(items)
+              .attr('data-operator', operatorId)
+              .attr('data-type', typeId)
+              .attr('data-duration', durationId);
           } else {
-            $('#InternetPackageList ul').removeAttr('data-operator').removeAttr('data-type').removeAttr('data-duration');
-            $('#InternetPackageList ul').empty().removeAttr('data-operator');
+            $('#InternetPackageList ul').removeAttr('data-operator data-type data-duration').empty();
             UIkit.notification(langs.internetNoMatchFound, {
               status: "primary",
               pos: "bottom-center",
               timeout: 7000,
             });
           }
+
         } else {
           UIkit.notification(langs.serviceException, {
             status: "danger",
@@ -284,9 +319,10 @@ $(document).ready(function () {
             timeout: 7000,
           });
         }
-      });
+      }, true);
     }
   }
+
   function sortByDuration(firstList, secondList) {
     var firstFilter = firstList.duration, secondFilter = secondList.duration;
     return ((firstFilter < secondFilter) ? -1 : ((firstFilter > secondFilter) ? 1 : 0));
