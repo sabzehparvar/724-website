@@ -288,7 +288,8 @@
                       </ul>
                     </div>
                     <div class="uk-margin-medium-top uk-text-center">
-                      <button class="uk-button uk-button-primary uk-button-large uk-border-rounded uk-width-1-1">
+                      <button data-action="getPackages"
+                        class="uk-button uk-button-primary uk-button-large uk-border-rounded uk-width-1-1">
                         نمایش بسته ها
                       </button>
                     </div>
@@ -304,7 +305,7 @@
                       بازگشت
                     </a>
                   </div>
-                  <div class="uk-width-1-1 uk-margin uk-margin-remove-bottom">
+                  <div id="InternetDuration" class="uk-width-1-1 uk-margin uk-margin-remove-bottom">
                     <ul class="uk-subnav uk-subnav-pill uk-grid-small uk-child-width-auto ui-internet-duration" uk-grid
                       uk-switcher>
                       <li>
@@ -3005,6 +3006,7 @@
   </div>
   </div>
 
+  <!-- Topup Package scripts  -->
   <script id="Operators" type="text/template">
       <li>
           <a href="#" class="uk-link" data-action="changeTopupOperator" data-value="%Code%">
@@ -3013,6 +3015,16 @@
           </a>
       </li>
     </script>
+
+  <script id="Packages" type="text/template">
+      <li id="PackageItem" data-operator="%Operator%" data-charge="%Code%" data-amount="%ChargeAmount%" data-text="شارژ %Type% %Description% %OperatorName%">
+          <a href="#" class="uk-link uk-padding uk-flex uk-flex-center uk-flex-middle">
+            <span>%Description% ریالی</span>
+          </a>
+      </li>
+  </script>
+
+  <!-- Internet Package scripts  -->
   <script id="InternetOperators" type="text/template">
       <li>
           <a href="#" class="uk-link" data-action="changeInternetOperator" data-value="%Code%">
@@ -3021,20 +3033,23 @@
           </a>
       </li>
 </script>
-  <script id="Packages" type="text/template">
-      <li id="PackageItem" data-operator="%Operator%" data-charge="%Code%" data-amount="%ChargeAmount%" data-text="شارژ %Type% %Description% %OperatorName%">
-          <a href="#" class="uk-link uk-padding uk-flex uk-flex-center uk-flex-middle">
-            <span>%Description% ریالی</span>
-          </a>
-      </li>
-  </script>
   <script id="SimTypes" type="text/template">
     <li class="%Class%">
-    <a href="#" class="uk-link uk-flex-center" data-action="changeInternetType" data-value="%Code%">
+    <a href="#" class="uk-link uk-flex-center"  data-value="%Code%">
         %Name%
     </a>
 </li>
   </script>
+
+  <script id="Durations" type="text/template">
+    <li id="DurationItem" class="%Class%">
+        <a href="#" class="uk-link" data-action="changeInternetDuration" data-value="%Code%">
+            <span class="uk-flex uk-flex-middle">%Name%</span>
+        </a>
+    </li>
+</script>
+
+
   <script src="../../cdn/pkg/jquery/js/jquery.min.js" as="script"></script>
   <script src="../../cdn/pkg/jquery/js/jquery-mask.min.js" as="script"></script>
   <script src="../../cdn/pkg/bootstrap/js/bootstrap.bundle.min.js" as="script"></script>

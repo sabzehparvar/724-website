@@ -85,11 +85,11 @@ $(document).ready(function () {
             e.preventDefault();
             break;
           }
-          case 'changeInternetType': {
-            $('#Type').val(hasValue($(this).attr('data-value')) ? $(this).attr('data-value').trim() : null) & getInternetPackages();
-            e.preventDefault();
-            break;
-          }
+          // case 'changeInternetType': {
+          //   $('#Type').val(hasValue($(this).attr('data-value')) ? $(this).attr('data-value').trim() : null) & getInternetPackages();
+          //   e.preventDefault();
+          //   break;
+          // }
           case 'changeInternetDuration': {
             $('#Duration').val(hasValue($(this).attr('data-value')) ? $(this).attr('data-value').trim() : null) & getInternetPackages();
             e.preventDefault();
@@ -155,6 +155,21 @@ $(document).ready(function () {
             e.preventDefault();
             break;
           }
+
+          case 'getPackages': {
+            if ($('#InternetPackage').valid()) {
+              getDurations()
+            }
+
+            e.preventDefault();
+            break;
+          }
+          case "returnFirstCard": {
+            toggleWizard("first-card");
+            e.preventDefault();
+            break;
+          }
+
         }
       }
     }
@@ -190,12 +205,11 @@ $(document).ready(function () {
         const response = callback.d
         let items = '';
         $.each(response, function (index, item) {
-          console.log(item)
           var className = item.Code == 1 ? 'uk-active' : '';
           items += $('#SimTypes').html().replace('%Class%', className).replaceAll('%Code%', item.Code).replace('%Name%', item.Description);
         });
         $('#InternetSimType ul').empty().append(items);
-      }else {
+      } else {
         UIkit.notification(langs.serviceException, {
           status: "danger",
           pos: "bottom-center",
@@ -207,16 +221,21 @@ $(document).ready(function () {
   }
 
   function getDurations() {
-    ajaxHandler(asmxUrl + '/eChargeController.asmx/getPackageDurationTypes', 'GET', null, null, function (callback) {
-      var items = '';
-      $.each(callback, function (index, item) {
-        var className = item.code == 4 ? 'uk-active' : '';
-        items += $('#Durations').html().replace('%Class%', className).replaceAll('%Code%', item.code).replace('%Duration%', item.name).replace('%Name%', item.description);
-      });
-      $('#InternetDuration').removeClass('uc-hidden') & $('#InternetDurationSwitcher').empty().append(items);
+    ajaxHandler(asmxUrl + '/controllers/eChargeController.asmx/getPackageDurationTypes', 'GET', null, null, function (callback) {
+      if (hasValue(callback) && callback.hasOwnProperty("d") && hasValue(callback.d)) {
+        const response = callback.d
+        let items = '';
+        $.each(response, function (index, item) {
+          const className = item.Code == 4 ? 'uk-active' : '';
+          items += $('#Durations').html().replace('%Class%', className).replaceAll('%Code%', item.Code).replace('%Duration%', item.Name).replace('%Name%', item.Description);
+        });
+        $('#InternetDuration ul').empty().append(items);
+        toggleWizard("second-card");
+
+      }
+
     });
   }
-
   function getInternetPackages() {
     var operatorId = hasValue($('#Operator').val()) ? $('#Operator').val().trim() : null, typeId = hasValue($('#Type').val()) ? $('#Type').val().trim() : 1,
       durationId = hasValue($('#Duration').val()) ? $('#Duration').val().trim() : 4;
