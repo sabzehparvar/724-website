@@ -278,7 +278,7 @@
                     <div class="uk-text-meta uk-margin-small-top">
                       در صورت ترابرد، اپراتورت رو انتخاب کن
                     </div>
-                    <div id="InternetSimType" class="uk-margin-medium-top">
+                    <div id="InternetSimTypeList" class="uk-margin-medium-top">
                       <div class="uk-form-label uk-text-default">
                         نوع سیمکارت
                       </div>
@@ -293,10 +293,9 @@
                         نمایش بسته ها
                       </button>
                     </div>
-                    <input id="SimType" name="SimType" type="hidden" class="ignore" /><input id="Package" name="Package"
-                      type="hidden" class="ignore" />
-                    <input id="Duration" name="Duration" type="hidden" class="ignore" /><input id="Operator"
-                      name="Operator" type="hidden" class="ignore" />
+                    <input id="InternetSimType" name="InternetSimType" type="hidden" class="ignore" />
+                    <input id="InternetDuration" name="InternetDuration" type="hidden" class="ignore" />
+                    <input id="InternetOperator" name="InternetOperator" type="hidden" class="ignore" />
                   </form>
                 </div>
               </div>
@@ -308,7 +307,7 @@
                       بازگشت
                     </a>
                   </div>
-                  <div id="InternetDuration" class="uk-width-1-1 uk-margin uk-margin-remove-bottom">
+                  <div id="InternetDurationList" class="uk-width-1-1 uk-margin uk-margin-remove-bottom">
                     <ul class="uk-subnav uk-subnav-pill uk-grid-small uk-child-width-auto ui-internet-duration" uk-grid
                       uk-switcher></ul>
                   </div>
@@ -3010,15 +3009,15 @@
 </li>
   </script>
 
-    <script id="Durations" type="text/template">
-    <li id="DurationItem" class="%Class%">
+    <script id="InternetDurations" type="text/template">
+    <li class="%Class%">
         <a href="#" class="uk-link" data-action="changeInternetDuration" data-value="%Code%">
             <span class="uk-flex uk-flex-middle">%Name%</span>
         </a>
     </li>
 </script>
     <script id="InternetPackages" type="text/template">
-    <li id="InternetPackageItem" class="%Class%" data-operator="%Operator%" data-charge="%Code%" data-amount="%ChargeAmount%" data-text="%Description% %OperatorName%">
+    <li id="InternetPackageItem" data-operator="%Operator%" data-charge="%Code%" data-amount="%ChargeAmount%" data-text="%Description% %OperatorName%">
         <a href="#" class="uk-link" data-action="changeInternetPackage">
             <div class="uk-width-1-1 uk-grid-collapse uk-flex-middle" uk-grid>
                 <div class="uk-margin-left">
