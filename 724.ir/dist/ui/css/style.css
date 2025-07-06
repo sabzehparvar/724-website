@@ -1108,7 +1108,7 @@
   display: none;
 }
 .ui-overflow-scroll {
-  max-height: 520px;
+  max-height: 640px;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: auto;

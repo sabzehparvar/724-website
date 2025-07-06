@@ -2,11 +2,44 @@
 
 $(document).ready(function () {
   let operatorId;
+  function toggleWizard(currentWizard) {
+    $(".ui-card-wizard").hide();
+    $(`.ui-card-wizard[data-wizard="${currentWizard}"]`).fadeIn();
+  }
 
-//   var operatorIcons = {
-//     1: 'icHamrahAvalSimcard', 2: 'icIrancellSimcard', 3: 'icRightelSimcard', 4: 'icSamantelSimcard', 5: 'icShatelMobileSimcard', 6: 'icTelekishSimcard'
-//   };
+  $.validator.addMethod(
+    "cellNumber",
+    function (value, element) {
+      return this.optional(element) || validateCellNumber(value);
+    },
+    validationMessage.cellNumber
+  );
 
+  $.validator.addMethod(
+    "mciPostPaidNumber",
+    function (value, element) {
+      return this.optional(element) || validateMciPostPaidNumber(value);
+    },
+    validationMessage.mciPostPaidNumbers
+  );
+
+  $.validator.setDefaults({
+    errorElement: "div",
+    errorClass: "uk-text-danger uk-text-small uk-margin-small-top",
+    ignore: ".ignore",
+    onkeyup: function (element) {
+      this.element(element);
+    },
+    highlight: function (element) {
+      $(element).addClass("uk-form-danger");
+    },
+    unhighlight: function (element) {
+      $(element).removeClass("uk-form-danger");
+    },
+    errorPlacement: function (error, element) {
+      error.appendTo(element.closest("div"));
+    },
+  });
   if (document.getElementById('InternetPackage')) {
     getOperators();
     $('#InternetPackage').validate({
@@ -16,11 +49,11 @@ $(document).ready(function () {
     });
 
     $('#InternetPackage #CellNumber').keyup(function (e) {
-      var value = normalize($(this).val());
+      const value = normalize($(this).val());
       if (value.length >= 4) {
-         operatorId = validateCellNumber(value, true);
+        operatorId = validateCellNumber(value, true);
         if (operatorId) {
-          var operatorActiveItem = $('#InternetOperator').children().find('[data-value=' + operatorId + ']');
+          const operatorActiveItem = $('#InternetOperator').children().find('[data-value=' + operatorId + ']');
           if (!operatorActiveItem.hasClass('ui-active-operator')) {
             $('#Operator').val(operatorId) & removeOperatorActiveItem() & operatorActiveItem.addClass('ui-active-operator');
           }
@@ -33,11 +66,11 @@ $(document).ready(function () {
 
   $(document).on('click', '.uk-button, .uk-link', function (e) {
     if (!$(this).hasClass('on-progress')) {
-      var selfThis = $(this), action = hasValue($(this).attr('data-action')) ? $(this).attr('data-action').trim() : null;
+      const selfThis = $(this), action = hasValue($(this).attr('data-action')) ? $(this).attr('data-action').trim() : null;
       if (action) {
-        var cellNumber = hasValue($('#CellNumber').val()) ? normalize($('#CellNumber').val().trim()) : null;
+        const cellNumber = hasValue($('#CellNumber').val()) ? normalize($('#CellNumber').val().trim()) : null;
         switch (action) {
-          case 'changeInternetOperator':
+          case 'changeInternetOperator': {
             if ($('#InternetPackage').valid()) {
               removeOperatorActiveItem() & selfThis.addClass('ui-active-operator');
               $('#Operator').val(hasValue($(this).attr('data-value')) ? $(this).attr('data-value').trim() : null);
@@ -51,17 +84,19 @@ $(document).ready(function () {
             }
             e.preventDefault();
             break;
-          case 'changeInternetType':
+          }
+          case 'changeInternetType': {
             $('#Type').val(hasValue($(this).attr('data-value')) ? $(this).attr('data-value').trim() : null) & getInternetPackages();
             e.preventDefault();
             break;
-          case 'changeInternetDuration':
+          }
+          case 'changeInternetDuration': {
             $('#Duration').val(hasValue($(this).attr('data-value')) ? $(this).attr('data-value').trim() : null) & getInternetPackages();
             e.preventDefault();
             break;
-          case 'getInternetPackage':
-            var cellNumber = hasValue($('#CellNumber').val()) ? normalize($('#CellNumber').val().trim()) : null,
-              operatorId = null, chargeCode = null, packageAmount = 0, packageText = null;
+          }
+          case 'getInternetPackage': {
+            let operatorId = null, chargeCode = null, packageAmount = 0, packageText = null;
             if ($('#Internet').valid()) {
               document.querySelectorAll('#PackageItem').forEach((item) => {
                 if (item.classList.contains('uk-active')) {
@@ -119,13 +154,14 @@ $(document).ready(function () {
             }
             e.preventDefault();
             break;
+          }
         }
       }
     }
   });
 
   function getOperators() {
- 
+
     ajaxHandler(asmxUrl + "/controllers/eChargeController.asmx/getOperators", "GET", null, null, function (callback) {
       if (hasValue(callback) && callback.hasOwnProperty("d") && hasValue(callback.d)) {
         let items = "";
@@ -133,7 +169,7 @@ $(document).ready(function () {
           const iconUrl = "./dist/ui/img/icon/operators/" + operatorIcons[item.Code] + ".svg";
           items += $("#InternetOperators").html().replace("%Code%", item.Code).replace("%IconSrc%", iconUrl).replaceAll("%Name%", item.Description);
         });
-      getTypes();
+        getTypes();
 
         $("#InternetOperator").removeClass("ui-hidden") & $("#InternetOperator ul").empty().append(items);
       } else {
@@ -150,20 +186,24 @@ $(document).ready(function () {
 
   function getTypes() {
     ajaxHandler(asmxUrl + '/controllers/eChargeController.asmx/getSimCardTypes', 'GET', null, null, function (callback) {
-      var items = '';
-      $.each(callback, function (index, item) {
-        var icon = '';
-        switch (item.code) {
-          case 0: icon = 'ri-sim-card-line'; break;
-          case 1: icon = 'ri-sim-card-2-line'; break;
-          case 2: icon = 'ri-wifi-line'; break;
-        }
-        var className = item.code == 1 ? 'uk-active' : '';
-        items += $('#Types').html().replace('%Class%', className).replaceAll('%Code%', item.code).replace('%Icon%', icon).replace('%Name%', item.description);
-      });
-      getDurations();
-      $('#InternetType').removeClass('uc-hidden') & $('#InternetTypeSwitcher').empty().append(items);
-    });
+      if (hasValue(callback) && callback.hasOwnProperty("d") && hasValue(callback.d)) {
+        const response = callback.d
+        let items = '';
+        $.each(response, function (index, item) {
+          console.log(item)
+          var className = item.Code == 1 ? 'uk-active' : '';
+          items += $('#SimTypes').html().replace('%Class%', className).replaceAll('%Code%', item.Code).replace('%Name%', item.Description);
+        });
+        $('#InternetSimType ul').empty().append(items);
+      }else {
+        UIkit.notification(langs.serviceException, {
+          status: "danger",
+          pos: "bottom-center",
+          timeout: 7000,
+        });
+      }
+
+    }, true);
   }
 
   function getDurations() {
@@ -179,11 +219,11 @@ $(document).ready(function () {
 
   function getInternetPackages() {
     var operatorId = hasValue($('#Operator').val()) ? $('#Operator').val().trim() : null, typeId = hasValue($('#Type').val()) ? $('#Type').val().trim() : 1,
-    durationId = hasValue($('#Duration').val()) ? $('#Duration').val().trim() : 4;
+      durationId = hasValue($('#Duration').val()) ? $('#Duration').val().trim() : 4;
 
     var currentOperator = hasValue($('#InternetPackageSwitcher').attr('data-operator')) ? $('#InternetPackageSwitcher').attr('data-operator').trim() : null,
-    currentType = hasValue($('#InternetTypeSwitcher').attr('data-type')) ? $('#InternetTypeSwitcher').attr('data-type').trim() : 1,
-    currentDuration = hasValue($('#InternetDurationSwitcher').attr('data-duration')) ? $('#InternetDurationSwitcher').attr('data-duration').trim() : null;
+      currentType = hasValue($('#InternetTypeSwitcher').attr('data-type')) ? $('#InternetTypeSwitcher').attr('data-type').trim() : 1,
+      currentDuration = hasValue($('#InternetDurationSwitcher').attr('data-duration')) ? $('#InternetDurationSwitcher').attr('data-duration').trim() : null;
 
     if (operatorId && (currentOperator != operatorId || currentType != typeId || currentDuration != durationId)) {
       ajaxHandler(asmxUrl + '/eChargeController.asmx/getInternetPackages', 'GET', {
