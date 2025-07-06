@@ -3015,13 +3015,13 @@
     </script>
   <script id="InternetOperators" type="text/template">
       <li>
-          <a href="#" class="uk-link" data-action="changeTopupOperator" data-value="%Code%">
+          <a href="#" class="uk-link" data-action="changeInternetOperator" data-value="%Code%">
             <img src="%IconSrc%" width="24" height="24" class="uk-preserve" alt="%Name%" uk-svg/>
             <span>%Name%</span>
           </a>
       </li>
 </script>
-<script id="Packages" type="text/template">
+  <script id="Packages" type="text/template">
       <li id="PackageItem" data-operator="%Operator%" data-charge="%Code%" data-amount="%ChargeAmount%" data-text="شارژ %Type% %Description% %OperatorName%">
           <a href="#" class="uk-link uk-padding uk-flex uk-flex-center uk-flex-middle">
             <span>%Description% ریالی</span>
@@ -3029,7 +3029,7 @@
       </li>
   </script>
   <script id="SimTypes" type="text/template">
-    <li id="TypeItem" class="%Class%">
+    <li class="%Class%">
     <a href="#" class="uk-link uk-flex-center" data-action="changeInternetType" data-value="%Code%">
         %Name%
     </a>

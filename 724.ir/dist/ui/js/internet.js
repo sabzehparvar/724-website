@@ -252,6 +252,6 @@ $(document).ready(function () {
   }
 
   function removeOperatorActiveItem() {
-    $('#InternetOperator').parents().find('a').removeClass('uc-active-operator');
+    $('#InternetOperator').parents().find('a').removeClass('ui-active-operator');
   }
 });
