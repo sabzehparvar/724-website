@@ -180,7 +180,13 @@ const operatorIcons = {
   5: "ic-shatel",
   6: "ic-telekish",
 };
-
+var durationTypes = {
+  1: "ساعته",
+  2: "روزه",
+  3: "هفته",
+  4: "ماهه",
+  5: "ساله",
+};
 
 function validateCellNumber(value, checkRegex = false) {
   var value = normalize(value.trim()).toString(),

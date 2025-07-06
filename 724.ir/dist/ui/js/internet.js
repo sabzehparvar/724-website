@@ -40,15 +40,15 @@ $(document).ready(function () {
       error.appendTo(element.closest("div"));
     },
   });
-  if (document.getElementById('InternetPackage')) {
+  if (document.getElementById('InternetPackageForm')) {
     getOperators();
-    $('#InternetPackage').validate({
+    $('#InternetPackageForm').validate({
       rules: {
         CellNumber: { digits: true, cellNumber: true }
       }
     });
 
-    $('#InternetPackage #CellNumber').keyup(function (e) {
+    $('#InternetPackageForm #CellNumber').keyup(function (e) {
       const value = normalize($(this).val());
       if (value.length >= 4) {
         operatorId = validateCellNumber(value, true);
@@ -71,7 +71,7 @@ $(document).ready(function () {
         const cellNumber = hasValue($('#CellNumber').val()) ? normalize($('#CellNumber').val().trim()) : null;
         switch (action) {
           case 'changeInternetOperator': {
-            if ($('#InternetPackage').valid()) {
+            if ($('#InternetPackageForm').valid()) {
               removeOperatorActiveItem() & selfThis.addClass('ui-active-operator');
               $('#Operator').val(hasValue($(this).attr('data-value')) ? $(this).attr('data-value').trim() : null);
             } else {
@@ -85,11 +85,11 @@ $(document).ready(function () {
             e.preventDefault();
             break;
           }
-          // case 'changeInternetType': {
-          //   $('#Type').val(hasValue($(this).attr('data-value')) ? $(this).attr('data-value').trim() : null) & getInternetPackages();
-          //   e.preventDefault();
-          //   break;
-          // }
+          case 'changeInternetType': {
+            $('#SimType').val(hasValue($(this).attr('data-value')) ? $(this).attr('data-value').trim() : null);
+            e.preventDefault();
+            break;
+          }
           case 'changeInternetDuration': {
             $('#Duration').val(hasValue($(this).attr('data-value')) ? $(this).attr('data-value').trim() : null) & getInternetPackages();
             e.preventDefault();
@@ -157,8 +157,9 @@ $(document).ready(function () {
           }
 
           case 'getPackages': {
-            if ($('#InternetPackage').valid()) {
+            if ($('#InternetPackageForm').valid()) {
               getDurations()
+              getInternetPackages()
             }
 
             e.preventDefault();
@@ -232,39 +233,60 @@ $(document).ready(function () {
         $('#InternetDuration ul').empty().append(items);
         toggleWizard("second-card");
 
+      } else {
+        UIkit.notification(langs.serviceException, {
+          status: "danger",
+          pos: "bottom-center",
+          timeout: 7000,
+        });
       }
 
-    });
+    }, true);
   }
   function getInternetPackages() {
-    var operatorId = hasValue($('#Operator').val()) ? $('#Operator').val().trim() : null, typeId = hasValue($('#Type').val()) ? $('#Type').val().trim() : 1,
+    var operatorId = hasValue($('#Operator').val()) ? $('#Operator').val().trim() : null,
+      typeId = hasValue($('#SimType').val()) ? $('#SimType').val().trim() : 1,
       durationId = hasValue($('#Duration').val()) ? $('#Duration').val().trim() : 4;
 
-    var currentOperator = hasValue($('#InternetPackageSwitcher').attr('data-operator')) ? $('#InternetPackageSwitcher').attr('data-operator').trim() : null,
-      currentType = hasValue($('#InternetTypeSwitcher').attr('data-type')) ? $('#InternetTypeSwitcher').attr('data-type').trim() : 1,
-      currentDuration = hasValue($('#InternetDurationSwitcher').attr('data-duration')) ? $('#InternetDurationSwitcher').attr('data-duration').trim() : null;
+    var currentOperator = hasValue($('#InternetPackage ul').attr('data-operator')) ? $('#InternetPackage ul').attr('data-operator').trim() : null,
+      currentType = hasValue($('#InternetSimType ul').attr('data-type')) ? $('#InternetSimType ul').attr('data-type').trim() : 1,
+      currentDuration = hasValue($('#InternetDuration ul').attr('data-duration')) ? $('#InternetDuration ul').attr('data-duration').trim() : null;
+
 
     if (operatorId && (currentOperator != operatorId || currentType != typeId || currentDuration != durationId)) {
-      ajaxHandler(asmxUrl + '/eChargeController.asmx/getInternetPackages', 'GET', {
+      ajaxHandler(asmxUrl + '/controllers//eChargeController.asmx/getInternetPackages', 'GET', {
         chargeOperatorCode: operatorId, simCardType: typeId, durationType: durationId
       }, null, function (callback) {
-        var items = '';
-        if (callback.length) {
-          $.each(callback.sort(sortByDuration), function (index, item) {
-            if (hasValue(item.amount)) {
-              items += $('#Packages').html().replace('%Operator%', operatorId).replaceAll('%Code%', item.sepChargeCode).replace('%OperatorName%', operatorTypes[operatorId]).replace('%Duration%', item.duration).replace('%DurationType%', durationTypes[item.durationType]).replaceAll('%Description%', item.description).replaceAll('%Amount%', commaSeparator(item.amount)).replace('%ChargeAmount%', item.amount);
-            }
-          });
-          $('#InternetPackage').removeClass('uc-hidden') & $('#InternetPackageSwitcher').empty().append(items);
-          $('#InternetPackageSwitcher').attr('data-operator', operatorId).attr('data-type', typeId).attr('data-duration', durationId);
+        if (hasValue(callback) && callback.hasOwnProperty("d") && hasValue(callback.d)) {
+          const response = callback.d
+          var items = '';
+          if (response.length) {
+            $.each(response.sort(sortByDuration), function (index, item) {
+              if (hasValue(item.Amount)) {
+                items += $('#InternetPackages').html().replace('%Operator%', operatorId).replaceAll('%Code%', item.SepChargeCode).replace('%OperatorName%', operatorTypes[operatorId]).replace('%Duration%', item.Duration).replace('%DurationType%', durationTypes[item.durationType]).replaceAll('%Description%', item.Description).replaceAll('%Amount%', commaSeparator(item.Amount)).replace('%ChargeAmount%', item.Amount);
+              }
+            });
+            $('#InternetPackageList ul').empty().append(items);
+            $('#InternetPackageList ul').attr('data-operator', operatorId).attr('data-type', typeId).attr('data-duration', durationId);
+          } else {
+            $('#InternetPackageList ul').removeAttr('data-operator').removeAttr('data-type').removeAttr('data-duration');
+            $('#InternetPackageList ul').empty().removeAttr('data-operator');
+            UIkit.notification(langs.internetNoMatchFound, {
+              status: "primary",
+              pos: "bottom-center",
+              timeout: 7000,
+            });
+          }
         } else {
-          $('#InternetPackageSwitcher').removeAttr('data-operator').removeAttr('data-type').removeAttr('data-duration');
-          $('#InternetPackage').removeClass('uc-hidden') & $('#InternetPackageSwitcher').empty().removeAttr('data-operator').append($('#EmptyInternet').html());
+          UIkit.notification(langs.serviceException, {
+            status: "danger",
+            pos: "bottom-center",
+            timeout: 7000,
+          });
         }
       });
     }
   }
-
   function sortByDuration(firstList, secondList) {
     var firstFilter = firstList.duration, secondFilter = secondList.duration;
     return ((firstFilter < secondFilter) ? -1 : ((firstFilter > secondFilter) ? 1 : 0));
