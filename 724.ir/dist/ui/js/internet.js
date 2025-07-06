@@ -1,7 +1,6 @@
 'use strict';
 
 $(document).ready(function () {
-  const asmxUrl = "http://172.31.51.12:43197";
   let operatorId;
 
 //   var operatorIcons = {
@@ -16,7 +15,7 @@ $(document).ready(function () {
       }
     });
 
-    $('#CellNumber').keyup(function (e) {
+    $('#InternetPackage #CellNumber').keyup(function (e) {
       var value = normalize($(this).val());
       if (value.length >= 4) {
          operatorId = validateCellNumber(value, true);

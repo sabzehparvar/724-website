@@ -2,7 +2,6 @@
 
 $(document).ready(function () {
   let operatorId;
-  const asmxUrl = "http://172.31.51.12:43197";
 
   function toggleWizard(currentWizard) {
     $(".ui-card-wizard").hide();
@@ -50,7 +49,7 @@ $(document).ready(function () {
         CellNumber: { digits: true, cellNumber: true },
       },
     });
-    $("#CellNumber").keyup(function (e) {
+    $("#TopupNumber #CellNumber").keyup(function (e) {
       const value = normalize($(this).val());
 
       if (value.length >= 4) {

@@ -259,130 +259,133 @@
         <div class="uk-flex uk-flex-middle uk-flex-center">
           <div
             class="uk-card uk-card-body uk-card-small uk-width-2-3@s uk-border-rounded-large  uk-position-relative ui-overflow-scroll ui-border-grey">
-            <div class="uk-width-2-3@m uk-margin-medium-bottom ui-card-wizard" data-wizard="first-card">
-              <div class="uk-panel">
-                <form id="InternetPackage" autocomplete="off" class="uk-text-right" novalidate="novalidate">
-                   <div>
-                    <label for="CellNumber" class="uk-form-label uk-text-default">شماره موبایل رو وارد کن</label>
-                    <input id="CellNumber" name="CellNumber" type="tel"
-                      class="uk-input uk-form-large uk-border-rounded uk-text-center uk-text-default uk-margin-small-top ui-letter-spacing ui-bg-grey fontface-vazir-fa"
-                      minlength="11" maxlength="11" required placeholder="۰۹__ ____ ___" />
-                  </div>
-                  <div id="InternetOperator"
-                    class="uk-width-1-1 uk-margin-medium-top ui-border-grey-operator ui-hidden ui-topup-operator">
-                    <div class="uk-margin-small-bottom">اپراتور</div>
-                    <ul
-                      class="uk-subnav uk-subnav-pill uk-grid-small uk-child-width-1-3 uk-grid" uk-grid uk-switcher>
-                    </ul>
-                  </div>
-                  <div class="uk-text-meta uk-margin-small-top">
-                    در صورت ترابرد، اپراتورت رو انتخاب کن
-                  </div>
-                  <div class="uk-margin-medium-top">
-                    <div class="uk-form-label uk-text-default">
-                      نوع سیمکارت
+            <div class="uk-flex uk-flex-middle uk-flex-center">
+              <div class="uk-width-2-3@m uk-margin-medium-bottom ui-card-wizard" data-wizard="first-card">
+                <div class="uk-panel">
+                  <form id="InternetPackage" autocomplete="off" class="uk-text-right" novalidate="novalidate">
+                    <div>
+                      <label for="CellNumber" class="uk-form-label uk-text-default">شماره موبایل رو وارد کن</label>
+                      <input id="CellNumber" name="CellNumber" type="tel"
+                        class="uk-input uk-form-large uk-border-rounded uk-text-center uk-text-default uk-margin-small-top ui-letter-spacing ui-bg-grey fontface-vazir-fa"
+                        minlength="11" maxlength="11" required placeholder="۰۹__ ____ ___" />
                     </div>
-                    <ul class="uk-subnav uk-subnav-pill uk-width-1-1 uk-child-width-1-3 uk-margin-auto ui-switcher-tab"
+                    <div id="InternetOperator"
+                      class="uk-width-1-1 uk-margin-medium-top ui-border-grey-operator ui-hidden ui-topup-operator">
+                      <div class="uk-margin-small-bottom">اپراتور</div>
+                      <ul class="uk-subnav uk-subnav-pill uk-grid-small uk-child-width-1-3 uk-grid" uk-grid uk-switcher>
+                      </ul>
+                    </div>
+                    <div class="uk-text-meta uk-margin-small-top">
+                      در صورت ترابرد، اپراتورت رو انتخاب کن
+                    </div>
+                    <div class="uk-margin-medium-top">
+                      <div class="uk-form-label uk-text-default">
+                        نوع سیمکارت
+                      </div>
+                      <ul
+                        class="uk-subnav uk-subnav-pill uk-width-1-1 uk-child-width-1-3 uk-margin-auto ui-switcher-tab"
+                        uk-switcher>
+                        <li>
+                          <a href="#" class="uk-flex-center">اعتباری</a>
+                        </li>
+                        <li>
+                          <a href="#" class="uk-flex-center">دائمی</a>
+                        </li>
+                        <li>
+                          <a href="#" class="uk-flex-center">tdlte</a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="uk-margin-medium-top uk-text-center">
+                      <button class="uk-button uk-button-primary uk-button-large uk-border-rounded uk-width-1-1">
+                        نمایش بسته ها
+                      </button>
+                    </div>
+                    <input id="Operator" name="Operator" type="hidden" class="ignore" />
+                  </form>
+                </div>
+              </div>
+              <div class="uk-width-2-3@m uk-margin-medium-bottom ui-card-wizard" data-wizard="second-card">
+                <div class="uk-panel">
+                  <div class="uk-margin-bottom">
+                    <a href="#" class="uk-text-decoration-none uk-text-secondary uk-link" data-action="returnFirstCard">
+                      <i class="ti ti-arrow-right uk-border-circle uk-margin-small-left ui-return-arrow"></i>
+                      بازگشت
+                    </a>
+                  </div>
+                  <div class="uk-width-1-1 uk-margin uk-margin-remove-bottom">
+                    <ul class="uk-subnav uk-subnav-pill uk-grid-small uk-child-width-auto ui-internet-duration" uk-grid
                       uk-switcher>
                       <li>
-                        <a href="#" class="uk-flex-center">اعتباری</a>
+                        <a href="#">
+                          <span class="uk-flex uk-flex-middle">ماهانه</span>
+                        </a>
                       </li>
                       <li>
-                        <a href="#" class="uk-flex-center">دائمی</a>
+                        <a href="#">
+                          <span class="uk-flex uk-flex-middle">۱۵ روزه</span>
+                        </a>
                       </li>
-                       <li>
-                        <a href="#" class="uk-flex-center">tdlte</a>
+                      <li>
+                        <a href="#">
+                          <span class="uk-flex uk-flex-middle">هفتگی</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <span class="uk-flex uk-flex-middle">روزانه</span>
+                        </a>
                       </li>
                     </ul>
                   </div>
-                  <div class="uk-margin-medium-top uk-text-center">
-                    <button class="uk-button uk-button-primary uk-button-large uk-border-rounded uk-width-1-1">
-                      نمایش بسته ها
-                    </button>
+
+                  <div class="uk-width-1-1 uk-margin uk-margin-remove-bottom ui-internet-package">
+                    <label class="uk-padding-small"> ۱ ماهه </label>
+                    <ul class="uk-subnav uk-subnav-pill uk-grid-small uk-child-width-1-1 fontface-vazir-fa" uk-grid
+                      uk-switcher>
+                      <li>
+                        <a href="#">
+                          <div class="uk-width-1-1 uk-grid-collapse uk-flex-middle" uk-grid>
+                            <div class="uk-margin-left">
+                              <img src="./dist/ui/img/icon/app/ic-irancell.svg" width="24" alt="ایرانسل" />
+                            </div>
+                            <div class="uk-width-expand uk-margin-small-left">
+                              <span class="uk-display-block uk-width-2-3@m">آلفا+ ۲ گیگ + ۲۰۰ مگ هدیه صبحانت (۶ صبح تا
+                                ۱۲
+                                ظهر)</span>
+                              <small>۱ ماهه</small>
+                            </div>
+                            <div class="uk-width-auto uk-text-left uk-text-primary">
+                              <span>154,770 ریال</span>
+                              <i class="ti ti-chevron-left"></i>
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <div class="uk-width-1-1 uk-grid-collapse uk-flex-middle" uk-grid>
+                            <div class="uk-margin-left">
+                              <img src="./dist/ui/img/icon/app/ic-irancell.svg" width="24" alt="ایرانسل" />
+                            </div>
+                            <div class="uk-width-expand uk-margin-small-left">
+                              <span class="uk-display-block uk-width-2-3@m">آلفا+ ۲ گیگ + ۲۰۰ مگ هدیه صبحانت</span>
+                              <small>۱ ماهه</small>
+                            </div>
+                            <div class="uk-width-auto uk-text-left uk-text-primary">
+                              <span>154,770 ریال</span>
+                              <i class="ti ti-chevron-left"></i>
+                            </div>
+                          </div>
+                        </a>
+                      </li>
+                    </ul>
                   </div>
-                  <input id="Operator" name="Operator" type="hidden" class="ignore" />
-                </form>
-              </div>
-            </div>
-            <div class="uk-width-2-3@m uk-margin-medium-bottom ui-card-wizard" data-wizard="second-card">
-              <div class="uk-panel">
-                <div class="uk-margin-bottom">
-                  <a href="#" class="uk-text-decoration-none uk-text-secondary uk-link" data-action="returnFirstCard">
-                    <i class="ti ti-arrow-right uk-border-circle uk-margin-small-left ui-return-arrow"></i>
-                    بازگشت
-                  </a>
-                </div>
-                <div class="uk-width-1-1 uk-margin uk-margin-remove-bottom">
-                  <ul class="uk-subnav uk-subnav-pill uk-grid-small uk-child-width-auto ui-internet-duration" uk-grid
-                    uk-switcher>
-                    <li>
-                      <a href="#">
-                        <span class="uk-flex uk-flex-middle">ماهانه</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <span class="uk-flex uk-flex-middle">۱۵ روزه</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <span class="uk-flex uk-flex-middle">هفتگی</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <span class="uk-flex uk-flex-middle">روزانه</span>
-                      </a>
-                    </li>
-                  </ul>
                 </div>
 
-                <div class="uk-width-1-1 uk-margin uk-margin-remove-bottom ui-internet-package">
-                  <label class="uk-padding-small"> ۱ ماهه </label>
-                  <ul class="uk-subnav uk-subnav-pill uk-grid-small uk-child-width-1-1 fontface-vazir-fa" uk-grid
-                    uk-switcher>
-                    <li>
-                      <a href="#">
-                        <div class="uk-width-1-1 uk-grid-collapse uk-flex-middle" uk-grid>
-                          <div class="uk-margin-left">
-                            <img src="./dist/ui/img/icon/app/ic-irancell.svg" width="24" alt="ایرانسل" />
-                          </div>
-                          <div class="uk-width-expand uk-margin-small-left">
-                            <span class="uk-display-block uk-width-2-3@m">آلفا+ ۲ گیگ + ۲۰۰ مگ هدیه صبحانت (۶ صبح تا
-                              ۱۲
-                              ظهر)</span>
-                            <small>۱ ماهه</small>
-                          </div>
-                          <div class="uk-width-auto uk-text-left uk-text-primary">
-                            <span>154,770 ریال</span>
-                            <i class="ti ti-chevron-left"></i>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <div class="uk-width-1-1 uk-grid-collapse uk-flex-middle" uk-grid>
-                          <div class="uk-margin-left">
-                            <img src="./dist/ui/img/icon/app/ic-irancell.svg" width="24" alt="ایرانسل" />
-                          </div>
-                          <div class="uk-width-expand uk-margin-small-left">
-                            <span class="uk-display-block uk-width-2-3@m">آلفا+ ۲ گیگ + ۲۰۰ مگ هدیه صبحانت</span>
-                            <small>۱ ماهه</small>
-                          </div>
-                          <div class="uk-width-auto uk-text-left uk-text-primary">
-                            <span>154,770 ریال</span>
-                            <i class="ti ti-chevron-left"></i>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
               </div>
-
             </div>
+
             <div class="uk-overlay uk-overlay-default uk-position-cover uk-flex uk-flex-middle uk-hidden">
               <div class="uk-position-center uk-icon" uk-spinner></div>
             </div>
@@ -397,7 +400,7 @@
       <div class="uk-flex uk-flex-middle uk-flex-center">
         <div
           class="uk-card uk-card-body uk-card-small uk-width-2-3@s uk-border-rounded-large uk-position-relative ui-overflow-scroll ui-border-grey">
-          <div class="uk-flex uk-flex-middle uk-flex-center uk-flex-column">
+          <div class="uk-flex uk-flex-middle uk-flex-center">
             <div class="uk-width-2-3@m uk-margin-medium-bottom ui-card-wizard" data-wizard="first-card">
 
               <div class="uk-panel">
@@ -3019,7 +3022,7 @@
           </a>
       </li>
     </script>
-<script id="InternetOperators" type="text/template">
+  <script id="InternetOperators" type="text/template">
       <li>
           <a href="#" class="uk-link" data-action="changeTopupOperator" data-value="%Code%">
             <img src="%IconSrc%" width="24" height="24" class="uk-preserve" alt="%Name%" uk-svg/>
@@ -3042,10 +3045,11 @@
   <script src="./dist/ui/vendor/validateMethods.min.js" as="script"></script>
   <script src="./dist/ui/vendor/rdirect.min.js" as="script"></script>
   <script src="../../cdn/pkg/sep/overall/js/helper.js" as="script"></script>
-  <script src="dist/ui/js/main.js" as="script"></script>
-  <script src="dist/ui/js/app.js" as="script" defer></script>
+  <script src="./config.js" as="script"></script>
+  <script src="./dist/ui/js/main.js" as="script"></script>
+  <script src="./dist/ui/js/app.js" as="script" defer></script>
   <!-- <script src="dist/ui/js/topup.js" as="script" defer></script> -->
-  <script src="dist/ui/js/internet.js" as="script" defer></script>
+  <script src="./dist/ui/js/internet.js" as="script" defer></script>
 
 </body>
 
