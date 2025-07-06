@@ -128,14 +128,13 @@ $(document).ready(function () {
                 ChargeDescription: packageText,
                 Amount: packageAmount,
                 TopUpType: "Charge",
-                // ThirdPartyCallBack: "https://724.ir"
+                ThirdPartyCallBack: "https://724.ir"
               };
 
               ajaxHandler(
                 asmxUrl + '/api/v1/ipg-top-up/get-token', 'GET', tokenParams, null, function (response) {
 
                   if (response && response.IsSuccess && response.Data) {
-                    console.log(response)
                     const { IpgUrl, GetMethod, Value, ResNum } = response.Data;
 
                     setTimeout(function () {

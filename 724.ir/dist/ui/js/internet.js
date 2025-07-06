@@ -95,68 +95,66 @@ $(document).ready(function () {
             e.preventDefault();
             break;
           }
-          case 'getInternetPackage': {
-            let operatorId = null, chargeCode = null, packageAmount = 0, packageText = null;
-            if ($('#Internet').valid()) {
-              document.querySelectorAll('#PackageItem').forEach((item) => {
-                if (item.classList.contains('uk-active')) {
-                  operatorId = hasValue(item.getAttribute('data-operator')) ? item.getAttribute('data-operator') : null;
-                  chargeCode = hasValue(item.getAttribute('data-charge')) ? item.getAttribute('data-charge') : null;
-                  packageAmount = hasValue(item.getAttribute('data-amount')) ? item.getAttribute('data-amount') : null;
-                  packageText = hasValue(item.getAttribute('data-text')) ? item.getAttribute('data-text') : null;
-                  return false;
-                }
-              });
-              if (operatorId && chargeCode && packageText) {
-                var formData = new FormData();
+          case 'buyInternetPackage': {
+            let operatorId = null,
+              chargeCode = null,
+              packageAmount = 0,
+              packageText = null;
+            const items = document.querySelectorAll("#InternetPackageItem");
+            for (const item of items) {
+              if (item.classList.contains("uk-active")) {
+                operatorId = hasValue(item.getAttribute("data-operator")) ? item.getAttribute("data-operator") : null;
+                chargeCode = hasValue(item.getAttribute("data-charge")) ? item.getAttribute("data-charge") : null;
+                packageAmount = hasValue(item.getAttribute("data-amount")) ? normalize(item.getAttribute("data-amount")) : null;
+                packageText = hasValue(item.getAttribute("data-text")) ? item.getAttribute("data-text") : null;
+                break;
+              }
+            }
 
-                formData.append('CellNumberListFile', new Blob([cellNumber], { type: 'text/plain' }), cellNumber + '.txt');
-                formData.append('ChargeCode', chargeCode);
-                formData.append('ChargeOperatorCode', operatorId);
-                formData.append('ChargeDescription', packageText);
 
-                ajaxHandler(asmxUrl + '/eChargeController.asmx/CreateBatchChargeOrder', 'POST', formData, selfThis, function (callback) {
-                  var fileIdentifier = callback.data.userFileIdentifier;
-                  ajaxHandler(serviceUrl + '/ipg-top-up/create-token', 'POST', {
-                    amount: packageAmount, cellNumber, operatorId, sepChargeCode: chargeCode, topUpType: 'InternetPackage', fileIdentifier
-                  }, selfThis, function (callback) {
-                    UIkit.modal('#iPGModal').show();
-                    setTimeout(function () {
-                      $.redirect(callback.data.ipgUrl, {
-                        GetMethod: callback.data.getMethod,
-                        FriendsCellNumber: callback.data.friendsCellNumber,
-                        Amount: callback.data.amount,
-                        RedirectUrl: callback.data.redirectUrl,
-                        SepChargeCode: callback.data.sepChargeCode,
-                        ResNum: callback.data.resNum,
-                        ResNum1: callback.data.resNum1,
-                        TerminalId: callback.data.terminalId,
-                        TranType: callback.data.tranType,
-                        MID: callback.data.mID,
-                        OperatorID: callback.data.operatorID,
-                        OtherCellNumber: callback.data.otherCellNumber
-                      }, 'POST');
-                    }, 2000);
+            if (operatorId && chargeCode && packageText && cellNumber && packageAmount) {
+
+              const tokenParams = {
+                CellNumber: cellNumber,
+                ChargeCode: chargeCode,
+                ChargeOperatorCode: operatorId,
+                ChargeDescription: packageText,
+                Amount: packageAmount,
+                TopUpType: "InternetPackage",
+                ThirdPartyCallBack: "https://724.ir"
+              };
+
+              ajaxHandler(asmxUrl + '/api/v1/ipg-top-up/get-token', 'GET', tokenParams, null, function (response) {
+                console.log(response)
+                if (response && response.IsSuccess && response.Data) {
+                  const { IpgUrl, GetMethod, Value, ResNum } = response.Data;
+
+                  setTimeout(function () {
+                    $.redirect(
+                      IpgUrl,
+                      { token: Value, ResNum: ResNum },
+                      GetMethod ? 'GET' : 'POST'
+                    );
+                  }, 2000);
+
+                } else {
+                  UIkit.notification(langs.serviceException, {
+                    status: "danger",
+                    pos: "bottom-center",
+                    timeout: 7000,
                   });
-                }, false, true, true);
-              } else {
-                UIkit.notification(langs.selectingTopupPackage, {
-                  status: 'danger', pos: 'bottom-center', timeout: 7000
-                });
-              }
+                }
+              }, true, true, true);
             } else {
-              if (!cellNumber || !validateCellNumber(cellNumber)) {
-                UIkit.notification(!cellNumber ? langs.requiredCellNumber : langs.invalidCellNumber, {
-                  status: 'primary', pos: 'bottom-center', timeout: 7000
-                });
-                return false;
-              }
+              UIkit.notification(langs.selectingTopupPackage, {
+                status: 'danger', pos: 'bottom-center', timeout: 7000
+              });
             }
             e.preventDefault();
             break;
           }
 
-          case 'getPackages': {
+          case 'getInternetPackages': {
             if ($('#InternetPackageForm').valid()) {
               getDurations()
               getInternetPackages()
