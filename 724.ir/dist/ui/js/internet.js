@@ -125,17 +125,11 @@ $(document).ready(function () {
               };
 
               ajaxHandler(asmxUrl + '/api/v1/ipg-top-up/get-token', 'GET', tokenParams, null, function (response) {
-                console.log(response)
+
                 if (response && response.IsSuccess && response.Data) {
                   const { IpgUrl, GetMethod, Value, ResNum } = response.Data;
 
-                  setTimeout(function () {
-                    $.redirect(
-                      IpgUrl,
-                      { token: Value, ResNum: ResNum },
-                      GetMethod ? 'GET' : 'POST'
-                    );
-                  }, 2000);
+                  $.redirect(IpgUrl, { token: Value, ResNum: ResNum }, 'POST');
 
                 } else {
                   UIkit.notification(langs.serviceException, {

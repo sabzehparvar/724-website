@@ -109,15 +109,14 @@ $(document).ready(function () {
               packageAmount = 0,
               packageText = null;
 
-            const items = document.querySelectorAll("#PackageItem");
-            for (const item of items) {
-              if (item.classList.contains("uk-active")) {
-                operatorId = hasValue(item.getAttribute("data-operator")) ? item.getAttribute("data-operator") : null;
-                chargeCode = hasValue(item.getAttribute("data-charge")) ? item.getAttribute("data-charge") : null;
-                packageAmount = hasValue(item.getAttribute("data-amount")) ? normalize(item.getAttribute("data-amount")) : null;
-                packageText = hasValue(item.getAttribute("data-text")) ? item.getAttribute("data-text") : null;
-                break;
-              }
+            const activeTab = document.querySelector('#TopupPackageSwitcher > .uk-active');
+            const activePackage = activeTab?.querySelector('li.uk-active');
+
+            if (activePackage) {
+              operatorId = activePackage.getAttribute("data-operator") || null;
+              chargeCode = activePackage.getAttribute("data-charge") || null;
+              packageAmount = normalize(activePackage.getAttribute("data-amount") || "") || null;
+              packageText = activePackage.getAttribute("data-text") || null;
             }
             if (operatorId && chargeCode && packageText && cellNumber && packageAmount) {
 
@@ -137,13 +136,11 @@ $(document).ready(function () {
                   if (response && response.IsSuccess && response.Data) {
                     const { IpgUrl, GetMethod, Value, ResNum } = response.Data;
 
-                    setTimeout(function () {
-                      $.redirect(
-                        IpgUrl,
-                        { token: Value, ResNum: ResNum },
-                        GetMethod ? 'GET' : 'POST'
-                      );
-                    }, 2000);
+                    $.redirect(
+                      IpgUrl,
+                      { token: Value, ResNum: ResNum },
+                      'POST'
+                    );
 
                   } else {
                     UIkit.notification(langs.serviceException, {
