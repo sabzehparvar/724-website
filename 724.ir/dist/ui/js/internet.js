@@ -138,7 +138,7 @@ $(document).ready(function () {
                     timeout: 7000,
                   });
                 }
-              }, true, true, true);
+              }, false, true, true);
             } else {
               UIkit.notification(langs.selectingTopupPackage, {
                 status: 'danger', pos: 'bottom-center', timeout: 7000

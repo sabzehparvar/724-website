@@ -149,7 +149,7 @@ $(document).ready(function () {
                       timeout: 7000,
                     });
                   }
-                }, true, true, true);
+                }, false, true, true);
 
 
             } else {
