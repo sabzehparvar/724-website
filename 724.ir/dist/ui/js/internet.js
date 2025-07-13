@@ -295,13 +295,11 @@ $(document).ready(function () {
               .attr('data-operator', operatorId)
               .attr('data-type', typeId)
               .attr('data-duration', durationId);
+            $('#BuyInternetPackageButton').removeClass('uk-hidden')
           } else {
-            $('#InternetPackageList ul').removeAttr('data-operator data-type data-duration').empty();
-            UIkit.notification(langs.internetNoMatchFound, {
-              status: "primary",
-              pos: "bottom-center",
-              timeout: 7000,
-            });
+            $('#InternetPackageList ul').removeAttr('data-operator data-type data-duration').empty().append($("#EmptyInternet").html());
+            $('#BuyInternetPackageButton').addClass('uk-hidden')
+
           }
 
         } else {
