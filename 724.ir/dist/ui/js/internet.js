@@ -129,7 +129,7 @@ $(document).ready(function () {
                 if (response && response.IsSuccess && response.Data) {
                   const { IpgUrl, GetMethod, Value, ResNum } = response.Data;
 
-                  $.redirect(IpgUrl, { token: Value, ResNum: ResNum }, 'POST');
+                  $.redirect(IpgUrl, { token: Value, GetMethod: true }, 'POST');
 
                 } else {
                   UIkit.notification(langs.serviceException, {

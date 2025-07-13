@@ -127,7 +127,7 @@ $(document).ready(function () {
                 ChargeDescription: packageText,
                 Amount: packageAmount,
                 TopUpType: "Charge",
-                ThirdPartyCallBack: "https://724.ir"
+                ThirdPartyCallBack: "http://127.0.0.1:5500/724.ir/receipt.html"
               };
 
               ajaxHandler(
@@ -138,7 +138,7 @@ $(document).ready(function () {
 
                     $.redirect(
                       IpgUrl,
-                      { token: Value, ResNum: ResNum },
+                      { token: Value, GetMethod: true },
                       'POST'
                     );
 
