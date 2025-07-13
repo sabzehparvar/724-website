@@ -183,11 +183,8 @@ $(document).ready(function () {
 
         $("#InternetOperator").removeClass("ui-hidden") & $("#InternetOperator ul").empty().append(items);
       } else {
-        UIkit.notification(langs.serviceException, {
-          status: "danger",
-          pos: "bottom-center",
-          timeout: 7000,
-        });
+        $("#InternetOperator").removeClass("ui-hidden").empty().append($("#ServiceError").html());
+       
       }
     },
       true

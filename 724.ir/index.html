@@ -308,14 +308,14 @@
                     </a>
                   </div>
                   <div id="InternetDurationList" class="uk-width-1-1 uk-margin uk-margin-remove-bottom">
-                    <ul class="uk-subnav uk-subnav-pill ui-internet-duration" 
-                      uk-switcher></ul>
+                    <ul class="uk-subnav uk-subnav-pill ui-internet-duration" uk-switcher></ul>
                   </div>
 
                   <div id="InternetPackageList"
                     class="uk-width-1-1 uk-margin uk-margin-remove-bottom ui-overflow-scroll ui-internet-package">
-                    <ul class="uk-subnav uk-subnav-pill uk-grid-small uk-child-width-1-1 uk-padding-small uk-padding-remove-vertical fontface-vazir-fa" uk-grid
-                      uk-switcher></ul>
+                    <ul
+                      class="uk-subnav uk-subnav-pill uk-grid-small uk-child-width-1-1 uk-padding-small uk-padding-remove-vertical fontface-vazir-fa"
+                      uk-grid uk-switcher></ul>
                   </div>
                   <div id="BuyInternetPackageButton" class="uk-margin-medium-top uk-text-center uk-hidden">
                     <button data-action="buyInternetPackage"
@@ -2965,7 +2965,18 @@
       </div>
     </div>
   </div>
-
+  <script id="ServiceError" type="text/template">
+     <div class="uk-margin-medium-top uk-text-center">
+        <p class="uk-text-muted">خطا در دریافت اطلاعات از سرویس</p>
+          <div class="uk-margin-small-top uk-text-center">
+            <button onclick="location.reload()"
+            class="uk-button uk-button-primary uk-border-rounded ">
+              <i class="ti ti-reload"></i>
+                تلاش مجدد
+            </button>
+          </div>
+        </div>
+</script>
   <!-- Topup Package scripts  -->
   <script id="Operators" type="text/template">
       <li>
