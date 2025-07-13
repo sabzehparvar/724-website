@@ -202,11 +202,7 @@ $(document).ready(function () {
         });
         $('#InternetSimTypeList ul').empty().append(items);
       } else {
-        UIkit.notification(langs.serviceException, {
-          status: "danger",
-          pos: "bottom-center",
-          timeout: 7000,
-        });
+         $("#InternetSimTypeList").removeClass("ui-hidden").empty().append($("#ServiceError").html());
       }
 
     }, true);

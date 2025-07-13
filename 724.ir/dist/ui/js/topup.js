@@ -190,11 +190,8 @@ $(document).ready(function () {
         });
         $("#TopupOperator").removeClass("ui-hidden") & $("#TopupOperator ul").empty().append(items);
       } else {
-        UIkit.notification(langs.serviceException, {
-          status: "danger",
-          pos: "bottom-center",
-          timeout: 7000,
-        });
+               $("#TopupOperator").removeClass("ui-hidden").empty().append($("#ServiceError").html());
+
       }
     },
       true
