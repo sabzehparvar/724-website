@@ -1096,7 +1096,7 @@
 }
 
 .ui-overflow-scroll {
-  max-height: 640px;
+  max-height: 355px;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: auto;
