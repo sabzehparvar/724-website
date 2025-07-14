@@ -479,6 +479,17 @@
                         <td class="uk-text-muted">شماره پیگیری</td>
                         <td class="uk-text-left" data-field="TraceNo" dir="ltr">—</td>
                       </tr>
+                      <tr>
+                        <td class="uk-text-muted uk-text-nowrap">
+                          <img src="./dist/ui/img/logo-724.svg" width="32px" alt="اپلیکیشن پرداخت ۷۲۴" />
+                          <small>ساده ترین روش کارت به کارت</small>
+                        </td>
+                        <td class="uk-text-left">
+                          <a href="#">
+                            <img src="./dist/ui/img/receipt-url.svg" alt="اپلیکیشن پرداخت ۷۲۴" />
+                          </a>
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -553,16 +564,15 @@
       const qs = new URLSearchParams(window.location.search);
       const token = qs.get("token");
       const resNum = qs.get("resNum");
+      const getReceiptParam = {
+                token: token,
+                ResNum: resNum,
+              };
       if (!token || !resNum) {
         console.error("پارامترهای موردنیاز یافت نشد.");
       } else {
-        $.ajax({
-          url: "http://172.31.51.12:43197/api/v1/ipg-top-up/get-receipt",
-          method: "GET",
-          data: { token, ResNum: resNum },
-          dataType: "json",
-        })
-          .done((resp) => {
+         ajaxHandler(asmxUrl + '/api/v1/ipg-top-up/get-receipt', 'GET', getReceiptParam, null, function (resp) {
+
             if (resp.IsSuccess && resp.Code === 2000) {
               const { Detail, Transaction } = resp.Data;
               if (Detail.TopUpSuccess) {
@@ -573,13 +583,11 @@
             } else {
               showFailure(resp.ErrorDetails || resp.Title);
             }
-          })
-          .fail((err) => {
-            console.error(err);
-            showFailure("خطا در برقراری ارتباط با سرور.");
-          });
+          
+              }, true, true, true);
       }
 
+      
     </script>
   </body>
 </html>
