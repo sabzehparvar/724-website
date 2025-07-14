@@ -121,7 +121,7 @@ $(document).ready(function () {
                 ChargeDescription: packageText,
                 Amount: packageAmount,
                 TopUpType: "InternetPackage",
-                ThirdPartyCallBack: "https://724.ir"
+                ThirdPartyCallBack: "http://127.0.0.1:5500/724.ir/receipt.html"
               };
 
               ajaxHandler(asmxUrl + '/api/v1/ipg-top-up/get-token', 'GET', tokenParams, null, function (response) {
@@ -138,7 +138,7 @@ $(document).ready(function () {
                     timeout: 7000,
                   });
                 }
-              }, false, true, true);
+              }, true, true, true);
             } else {
               UIkit.notification(langs.selectingTopupPackage, {
                 status: 'danger', pos: 'bottom-center', timeout: 7000
@@ -151,7 +151,9 @@ $(document).ready(function () {
           case 'getInternetPackages': {
             if ($('#InternetPackageForm').valid()) {
               getDurations()
+              setTimeout(() => {
               getInternetPackages()
+              }, 700);
             }
 
             e.preventDefault();
@@ -218,7 +220,6 @@ $(document).ready(function () {
           items += $('#InternetDurations').html().replace('%Class%', className).replaceAll('%Code%', item.Code).replace('%Duration%', item.Name).replace('%Name%', item.Description);
         });
         $('#InternetDurationList ul').empty().append(items);
-        toggleWizard("second-card");
 
       } else {
         UIkit.notification(langs.serviceException, {
@@ -288,11 +289,13 @@ $(document).ready(function () {
               .attr('data-operator', operatorId)
               .attr('data-type', typeId)
               .attr('data-duration', durationId);
-            $('#BuyInternetPackageButton').removeClass('uk-hidden')
+            $('#BuyInternetPackageButton').removeClass('uk-hidden');
+            toggleWizard("second-card");
+
           } else {
             $('#InternetPackageList ul').removeAttr('data-operator data-type data-duration').empty().append($("#EmptyInternet").html());
             $('#BuyInternetPackageButton').addClass('uk-hidden')
-
+            
           }
 
         } else {
