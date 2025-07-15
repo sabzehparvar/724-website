@@ -1105,10 +1105,6 @@
   color: #fff !important;
 }
 
-.ui-hidden {
-  display: none;
-}
-
 .ui-card-wizard:not(:first-child) {
   display: none;
 }

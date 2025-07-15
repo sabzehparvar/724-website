@@ -183,9 +183,9 @@ $(document).ready(function () {
         });
         getTypes();
 
-        $("#InternetOperator").removeClass("ui-hidden") & $("#InternetOperator ul").empty().append(items);
+        $("#InternetOperator").removeClass("uk-hidden") & $("#InternetOperator ul").empty().append(items);
       } else {
-        $("#InternetOperator").removeClass("ui-hidden").empty().append($("#ServiceError").html());
+        $("#InternetOperator").removeClass("uk-hidden").empty().append($("#ServiceError").html());
        
       }
     },
@@ -204,7 +204,7 @@ $(document).ready(function () {
         });
         $('#InternetSimTypeList ul').empty().append(items);
       } else {
-         $("#InternetSimTypeList").removeClass("ui-hidden").empty().append($("#ServiceError").html());
+         $("#InternetSimTypeList").removeClass("uk-hidden").empty().append($("#ServiceError").html());
       }
 
     }, true);

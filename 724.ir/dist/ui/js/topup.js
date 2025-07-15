@@ -188,9 +188,10 @@ $(document).ready(function () {
           const iconUrl = "./dist/ui/img/icon/operators/" + operatorIcons[item.Code] + ".svg";
           items += $("#Operators").html().replace("%Code%", item.Code).replace("%IconSrc%", iconUrl).replaceAll("%Name%", item.Description);
         });
-        $("#TopupOperator").removeClass("ui-hidden") & $("#TopupOperator ul").empty().append(items);
+        $("#TopupOperator ul").empty().append(items);
+        $('button[data-action="getTopupPackage"]').removeClass('uk-hidden')
       } else {
-               $("#TopupOperator").removeClass("ui-hidden").empty().append($("#ServiceError").html());
+               $("#TopupOperator").empty().append($("#ServiceError").html());
 
       }
     },
@@ -238,7 +239,7 @@ $(document).ready(function () {
             $("#NormalTopup ul").empty().append(normalItems);
             $("#AmazingTopup ul").empty().append(amazingItems);
           }
-          amazingItems.length ? $(".ui-topup-type-title").removeClass("ui-hidden") & $("#ValTopupType").text(amazingLabel) : $(".ui-topup-type-title").addClass("ui-hidden");
+          amazingItems.length ? $(".ui-topup-type-title").removeClass("uk-hidden") & $("#ValTopupType").text(amazingLabel) : $(".ui-topup-type-title").addClass("uk-hidden");
           toggleWizard("second-card");
 
         } else {
