@@ -13,7 +13,7 @@ function showSuccessReceipt(detail, transaction) {
     const html = $("#SuccessReceiptTemplate").html();
     const $template = $("<div>").html(html);
     $template.find('p[data-field="PackageFullTitle"]').text(data.PackageFullTitle);
-    $template.find('td[data-field="Amount"]').text(data.Amount);
+    $template.find('td[data-field="Amount"]').text(data.Amount +' '+ langs.irr);
     $template.find('td[data-field="CellNumber"]').text(data.CellNumber);
     $template.find('td[data-field="OperatorName"]').text(data.OperatorName);
     $template.find('td[data-field="SecurePan"]').text(data.SecurePan);
@@ -28,12 +28,15 @@ function showFailedReceipt(detail = null) {
     const data = {
         PackageFullTitle: hasValue(detail?.TopUpDescription) ? detail.TopUpDescription.trim() : '-',
         Amount: hasValue(detail?.Amount) ? detail.Amount : '-',
+        CellNumber: hasValue(detail.CellNumber) ? detail.CellNumber.trim() : '-'
     };
 
     const html = $("#FailedReceiptTemplate").html();
     const $template = $("<div>").html(html);
     $template.find('p[data-field="PackageFullTitle"]').text(data.PackageFullTitle);
-    $template.find('td[data-field="Amount"]').text(data.Amount);
+    $template.find('td[data-field="Amount"]').text(data.Amount +' '+ langs.irr);
+    $template.find('td[data-field="CellNumber"]').text(data.CellNumber);
+
 
     $("#ReceiptContainer").empty().append($template.children());
 
@@ -61,10 +64,10 @@ if (!token || !resNum) {
                 showSuccessReceipt(Detail, Transaction);
 
             } else {
-                showFailedReceipt();
+                showFailedReceipt(Detail);
             }
         } else {
-            showFailedReceipt();
+            showFailedReceipt(Detail);
         }
 
     }, true, true, true);

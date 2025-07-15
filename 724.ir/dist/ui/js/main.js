@@ -21,7 +21,7 @@ const langs = {
   requirementsError: "خطا در دریافت مقادیر اطلاعاتی مورد نیاز",
   temporarilyDeactivate:
     "این سرویس به دلیل به‌روز‌رسانی موقتا از دسترس خارج است",
-  irr: "ریالmain",
+  irr: "ریال",
   billType: "نوع قبض",
   billId: "شناسه قبض",
   paymentId: "شناسه پرداخت",
