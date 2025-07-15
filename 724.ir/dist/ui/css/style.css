@@ -1071,6 +1071,17 @@
   background-color: rgba(238, 251, 245, 1);
 }
 
+.ui-failed-receipt-title {
+  background-color: rgba(220, 53, 69, 1); /* vivid red */
+  padding: 9px 12px;
+  position: absolute;
+  bottom: calc(100% - 22px);
+}
+.ui-bg-light-red {
+  background-color: rgba(255, 240, 240, 1); /* soft red background */
+}
+
+
 .ui-receipt-table tr td {
   padding: 7px 0px;
 }

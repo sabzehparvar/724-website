@@ -503,14 +503,42 @@
       <div class="uk-panel uk-margin-top">
                 <div
                   class="uk-border-rounded uk-width-expand uk-text-center uk-margin-bottom
-                         uk-flex uk-flex-column uk-flex-middle uk-flex-center ui-bg-light-green">
+                         uk-flex uk-flex-column uk-flex-middle uk-flex-center ui-bg-light-red">
                   <div
-                      class="uk-text-center uk-width-max-content uk-border-rounded uk-text-white ui-success-receipt-title">
+                      class="uk-text-center uk-width-max-content uk-border-rounded uk-text-white ui-failed-receipt-title">
                       <i class="ti ti-circle-x"></i>
-                      تراکنش موفق
+                      پرداخت ناموفق
                     </div>
                   <p class="uk-text-large uk-padding-small" data-field="PackageFullTitle">—</p>
                 </div>
+                <div class="ui-receipt-table">
+                  <table class="uk-table uk-table-divider fontface-vazir-fa">
+                    <tbody>
+                      <tr>
+                        <td class="uk-text-muted">مبلغ</td>
+                        <td class="uk-text-left" data-field="Amount">—</td>
+                      </tr>
+                      <tr>
+                        <td class="uk-text-muted">برای شماره</td>
+                        <td class="uk-text-left" dir="ltr" data-field="CellNumber">—</td>
+                      </tr>
+                      <tr>
+                        <td class="uk-text-muted uk-text-nowrap">
+                          <img src="./dist/ui/img/logo-724.svg" width="32px" alt="اپلیکیشن پرداخت ۷۲۴" />
+                          <small>ساده ترین روش کارت به کارت</small>
+                        </td>
+                        <td class="uk-text-left">
+                          <a href="#">
+                            <img src="./dist/ui/img/receipt-url.svg" alt="اپلیکیشن پرداخت ۷۲۴" />
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p class="uk-padding-small uk-text-justify" data-field="PackageFullTitle">
+                در پرداخت‌های ناموفق بانکی اگر مبلغ از حسابتان کسر شود، معمولاً در کمتر از یک ساعت و نهایتاً تا ۷۲ ساعت به حساب شما برگردانده خواهد شد.
+                </p>
                 <a href='./'
                   class="uk-button uk-button-primary uk-button-large uk-border-rounded uk-width-1-1">
                   بازگشت به خانه
@@ -537,16 +565,16 @@
     <script src="./dist/ui/js/app.js" as="script" defer></script>
     <script>
 
-      function showSuccessReceipt(detail, tx) {
+      function showSuccessReceipt(detail, transaction) {
        const data = {
             PackageFullTitle: hasValue(detail.TopUpDescription) ? detail.TopUpDescription.trim() : '-',
             Amount: hasValue(detail.Amount) ? detail.Amount : '-',
             CellNumber: hasValue(detail.CellNumber) ? detail.CellNumber.trim() : '-',
             OperatorName: hasValue(operatorTypes[detail.OperatorCode]) ? operatorTypes[detail.OperatorCode].trim() : '-',
-            SecurePan: hasValue(tx.SecurePan) ? tx.SecurePan.trim() : '-',
-            PayedOn: hasValue(tx.PayedOn) ? tx.PayedOn.trim() : '-',
-            TraceNo: hasValue(tx.TraceNo) ? tx.TraceNo.trim() : '-',
-};
+            SecurePan: hasValue(transaction.SecurePan) ? transaction.SecurePan.trim() : '-',
+            PayedOn: hasValue(transaction.PayedOn) ? transaction.PayedOn.trim() : '-',
+            TraceNo: hasValue(transaction.TraceNo) ? transaction.TraceNo.trim() : '-',
+            };
 
         const html = $("#SuccessReceiptTemplate").html();
         const $template = $("<div>").html(html);
@@ -561,27 +589,45 @@
         $("#ReceiptContainer").empty().append($template.children());
       }
 
-      const qs = new URLSearchParams(window.location.search);
-      const token = qs.get("token");
-      const resNum = qs.get("resNum");
+      function showFailedReceipt(detail = null) { 
+
+        const data = {
+            PackageFullTitle: hasValue(detail?.TopUpDescription) ? detail.TopUpDescription.trim() : '-',
+            Amount: hasValue(detail?.Amount) ? detail.Amount : '-',
+            };
+
+        const html = $("#FailedReceiptTemplate").html();
+        const $template = $("<div>").html(html);
+        $template.find('p[data-field="PackageFullTitle"]').text(data.PackageFullTitle);
+        $template.find('td[data-field="Amount"]').text(data.Amount);
+
+        $("#ReceiptContainer").empty().append($template.children());
+
+        $("#ReceiptContainer").empty().append($("#FailedReceiptTemplate").html());
+       }
+
+      const queryString = new URLSearchParams(window.location.search);
+      const token = queryString.get("token");
+      const resNum = queryString.get("resNum");
       const getReceiptParam = {
-                token: token,
-                ResNum: resNum,
+                token,
+                resNum
               };
       if (!token || !resNum) {
         console.error("پارامترهای موردنیاز یافت نشد.");
       } else {
-         ajaxHandler(asmxUrl + '/api/v1/ipg-top-up/get-receipt', 'GET', getReceiptParam, null, function (resp) {
+         ajaxHandler(asmxUrl + '/api/v1/ipg-top-up/get-receipt', 'GET', getReceiptParam, null, function (callback) {
 
-            if (resp.IsSuccess && resp.Code === 2000) {
-              const { Detail, Transaction } = resp.Data;
+            if (callback.IsSuccess && callback.Code === 2000) {
+              const { Detail, Transaction } = callback.Data;
               if (Detail.TopUpSuccess) {
                 showSuccessReceipt(Detail, Transaction);
+
               } else {
-                showFailure(resp.Data.Detail.TopUpDescription);
+                showFailedReceipt();
               }
             } else {
-              showFailure(resp.ErrorDetails || resp.Title);
+              showFailedReceipt();
             }
           
               }, true, true, true);
