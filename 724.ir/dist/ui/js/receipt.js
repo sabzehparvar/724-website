@@ -1,4 +1,4 @@
-function showSuccessReceipt(detail, transaction) {
+function showSuccessReceipt(detail, transaction, packageInfo) {
 
     const data = {
         PackageFullTitle: hasValue(detail.TopUpDescription) ? detail.TopUpDescription.trim() : null,
@@ -12,6 +12,7 @@ function showSuccessReceipt(detail, transaction) {
             ? transaction.PersianPayedOn.trim()
             : null,
         TraceNo: hasValue(transaction.TraceNo) ? transaction.TraceNo.trim() : null,
+        DurationType: packageInfo && hasValue(packageInfo.DurationType) ? packageInfo.DurationType : null
     };
 
     const schema = [
@@ -38,6 +39,18 @@ function showSuccessReceipt(detail, transaction) {
             attrs: {}
         },
         {
+            key: 'DurationType',
+            label: 'مدت',
+            labelClass: 'uk-text-muted',
+            valueClass: 'uk-text-left',
+            attrs: {},
+            formatter: val => {
+                const dur = packageInfo.Duration;
+                const typeLabel = durationTypes[val] || '';
+                return dur + ' ' + typeLabel;
+            }
+        },
+        {
             key: 'SecurePan',
             label: 'پرداخت با کارت',
             labelClass: 'uk-text-muted',
@@ -57,7 +70,8 @@ function showSuccessReceipt(detail, transaction) {
             labelClass: 'uk-text-muted uk-text-nowrap',
             valueClass: 'uk-text-left',
             attrs: { dir: 'ltr' }
-        }
+        },
+
     ];
 
     const templateHtml = $('#SuccessReceiptTemplate').html();
@@ -170,9 +184,9 @@ if (!token || !resNum) {
     ajaxHandler(asmxUrl + '/api/v1/ipg-top-up/get-receipt', 'GET', getReceiptParam, null, function (callback) {
 
         if (callback.IsSuccess && callback.Code === 2000) {
-            const { Detail, Transaction } = callback.Data;
+            const { Detail, Transaction, TopUpPackage } = callback.Data;
             if (Detail.TopUpSuccess) {
-                showSuccessReceipt(Detail, Transaction);
+                showSuccessReceipt(Detail, Transaction, TopUpPackage);
 
             } else {
                 showFailedReceipt(Detail);
