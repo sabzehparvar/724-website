@@ -1,7 +1,7 @@
 "use strict";
 
 $(document).ready(function () {
-    
+
     function showSuccessReceipt(detail, transaction, packageInfo) {
 
         const data = {
@@ -186,11 +186,10 @@ $(document).ready(function () {
 
         $('#ReceiptContainer').empty().append(template.children());
     }
-
-    function showFailedParamReceipt() {
-
-        $("#ReceiptContainer").empty().append($("#FailedParamReceiptTemplate").html());
+    function showReceiptError() {
+        $("#ReceiptContainer").empty().append($("#ReceiptErrorTemplate").html());
     }
+
 
     const queryString = new URLSearchParams(window.location.search);
     const token = queryString.get("token");
@@ -200,11 +199,11 @@ $(document).ready(function () {
         resNum
     };
     if (!token || !resNum) {
-        showFailedParamReceipt()
+        showReceiptError()
     } else {
         ajaxHandler(asmxUrl + '/api/v1/ipg-top-up/get-receipt', 'GET', getReceiptParam, null, function (callback) {
-
-            if (callback.IsSuccess && callback.Code === 2000) {
+           
+            if (hasValue(callback) && callback.IsSuccess && callback.Code === 2000) {
                 const { Detail, Transaction, TopUpPackage } = callback.Data;
                 if (Detail.TopUpSuccess) {
                     showSuccessReceipt(Detail, Transaction, TopUpPackage);
@@ -213,7 +212,7 @@ $(document).ready(function () {
                     showFailedReceipt(Detail);
                 }
             } else {
-                showFailedParamReceipt();
+                showReceiptError();
             }
 
         }, true, true, true);
