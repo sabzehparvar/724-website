@@ -1113,3 +1113,8 @@
 .ui-overflow-scroll ::-webkit-scrollbar-track {
   background: #ffffff;
 }
+
+.ui-bill-item {
+  border: 1px solid #f2f5f6;
+  background-color: #fff;
+}
