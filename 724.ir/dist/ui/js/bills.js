@@ -11,23 +11,26 @@ $(document).ready(function () {
         if (!$(this).hasClass("on-progress")) {
             const selfThis = $(this);
             const action = hasValue(selfThis.attr("data-action")) ? selfThis.attr("data-action").trim() : null;
-            const billName = hasValue(selfThis.attr("data-bill-name")) ? selfThis.attr("data-bill-name").trim() : null;
-            const inputId = hasValue(selfThis.attr("data-input-id")) ? selfThis.attr("data-input-id").trim() : null;
-            const inputLabel = hasValue(selfThis.attr("data-input-label")) ? selfThis.attr("data-input-label").trim() : null;
+
+
             if (action) {
                 switch (action) {
 
-                    case "toggle": {
-                        $("#billFormTitle").text(`انتخاب: ${billName}`);
-                        $("#billNumberLabel")
-                            .attr("for", inputId)
-                            .text(inputLabel);
-                        $("#billNumberInput")
-                            .attr("id", inputId)
-                            .val("")                  // clear any old value
-                            .attr("placeholder", `لطفا ${billName} را وارد کنید`);
+                    case "toggleBillCard": {
 
-                        // 3️⃣ show the second card
+                        const billType = hasValue(selfThis.attr("data-bill-type")) ? selfThis.attr("data-bill-type").trim() : null;
+                     
+                        const billName = hasValue(billType) ? `قبض ${billTypesEnum[billType]}` : 'قبض';
+                        let inputIdLabel;
+                        if (billType <= 3) {
+                            inputIdLabel = 'شناسه قبض'
+                        } else {
+                            inputIdLabel = hasValue(billType) ? billLableEnum[billType] : 'شناسه قبض';
+                        }
+
+                        $("#billFormTitle").text(`${billName}`);
+                        $("#billIdLabel").text(`${inputIdLabel}  رو وارد کن`);
+                        $("#billIdInput").attr("data-bill-type", billType).val("").attr("placeholder", inputIdLabel);
                         toggleWizard("second-card");
                         e.preventDefault();
                         break;

@@ -187,6 +187,45 @@ var durationTypes = {
   4: "ماهه",
   5: "ساله",
 };
+var billTypes = {
+  water: "آب",
+  electricity: "برق",
+  gas: "گاز",
+  phone: "تلفن",
+  hamrahAval: "همراه اول",
+  municipality: "شهرداری",
+  traffic: "راهنمایی رانندگی",
+};
+
+var billTypesEnum = {
+  1: "آب",
+  2: "برق",
+  3: "گاز",
+  4: "تلفن",
+  5: "همراه اول",
+  6: "شهرداری",
+  7: "راهنمایی رانندگی",
+};
+
+var billTypesEnumEng = {
+  1: "water",
+  2: "electricity",
+  3: "gas",
+  4: "phone",
+  5: "hamrahAval",
+  6: "municipality",
+  7: "traffic",
+};
+
+var billLableEnum = {
+  1: "شناسه قبض آب",
+  2: "شناسه قبض برق",
+  3: "شماره اشتراک قبض گاز",
+  4: "شماره تلفن",
+  5: "شماره تلفن همراه",
+  6: "شناسه قبض",
+  7: "شماره پلاک خودرو",
+};
 
 function validateCellNumber(value, checkRegex = false) {
   var value = normalize(value.trim()).toString(),

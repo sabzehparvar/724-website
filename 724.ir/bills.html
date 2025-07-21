@@ -288,8 +288,7 @@
                                 <div class="uk-child-width-1-2@s uk-grid-small" uk-grid>
                                     <div>
                                         <div class="uk-card uk-card-body uk-card-small uk-border-rounded uk-link uk-text-decoration-none ui-bill-item"
-                                            data-action="toggle" data-bill-name="قبض آب" data-input-id="waterBillNumber"
-                                            data-input-label="شناسه قبض">
+                                            data-action="toggleBillCard" data-bill-type="1">
                                             <div class="uk-margin-bottom">
                                                 <img data-src="dist/ui/img/icon/app/ic-bill-water.svg" width="40"
                                                     height="40" class="uk-preserve" uk-img uk-svg />
@@ -302,7 +301,7 @@
                                     </div>
                                     <div>
                                         <div class="uk-card uk-card-body uk-card-small uk-border-rounded uk-link uk-text-decoration-none ui-bill-item"
-                                            data-action="toggle">
+                                            data-action="toggleBillCard" data-bill-type="2">
 
                                             <div class="uk-margin-bottom">
                                                 <img data-src="dist/ui/img/icon/app/ic-bill-tavanir.svg" width="40"
@@ -316,7 +315,7 @@
                                     </div>
                                     <div>
                                         <div class="uk-card uk-card-body uk-card-small uk-border-rounded uk-link uk-text-decoration-none ui-bill-item"
-                                            data-action="toggle">
+                                            data-action="toggleBillCard" data-bill-type="3">
 
                                             <div class="uk-margin-bottom">
                                                 <img data-src="dist/ui/img/icon/app/ic-bill-gas.svg" width="40"
@@ -330,7 +329,7 @@
                                     </div>
                                     <div>
                                         <div class="uk-card uk-card-body uk-card-small uk-border-rounded uk-link uk-text-decoration-none ui-bill-item"
-                                            data-action="toggle">
+                                            data-action="toggleBillCard" data-bill-type="4">
 
                                             <div class="uk-margin-bottom">
                                                 <img data-src="dist/ui/img/icon/app/ic-bill-mokhaberat.svg" width="40"
@@ -344,7 +343,7 @@
                                     </div>
                                     <div>
                                         <div class="uk-card uk-card-body uk-card-small uk-border-rounded uk-link uk-text-decoration-none ui-bill-item"
-                                            data-action="toggle">
+                                            data-action="toggleBillCard" data-bill-type="5">
 
                                             <div class="uk-margin-bottom">
                                                 <img data-src="dist/ui/img/icon/app/ic-hamrah-aval.svg" width="40"
@@ -358,7 +357,7 @@
                                     </div>
                                     <div>
                                         <div class="uk-card uk-card-body uk-card-small uk-border-rounded uk-link uk-text-decoration-none ui-bill-item"
-                                            data-action="toggle">
+                                            data-action="toggleBillCard" data-bill-type="paper-bill">
 
                                             <div class="uk-margin-bottom">
                                                 <img data-src="dist/ui/img/icon/app/ic-hamrah-aval.svg" width="40"
@@ -382,17 +381,18 @@
                                                 class="ti ti-arrow-right uk-border-circle uk-margin-small-left ui-return-arrow"></i>
                                             بازگشت
                                         </a>
-                                        <span class="uk-position-center uk-text-bold">
-                                            قبض آب
+                                        <span id="billFormTitle" class="uk-position-center uk-text-bold">
+                                            قبض
                                         </span>
                                     </div>
                                     <form id="" name="" autocomplete="off" class="uk-text-right">
                                         <div class="uk-margin-medium-top">
-                                            <label for="" class="uk-form-label uk-text-default">شناسه قبض رو وارد
+                                            <label id="billIdLabel" for="billIdInput"
+                                                class="uk-form-label uk-text-default">شناسه قبض رو وارد
                                                 کن</label>
-                                            <input id="" name="" type="tel"
+                                            <input id="billIdInput" name="billIdInput" type="tel"
                                                 class="uk-input uk-form-large uk-border-rounded uk-text-center uk-text-default uk-margin-small-top ui-letter-spacing ui-bg-grey fontface-vazir-fa"
-                                                required placeholder="شناسه قبض" />
+                                                required placeholder="" />
                                         </div>
                                         <div class="uk-margin-top uk-hidden">
                                             <label for="" class="uk-form-label uk-text-default">شناسه پرداخت رو وارد
