@@ -19,18 +19,25 @@ $(document).ready(function () {
                     case "toggleBillCard": {
 
                         const billType = hasValue(selfThis.attr("data-bill-type")) ? selfThis.attr("data-bill-type").trim() : null;
-                     
-                        const billName = hasValue(billType) ? `قبض ${billTypesEnum[billType]}` : 'قبض';
-                        let inputIdLabel;
-                        if (billType <= 3) {
-                            inputIdLabel = 'شناسه قبض'
-                        } else {
-                            inputIdLabel = hasValue(billType) ? billLableEnum[billType] : 'شناسه قبض';
-                        }
+                        let billName, billIdLabel
+                        if (billType === 'paper-bill') {
 
-                        $("#billFormTitle").text(`${billName}`);
-                        $("#billIdLabel").text(`${inputIdLabel}  رو وارد کن`);
-                        $("#billIdInput").attr("data-bill-type", billType).val("").attr("placeholder", inputIdLabel);
+                            $('#BillPayment').removeClass('uk-hidden')
+                            billName = 'پرداخت با شناسه قبض';
+                            billIdLabel = 'شناسه قبض'
+                        } else {
+                            $('#BillPayment').addClass('uk-hidden')
+                            billName = hasValue(billType) ? `قبض ${billTypesEnum[billType]}` : 'قبض';
+                            if (billType <= 3) {
+                                billIdLabel = 'شناسه قبض'
+                            } else {
+                                billIdLabel = hasValue(billType) ? billLableEnum[billType] : 'شناسه قبض';
+                            }
+
+                        }
+                        $("#BillFormTitle").text(`${billName}`);
+                        $("#BillIdLabel").text(`${billIdLabel}  رو وارد کن`);
+                        $("#BillIdInput").attr("data-bill-type", billType).val("").attr("placeholder", billIdLabel);
                         toggleWizard("second-card");
                         e.preventDefault();
                         break;
