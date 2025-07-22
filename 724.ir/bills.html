@@ -376,45 +376,50 @@
                                             <img src="./dist/ui/img/icon/app/ic-hamrah-aval.svg" width="24" />
                                         </div>
                                         <div class="uk-width-expand uk-margin-small-left">
-                                            <span class="uk-display-block uk-width-2-3@m">قبض همراه
+                                            <span class="uk-display-block uk-heading-xsmall">قبض همراه
                                                 اول</span>
-                                            <small>شماره موبایل: ۰۹۱۲۱۲۳۴۵۶۷</small>
+                                            <span class="uk-text-muted">شماره موبایل: ۰۹۱۲۱۲۳۴۵۶۷</span>
                                         </div>
                                     </div>
-                                    <form id="BillForm" name="BillForm" autocomplete="off" class="uk-text-right">
-                                        <div class="uk-margin">
-                                            <div class="uk-form-label">Radio</div>
-                                            <div class="uk-form-controls">
-                                                <label>
-                                                    <input class="uk-radio" type="radio" name="radio1">
-                                                    <div class="uk-width-1-1 uk-grid-collapse uk-flex-middle" uk-grid>
-                                                        <div class="uk-margin-left">
-                                                            <img src="./dist/ui/img/icon/app/ic-hamrah-aval.svg"
-                                                                width="24" alt="%Name%" />
-                                                        </div>
-                                                        <div class="uk-width-expand uk-margin-small-left">
-                                                            <span class="uk-display-block uk-width-2-3@m">قبض همراه
-                                                                اول</span>
-                                                            <small>شماره موبایل: ۰۹۱۲۱۲۳۴۵۶۷</small>
-                                                        </div>
-                                                    </div>
-                                                </label>
-                                                <br>
-                                                <label>
-                                                    <input class="uk-radio" type="radio" name="radio1">
-                                                    <div class="uk-width-1-1 uk-grid-collapse uk-flex-middle" uk-grid>
-                                                        <div class="uk-margin-left">
-                                                            <img src="./dist/ui/img/icon/app/ic-hamrah-aval.svg"
-                                                                width="24" alt="%Name%" />
-                                                        </div>
-                                                        <div class="uk-width-expand uk-margin-small-left">
-                                                            <span class="uk-display-block uk-width-2-3@m">قبض همراه
-                                                                اول</span>
-                                                            <small>شماره موبایل: ۰۹۱۲۱۲۳۴۵۶۷</small>
-                                                        </div>
-                                                    </div>
-                                                </label>
+                                    <form id="BillForm" name="BillForm" autocomplete="off"
+                                        class="uk-text-right uk-margin-top">
+
+                                        <div
+                                            class="uk-flex uk-flex-middle uk-width-expand uk-margin-top uk-position-relative ui-bill-amount">
+                                            <input id="MidtermAmount" class="uk-radio uk-margin-left" type="radio"
+                                                name="radio1" checked>
+                                            <label for="MidtermAmount"
+                                                class="uk-overlay uk-position-cover uk-padding-remove"> </label>
+                                            <div class="uk-width-expand uk-grid-collapse uk-flex-middle " uk-grid>
+                                                <div class="uk-width-expand uk-margin-small-left">
+                                                    <span class="uk-text-muted">مبلغ میان دوره:</span>
+                                                    <span class="uk-display-block uk-heading-medium">۱۵۰,۰۰۰
+                                                        ریال</span>
+                                                </div>
                                             </div>
+
+                                        </div>
+                                        <div
+                                            class="uk-flex uk-flex-middle uk-width-expand uk-margin-top uk-position-relative ui-bill-amount">
+                                            <input id="FinalTermAmount" class="uk-radio uk-margin-left" type="radio"
+                                                name="radio1">
+                                            <label for="FinalTermAmount"
+                                                class="uk-overlay uk-position-cover uk-padding-remove">
+                                            </label>
+                                            <div class="uk-width-expand uk-grid-collapse uk-flex-middle " uk-grid>
+                                                <div class="uk-width-expand uk-margin-small-left">
+                                                    <span class="uk-text-muted">مبلغ پایان دوره:</span>
+                                                    <span class="uk-display-block uk-heading-medium">۲۷۵,۸۰۰
+                                                        ریال</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="uk-margin-medium-top uk-text-center">
+                                            <button
+                                                class="uk-button uk-button-primary uk-button-large uk-border-rounded uk-width-1-1"
+                                                data-action="">
+                                                پرداخت
+                                            </button>
                                         </div>
                                     </form>
                                 </div>
