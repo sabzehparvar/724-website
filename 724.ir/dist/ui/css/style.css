@@ -1118,3 +1118,11 @@
   border: 1px solid #f2f5f6;
   background-color: #fff;
 }
+
+.ui-bill-amount {
+    padding: 12px !important;
+    border: 1px solid rgba(237, 241, 247, 1);
+    border-radius: 14px;
+    color: rgba(45, 53, 74, 1) !important;
+    min-height: 75px;
+}
