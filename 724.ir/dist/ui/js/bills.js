@@ -11,14 +11,14 @@ $(document).ready(function () {
         if (!$(this).hasClass("on-progress")) {
             const selfThis = $(this);
             const action = hasValue(selfThis.attr("data-action")) ? selfThis.attr("data-action").trim() : null;
-
+            const billType = hasValue(selfThis.attr("data-bill-type")) ? selfThis.attr("data-bill-type").trim() : null;
 
             if (action) {
                 switch (action) {
 
                     case "toggleBillCard": {
 
-                        const billType = hasValue(selfThis.attr("data-bill-type")) ? selfThis.attr("data-bill-type").trim() : null;
+
                         let billName, billIdLabel
                         if (billType === 'paper-bill') {
 
@@ -44,6 +44,21 @@ $(document).ready(function () {
                     }
                     case "returnFirstCard": {
                         toggleWizard("first-card");
+                        e.preventDefault();
+                        break;
+                    }
+                    case "billInquiry": {
+
+                        if (billType <= 3) {
+                            $('#BillFormContainer').html($('#BillFormTemplate').html())
+                        } else {
+
+                            $('#BillFormContainer').html($('#PhoneBillFormTemplate').html())
+                        }
+
+
+
+
                         e.preventDefault();
                         break;
                     }
