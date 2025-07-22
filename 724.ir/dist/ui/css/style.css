@@ -1069,12 +1069,13 @@
   position: absolute;
   bottom: calc(100% - 22px);
 }
+
 .ui-bg-light-red {
   background-color: rgba(255, 240, 240, 1);
 }
 
 .ui-unknown-receipt-title {
-  background-color: rgba(255, 193, 7, 1); 
+  background-color: rgba(255, 193, 7, 1);
   padding: 9px 12px;
   position: absolute;
   bottom: calc(100% - 22px);
@@ -1120,15 +1121,14 @@
 }
 
 .ui-bill-amount {
-    padding: 12px !important;
-    border: 1px solid rgba(237, 241, 247, 1);
-    border-radius: 14px;
-    color: rgba(45, 53, 74, 1) !important;
-    min-height: 75px;
+  padding: 15px !important;
+  border: 1px solid rgba(237, 241, 247, 1);
+  border-radius: 14px;
+  color: rgba(45, 53, 74, 1) !important;
 }
 
 .ui-bill-amount-icon {
-    background-color: rgba(245, 247, 252, 1);
-    padding: 10px;
-    border-radius: 14px;
+  background-color: rgba(245, 247, 252, 1);
+  padding: 10px;
+  border-radius: 14px;
 }
