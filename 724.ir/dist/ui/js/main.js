@@ -276,3 +276,34 @@ function commaSeparator(value) {
   }
   return value;
 }
+function convertJSON(array) {
+  var json = {};
+  $.each(array, function () {
+    json[this.name] = this.value || "";
+  });
+  return json;
+}
+function toCamel(data) {
+  var output, origKey, newKey, value;
+  if (data instanceof Array) {
+    return data.map(function (value) {
+      if (typeof value === "object") {
+        value = toCamel(value);
+      }
+      return value;
+    });
+  } else {
+    output = {};
+    for (origKey in data) {
+      if (data.hasOwnProperty(origKey)) {
+        newKey = (origKey.charAt(0).toLowerCase() + origKey.slice(1) || origKey).toString();
+        value = data[origKey];
+        if (value instanceof Array || (value !== null && value.constructor === Object)) {
+          value = toCamel(value);
+        }
+        output[newKey] = value;
+      }
+    }
+  }
+  return output;
+}

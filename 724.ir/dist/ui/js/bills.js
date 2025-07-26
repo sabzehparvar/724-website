@@ -2,6 +2,7 @@
 
 $(document).ready(function () {
 
+    const billInquiryUrl = 'http://localhost:43197/api/v1/bill-inquiry'
     function toggleWizard(currentWizard) {
         $(".ui-card-wizard").hide();
         $(`.ui-card-wizard[data-wizard="${currentWizard}"]`).fadeIn();
@@ -46,42 +47,32 @@ $(document).ready(function () {
                         e.preventDefault();
                         break;
                     }
-                    case "billInquiry": {
+                    // case "billInquiry": {
 
-                        if (billType <= 3) {
-                            $('#BillFormContainer').html($('#BillFormTemplate').html())
-                        } else {
+                    //     if (billType <= 3) {
+                    //         $('#BillFormContainer').html($('#BillFormTemplate').html())
+                    //     } else {
 
-                            $('#BillFormContainer').html($('#PhoneBillFormTemplate').html())
-                        }
-                        e.preventDefault();
-                        break;
-                    }
-                    // case 'getElectricityBill':
-                    //     if ($('#ElectricityBill').valid()) {
-                    //         var billParams = $('#ElectricityBill').find(':input').not('#addToBillsManagement').serializeArray()
-                    //         if ($("#addToBillsManagement").is(":checked")) {
-                    //             billParams.push({ name: 'SaveInquiryResult', value: true });
-                    //         }
-                    //         billParams = hasValue(billParams) ? convertJSON(billParams) : null;
-                    //         var apiToken = { 'Token': getGhabzinoToken() }, combinedParams = $.extend(true, {}, billParams, apiToken);
-                    //         ajaxHandler(billInquiryUrl + '/electricity', 'POST', toCamel(combinedParams), null, function (callback) {
-                    //             billsHandler(billParams, callback, 'electricityBill');
-                    //         });
+                    //         $('#BillFormContainer').html($('#PhoneBillFormTemplate').html())
                     //     }
                     //     e.preventDefault();
                     //     break;
+                    // }
+                    case 'billInquiry':
+                        if ($('#BillIDForm').valid()) {
+                            var billParams = $('#BillIDForm').find(':input').serializeArray()
+
+                            billParams = hasValue(billParams) ? convertJSON(billParams) : null;
+
+                            ajaxHandler(billInquiryUrl + '/electricity', 'POST', toCamel(billParams), null, function (callback) {
+                                console.log(callback)
+                            });
+                        }
+                        e.preventDefault();
+                        break;
                 }
             }
         }
     });
 
-
-    var combinedParams = {
-        barghBillId: "9963197104126",
-        token: "sdfsadfsdf"
-    }
-    ajaxHandler('https://shop.sep.ir/api/v1/bill-inquiry/electricity', 'POST', combinedParams, null, function (callback) {
-        console.log(combinedParams)
-    });
 });
