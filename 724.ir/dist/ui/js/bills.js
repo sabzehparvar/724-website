@@ -8,7 +8,13 @@ $(document).ready(function () {
         $(`.ui-card-wizard[data-wizard="${currentWizard}"]`).fadeIn();
     }
 
-
+    const billsInputId = {
+        1: "WatterBillId",
+        2: "BarghBillId",
+        3: "GazParticipateCode",
+        4: "Phone",
+        5: "Mobile",
+    }
     $(document).on("click", ".uk-button, .uk-link", function (e) {
         if (!$(this).hasClass("on-progress")) {
             const selfThis = $(this);
@@ -18,7 +24,7 @@ $(document).ready(function () {
             if (action) {
                 switch (action) {
 
-                    case "toggleBillCard": {
+                    case "showSecondCard": {
                         let billName, billIdLabel
                         if (billType === 'paper-bill') {
 
@@ -28,6 +34,8 @@ $(document).ready(function () {
                         } else {
                             $('#BillPayment').addClass('uk-hidden')
                             billName = hasValue(billType) ? `قبض ${billTypesEnum[billType]}` : 'قبض';
+                            $("#BillId label").attr('for', billsInputId[billType]);
+                            $("#BillId input").attr("id", billsInputId[billType])
                             if (billType <= 3) {
                                 billIdLabel = 'شناسه قبض'
                             } else {
@@ -36,14 +44,19 @@ $(document).ready(function () {
 
                         }
                         $("#BillFormTitle").text(`${billName}`);
-                        $("#BillIdLabel").text(`${billIdLabel}  رو وارد کن`);
-                        $("#BillIdInput").attr("data-bill-type", billType).val("").attr("placeholder", billIdLabel);
+                        $("#BillId label").text(`${billIdLabel}  رو وارد کن`);
+                        $("#BillId input").attr("data-bill-type", billType).val("").attr("placeholder", billIdLabel);
                         toggleWizard("second-card");
                         e.preventDefault();
                         break;
                     }
                     case "returnFirstCard": {
                         toggleWizard("first-card");
+                        e.preventDefault();
+                        break;
+                    }
+                    case "returnSecondCard": {
+                        toggleWizard("second-card");
                         e.preventDefault();
                         break;
                     }
@@ -59,13 +72,14 @@ $(document).ready(function () {
                     //     break;
                     // }
                     case 'billInquiry':
-                        if ($('#BillIDForm').valid()) {
-                            var billParams = $('#BillIDForm').find(':input').serializeArray()
+                        if ($('#BillForm').valid()) {
+                            var billParams = $('#BarghBillId').serializeArray()
 
                             billParams = hasValue(billParams) ? convertJSON(billParams) : null;
 
                             ajaxHandler(billInquiryUrl + '/electricity', 'POST', toCamel(billParams), null, function (callback) {
                                 console.log(callback)
+                                toggleWizard("third-card");
                             });
                         }
                         e.preventDefault();

@@ -288,7 +288,7 @@
                                 <div class="uk-child-width-1-2@s uk-grid-small" uk-grid>
                                     <div>
                                         <div class="uk-card uk-card-body uk-card-small uk-border-rounded uk-link uk-text-decoration-none ui-bill-item"
-                                            data-action="toggleBillCard" data-bill-type="1">
+                                            data-action="showSecondCard" data-bill-type="1">
                                             <div class="uk-margin-bottom">
                                                 <img data-src="dist/ui/img/icon/app/ic-bill-water.svg" width="40"
                                                     height="40" class="uk-preserve" uk-img uk-svg />
@@ -301,7 +301,7 @@
                                     </div>
                                     <div>
                                         <div class="uk-card uk-card-body uk-card-small uk-border-rounded uk-link uk-text-decoration-none ui-bill-item"
-                                            data-action="toggleBillCard" data-bill-type="2">
+                                            data-action="showSecondCard" data-bill-type="2">
 
                                             <div class="uk-margin-bottom">
                                                 <img data-src="dist/ui/img/icon/app/ic-bill-tavanir.svg" width="40"
@@ -315,7 +315,7 @@
                                     </div>
                                     <div>
                                         <div class="uk-card uk-card-body uk-card-small uk-border-rounded uk-link uk-text-decoration-none ui-bill-item"
-                                            data-action="toggleBillCard" data-bill-type="3">
+                                            data-action="showSecondCard" data-bill-type="3">
 
                                             <div class="uk-margin-bottom">
                                                 <img data-src="dist/ui/img/icon/app/ic-bill-gas.svg" width="40"
@@ -329,7 +329,7 @@
                                     </div>
                                     <div>
                                         <div class="uk-card uk-card-body uk-card-small uk-border-rounded uk-link uk-text-decoration-none ui-bill-item"
-                                            data-action="toggleBillCard" data-bill-type="4">
+                                            data-action="showSecondCard" data-bill-type="4">
 
                                             <div class="uk-margin-bottom">
                                                 <img data-src="dist/ui/img/icon/app/ic-bill-mokhaberat.svg" width="40"
@@ -343,7 +343,7 @@
                                     </div>
                                     <div>
                                         <div class="uk-card uk-card-body uk-card-small uk-border-rounded uk-link uk-text-decoration-none ui-bill-item"
-                                            data-action="toggleBillCard" data-bill-type="5">
+                                            data-action="showSecondCard" data-bill-type="5">
 
                                             <div class="uk-margin-bottom">
                                                 <img data-src="dist/ui/img/icon/app/ic-hamrah-aval.svg" width="40"
@@ -357,7 +357,7 @@
                                     </div>
                                     <div>
                                         <div class="uk-card uk-card-body uk-card-small uk-border-rounded uk-link uk-text-decoration-none ui-bill-item"
-                                            data-action="toggleBillCard" data-bill-type="paper-bill">
+                                            data-action="showSecondCard" data-bill-type="paper-bill">
 
                                             <div class="uk-margin-bottom">
                                                 <img data-src="dist/ui/img/icon/app/ic-paper-bill.svg" width="40"
@@ -385,17 +385,16 @@
                                         </span>
                                     </div>
                                     <div id="BillFormContainer" class="uk-margin-top">
-                                        <form id="BillIDForm" name="BillIDForm" autocomplete="off"
-                                            class="uk-text-right">
+                                        <form id="BillForm" name="BillForm" autocomplete="off" class="uk-text-right">
                                             <div id="BillId" class="uk-margin-medium-top">
-                                                <label id="BarghBillId" for="BarghBillId"
-                                                    class="uk-form-label uk-text-default">شناسه قبض رو وارد
+                                                <label for="BarghBillId" class="uk-form-label uk-text-default">شناسه قبض
+                                                    رو وارد
                                                     کن</label>
                                                 <input id="BarghBillId" name="BarghBillId" type="tel"
                                                     class="uk-input uk-form-large uk-border-rounded uk-text-center uk-text-default uk-margin-small-top ui-letter-spacing ui-bg-grey fontface-vazir-fa"
                                                     required placeholder="" />
                                             </div>
-                                            <!-- <div id="BillPayment" class="uk-margin-top uk-hidden">
+                                            <div id="BillPayment" class="uk-margin-top uk-hidden">
                                                 <label for="BillPaymentInput"
                                                     class="uk-form-label uk-text-default">شناسه
                                                     پرداخت رو وارد
@@ -403,7 +402,7 @@
                                                 <input id="BillPaymentInput" name="BillPaymentInput" type="tel"
                                                     class="uk-input uk-form-large uk-border-rounded uk-text-center uk-text-default uk-margin-small-top ui-letter-spacing ui-bg-grey fontface-vazir-fa"
                                                     required placeholder="شناسه پرداخت" />
-                                            </div> -->
+                                            </div>
                                             <div class="uk-margin-medium-top uk-text-center">
                                                 <button
                                                     class="uk-button uk-button-default uk-button-large uk-border-rounded uk-width-1-1 uk-text-primary"
@@ -412,6 +411,25 @@
                                                 </button>
                                             </div>
                                         </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="uk-width-2-3@m ui-card-wizard" data-wizard="third-card">
+                                <div class="uk-panel">
+                                    <div class="uk-margin-bottom uk-position-relative">
+                                        <a href="#" class="uk-text-decoration-none uk-text-secondary uk-link"
+                                            data-action="returnSecondCard">
+                                            <i
+                                                class="ti ti-arrow-right uk-border-circle uk-margin-small-left ui-return-arrow"></i>
+                                            بازگشت
+                                        </a>
+                                        <span id="BillFormTitle" class="uk-position-center uk-text-bold">
+                                            قبض
+                                        </span>
+                                    </div>
+                                    <div id="BillFormContainer" class="uk-margin-top">
+                                        test
                                     </div>
 
                                 </div>
@@ -483,7 +501,7 @@
                                     </form>
     </script>
     <script id="BillFormTemplate" type="text/template">
- <form id="BillForm" name="BillForm" autocomplete="off"
+    <form id="BillInfoForm" name="BillInfoForm" autocomplete="off"
                                         class="uk-text-right uk-margin-top">
                                         <fieldset class="uk-fieldset">
 
@@ -522,7 +540,7 @@
                                                 </button>
                                             </div>
                                         </fieldset>
-                                    </form>
+        </form>
     </script>
 
     <script src="../../cdn/pkg/jquery/js/jquery.min.js" as="script"></script>
