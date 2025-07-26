@@ -22,14 +22,29 @@ $(document).ready(function () {
         4: "getPhoneBill",
         5: "getMciBill",
     }
-    const billsValidationRules = {
-        1: "getWaterBill",
-        2: "getElectricityBill",
-        3: "getGasBill",
-        4: "getPhoneBill",
-        5: "getMciBill",
+    function billsHandler(callback) {
+        console.log(callback)
+        if (!callback.hasOwnProperty('Parameters') || !callback.Parameters.hasOwnProperty('Amount') || !callback.Parameters.hasOwnProperty('ValidForPayment')) {
+            UIkit.notification(langs.requirementsError, {
+                status: 'danger', pos: 'bottom-center', timeout: 7000
+            });
+            return false;
+        }
+
+        if (callback.Parameters.Amount == 0) {
+            UIkit.notification('برای قبض وارد شده بدهی ای یافت نشد', {
+                status: 'danger', pos: 'bottom-center', timeout: 7000
+            });
+
+            return false;
+        }
+        console.log(callback)
+
+
     }
+
     $('#BillForm').validate();
+
     $(document).on("click", ".uk-button, .uk-link", function (e) {
         if (!$(this).hasClass("on-progress")) {
             const selfThis = $(this);
@@ -90,17 +105,18 @@ $(document).ready(function () {
                         break;
                     }
                     case 'getElectricityBill':
-                        if ($('#BillForm').valid()) {
-                            const billParams = $('#BarghBillId').serializeArray()
+                        console.log($('#BillForm').valid())
+                        if ($('#BarghBillId').valid()) {
+                            console.log('here 2')
+
+                            let billParams = $('#BarghBillId').serializeArray()
 
                             billParams = hasValue(billParams) ? convertJSON(billParams) : null;
 
                             ajaxHandler(billInquiryUrl + '/electricity', 'POST', toCamel(billParams), null, function (callback) {
 
                                 if (hasValue(callback) && callback.hasOwnProperty("d") && callback?.d?.Status?.IsSuccess) {
-                                    function showBillResponse(callback) {
-
-                                    }
+                                    billsHandler(callback.d)
 
                                 } else {
                                     const message = hasValue(callback.d.Status.Description) ? callback.d.Status.Description : langs.serviceException;
@@ -116,7 +132,7 @@ $(document).ready(function () {
                         break;
                     case 'getWaterBill':
                         if ($('#BillForm').valid()) {
-                            const billParams = $('#WatterBillId').serializeArray()
+                            let billParams = $('#WatterBillId').serializeArray()
 
                             billParams = hasValue(billParams) ? convertJSON(billParams) : null;
 
