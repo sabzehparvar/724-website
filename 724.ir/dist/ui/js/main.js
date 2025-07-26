@@ -307,3 +307,38 @@ function toCamel(data) {
   }
   return output;
 }
+
+
+$.validator.addMethod(
+  "cellNumber",
+  function (value, element) {
+    return this.optional(element) || validateCellNumber(value);
+  },
+  validationMessage.cellNumber
+);
+
+$.validator.addMethod(
+  "mciPostPaidNumber",
+  function (value, element) {
+    return this.optional(element) || validateMciPostPaidNumber(value);
+  },
+  validationMessage.mciPostPaidNumbers
+);
+
+$.validator.setDefaults({
+  errorElement: "div",
+  errorClass: "uk-text-danger uk-text-small uk-margin-small-top",
+  ignore: ".ignore",
+  onkeyup: function (element) {
+    this.element(element);
+  },
+  highlight: function (element) {
+    $(element).addClass("uk-form-danger");
+  },
+  unhighlight: function (element) {
+    $(element).removeClass("uk-form-danger");
+  },
+  errorPlacement: function (error, element) {
+    error.appendTo(element.closest("div"));
+  },
+});
