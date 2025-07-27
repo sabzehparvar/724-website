@@ -423,14 +423,13 @@
                                                 class="ti ti-arrow-right uk-border-circle uk-margin-small-left ui-return-arrow"></i>
                                             بازگشت
                                         </a>
-                                        <span id="BillFormTitle" class="uk-position-center uk-text-bold">
+                                        <span id="BillInfoTitle" class="uk-position-center uk-text-bold">
                                             قبض
                                         </span>
                                     </div>
-                                    <div id="BillFormContainer" class="uk-margin-top">
-                                        test
-                                    </div>
+                                    <div id="BillInfoContainer" class="uk-margin-top">
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -499,47 +498,38 @@
                                         </fieldset>
                                     </form>
     </script>
-    <script id="BillFormTemplate" type="text/template">
-    <form id="BillInfoForm" name="BillInfoForm" autocomplete="off"
-                                        class="uk-text-right uk-margin-top">
-                                        <fieldset class="uk-fieldset">
-
-                                            <legend class="uk-legend">
-                                                <div class="uk-width-1-1 uk-grid-collapse uk-flex-middle ui-bill-amount"
-                                                    uk-grid>
-                                                    <div class="uk-margin-left ui-bill-amount-icon">
-                                                        <img src="./dist/ui/img/icon/app/ic-hamrah-aval.svg"
-                                                            width="24" />
-                                                    </div>
-                                                    <div class="uk-width-expand uk-margin-small-left">
-                                                        <span class="uk-display-block uk-heading-xsmall">قبض آب سروش
-                                                            سهرابی</span>
-                                                        <small class="uk-text-muted uk-text-default">شناسه قبض:
-                                                            ۹۶۸۱۲۲۰۰۰۰۰۱۸۰</small>
-                                                    </div>
+    <script id="BillInfoTemplate" type="text/template">
+          <div id="BillInfo" name="BillInfo" autocomplete="off"
+                                            class="uk-text-right uk-margin-top">
+                                            <div class="uk-width-1-1 uk-grid-collapse uk-flex-middle ui-bill-amount"
+                                                uk-grid>
+                                                <div class="uk-margin-left ui-bill-amount-icon">
+                                                    <img src="./dist/ui/img/icon/app/ic-hamrah-aval.svg" width="24" />
                                                 </div>
-                                            </legend>
-
+                                                <div class="uk-width-expand uk-margin-small-left">
+                                                    <span id="BillName" class="uk-display-block uk-heading-xsmall"></span>
+                                                    <small id="BillInfoId" class="uk-text-muted uk-text-default fontface-vazir-fa"></small>
+                                                </div>
+                                            </div>
                                             <div class="uk-margin uk-flex uk-flex-column uk-flex-center ui-bill-amount">
                                                 <div class="uk-text-muted">مبلغ:</div>
                                                 <div
                                                     class="uk-heading-medium uk-margin-remove-bottom uk-flex uk-flex-middle uk-flex-between">
-                                                    <span>۷۵۰,۰۰۰ ریال</span>
+                                                    <span id="BillAmount" class="fontface-vazir-fa"></span>
                                                     <a href="#"
                                                         class="uk-button ui-button-gray uk-padding-small uk-padding-remove-vertical uk-border-pill">
                                                         <span class="uk-text-default">جزئیات قبض</span>
                                                     </a>
                                                 </div>
                                             </div>
-                                            <div class="uk-margin-medium-top uk-text-center">
+                                            <div id="BillPayButton" class="uk-margin-medium-top uk-text-center">
                                                 <button
                                                     class="uk-button uk-button-primary uk-button-large uk-border-rounded uk-width-1-1"
                                                     data-action="">
                                                     پرداخت
                                                 </button>
                                             </div>
-                                        </fieldset>
-        </form>
+                                        </div>
     </script>
 
     <script src="../../cdn/pkg/jquery/js/jquery.min.js" as="script"></script>

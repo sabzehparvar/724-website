@@ -162,6 +162,7 @@ const langs = {
   fileTypeError: "فرمت فایل آپلود شده اشتباه است",
   fileEmptyError: "فایل آپلود شده محتوایی ندارد",
   fileContentLenghtError: "فایل آپلود شده با فایل نمونه مطابقت ندارد",
+  noBillDebt: "برای قبض وارد شده بدهی یافت نشد"
 };
 const validationMessage = {
   nationalId: "کد ملی وارد شده معتبر نیست.",

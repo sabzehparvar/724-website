@@ -22,8 +22,9 @@ $(document).ready(function () {
         4: "getPhoneBill",
         5: "getMciBill",
     }
-    function billsHandler(callback) {
-        console.log(callback)
+    function billsHandler(callback, billType) {
+
+
         if (!callback.hasOwnProperty('Parameters') || !callback.Parameters.hasOwnProperty('Amount') || !callback.Parameters.hasOwnProperty('ValidForPayment')) {
             UIkit.notification(langs.requirementsError, {
                 status: 'danger', pos: 'bottom-center', timeout: 7000
@@ -32,13 +33,23 @@ $(document).ready(function () {
         }
 
         if (callback.Parameters.Amount == 0) {
-            UIkit.notification('برای قبض وارد شده بدهی ای یافت نشد', {
+            UIkit.notification(langs.noBillDebt, {
                 status: 'danger', pos: 'bottom-center', timeout: 7000
             });
 
             return false;
         }
-        console.log(callback)
+
+        const billName = hasValue(billType) ? `قبض ${billTypesEnum[billType]}` : 'قبض';
+        $("#BillInfoTitle").text(`${billName}`);
+
+        let $template = $($('#BillInfoTemplate').html());
+        $template.find('#BillName').text(billName + ' ' + callback.Parameters.FullName.trim());
+        $template.find('#BillInfoId').text(`شناسه قبض: ${callback.Parameters.BillID.trim()}`);
+        $template.find('#BillAmount').text(commaSeparator(callback.Parameters.Bill.Amount))
+        $('#BillInfoContainer').html($template);
+
+        toggleWizard('third-card')
 
 
     }
@@ -67,7 +78,7 @@ $(document).ready(function () {
                             $("#BillId label").attr('for', billsInputId[billType]);
                             $("#BillId input").attr("id", billsInputId[billType]);
                             $("#BillId input").attr("name", billsInputId[billType]);
-                            $("#BillInquiryButton button").attr("data-action", billsActions[billType]);
+                            $("#BillInquiryButton button").attr("data-action", billsActions[billType]).attr("data-bill-type", billType);
                             if (billType <= 3) {
                                 billIdLabel = 'شناسه قبض'
                             } else {
@@ -78,6 +89,7 @@ $(document).ready(function () {
                         $("#BillFormTitle").text(`${billName}`);
                         $("#BillId label").text(`${billIdLabel}  رو وارد کن`);
                         $("#BillId input").attr("data-bill-type", billType).val("").attr("placeholder", billIdLabel);
+
                         toggleWizard("second-card");
 
                         $("#BillId input").rules('remove');
@@ -108,7 +120,7 @@ $(document).ready(function () {
                         console.log($('#BillForm').valid())
                         if ($('#BarghBillId').valid()) {
                             console.log('here 2')
-
+                            const billType = hasValue(selfThis.attr("data-bill-type")) ? selfThis.attr("data-bill-type").trim() : null;
                             let billParams = $('#BarghBillId').serializeArray()
 
                             billParams = hasValue(billParams) ? convertJSON(billParams) : null;
@@ -116,7 +128,7 @@ $(document).ready(function () {
                             ajaxHandler(billInquiryUrl + '/electricity', 'POST', toCamel(billParams), null, function (callback) {
 
                                 if (hasValue(callback) && callback.hasOwnProperty("d") && callback?.d?.Status?.IsSuccess) {
-                                    billsHandler(callback.d)
+                                    billsHandler(callback.d, billType)
 
                                 } else {
                                     const message = hasValue(callback?.d?.Status?.Description) ? callback.d.Status.Description : langs.serviceException;
