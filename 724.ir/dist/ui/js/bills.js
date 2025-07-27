@@ -46,7 +46,7 @@ $(document).ready(function () {
         let $template = $($('#BillInfoTemplate').html());
         $template.find('#BillName').text(billName + ' ' + callback.Parameters.FullName.trim());
         $template.find('#BillInfoId').text(`شناسه قبض: ${callback.Parameters.BillID.trim()}`);
-        $template.find('#BillAmount').text(commaSeparator(callback.Parameters.Bill.Amount))
+        $template.find('#BillAmount').text(commaSeparator(callback.Parameters.Amount))
         $('#BillInfoContainer').html($template);
 
         toggleWizard('third-card')
@@ -117,9 +117,9 @@ $(document).ready(function () {
                         break;
                     }
                     case 'getElectricityBill':
-                        console.log($('#BillForm').valid())
+
                         if ($('#BarghBillId').valid()) {
-                            console.log('here 2')
+
                             const billType = hasValue(selfThis.attr("data-bill-type")) ? selfThis.attr("data-bill-type").trim() : null;
                             let billParams = $('#BarghBillId').serializeArray()
 
@@ -143,16 +143,20 @@ $(document).ready(function () {
                         e.preventDefault();
                         break;
                     case 'getWaterBill':
-                        if ($('#BillForm').valid()) {
+
+                        if ($('#WatterBillId').valid()) {
+
+                            const billType = hasValue(selfThis.attr("data-bill-type")) ? selfThis.attr("data-bill-type").trim() : null;
                             let billParams = $('#WatterBillId').serializeArray()
 
                             billParams = hasValue(billParams) ? convertJSON(billParams) : null;
 
                             ajaxHandler(billInquiryUrl + '/water', 'POST', toCamel(billParams), null, function (callback) {
                                 if (hasValue(callback) && callback.hasOwnProperty("d") && callback?.d?.Status?.IsSuccess) {
-                                    console.log(callback)
+                                    billsHandler(callback.d, billType)
+
                                 } else {
-                                    const message = hasValue(callback.d.Status.Description) ? callback.d.Status.Description : langs.serviceException;
+                                    const message = hasValue(callback?.d?.Status?.Description) ? callback.d.Status.Description : langs.serviceException;
                                     UIkit.notification(message, {
                                         status: "danger",
                                         pos: "bottom-center",
