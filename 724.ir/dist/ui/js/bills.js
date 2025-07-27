@@ -119,7 +119,7 @@ $(document).ready(function () {
                                     billsHandler(callback.d)
 
                                 } else {
-                                    const message = hasValue(callback.d.Status.Description) ? callback.d.Status.Description : langs.serviceException;
+                                    const message = hasValue(callback?.d?.Status?.Description) ? callback.d.Status.Description : langs.serviceException;
                                     UIkit.notification(message, {
                                         status: "danger",
                                         pos: "bottom-center",
