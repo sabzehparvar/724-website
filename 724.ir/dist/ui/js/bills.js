@@ -120,7 +120,6 @@ $(document).ready(function () {
 
                         if ($('#BarghBillId').valid()) {
 
-                            const billType = hasValue(selfThis.attr("data-bill-type")) ? selfThis.attr("data-bill-type").trim() : null;
                             let billParams = $('#BarghBillId').serializeArray()
 
                             billParams = hasValue(billParams) ? convertJSON(billParams) : null;
@@ -146,7 +145,6 @@ $(document).ready(function () {
 
                         if ($('#WatterBillId').valid()) {
 
-                            const billType = hasValue(selfThis.attr("data-bill-type")) ? selfThis.attr("data-bill-type").trim() : null;
                             let billParams = $('#WatterBillId').serializeArray()
 
                             billParams = hasValue(billParams) ? convertJSON(billParams) : null;
@@ -164,6 +162,30 @@ $(document).ready(function () {
                                     });
                                 }
 
+                            });
+                        }
+                        e.preventDefault();
+                        break;
+                    case 'getGasBill':
+                        if ($('#GazParticipateCode').valid()) {
+
+                            let billParams = $('#GazParticipateCode').serializeArray()
+
+                            billParams = hasValue(billParams) ? convertJSON(billParams) : null;
+
+                            ajaxHandler(billInquiryUrl + '/gaz', 'POST', toCamel(billParams), null, function (callback) {
+                                if (hasValue(callback) && callback.hasOwnProperty("d") && callback?.d?.Status?.IsSuccess) {
+
+                                    billsHandler(callback.d, billType)
+
+                                } else {
+                                    const message = hasValue(callback?.d?.Status?.Description) ? callback.d.Status.Description : langs.serviceException;
+                                    UIkit.notification(message, {
+                                        status: "danger",
+                                        pos: "bottom-center",
+                                        timeout: 7000,
+                                    });
+                                }
                             });
                         }
                         e.preventDefault();
