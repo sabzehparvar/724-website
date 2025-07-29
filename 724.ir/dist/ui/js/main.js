@@ -227,7 +227,20 @@ var billLableEnum = {
   6: "شناسه قبض",
   7: "شماره پلاک خودرو",
 };
-
+const billsInputId = {
+  1: "WatterBillId",
+  2: "BarghBillId",
+  3: "GazParticipateCode",
+  4: "Phone",
+  5: "Mobile",
+}
+const billsActions = {
+  1: "getWaterBill",
+  2: "getElectricityBill",
+  3: "getGasBill",
+  4: "getPhoneBill",
+  5: "getMciBill",
+}
 function validateCellNumber(value, checkRegex = false) {
   var value = normalize(value.trim()).toString(),
     regex = {
@@ -308,7 +321,10 @@ function toCamel(data) {
   }
   return output;
 }
-
+function messageReFormat(message, bracZero, bracOne = null, bracTwo = null, bracThree = null) {
+  var message = message.replace("{0}", bracZero).replace("{1}", bracOne).replace("{2}", bracTwo).replace("{3}", bracThree);
+  return message;
+}
 
 $.validator.addMethod(
   "cellNumber",

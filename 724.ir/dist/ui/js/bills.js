@@ -8,22 +8,8 @@ $(document).ready(function () {
         $(`.ui-card-wizard[data-wizard="${currentWizard}"]`).fadeIn();
     }
 
-    const billsInputId = {
-        1: "WatterBillId",
-        2: "BarghBillId",
-        3: "GazParticipateCode",
-        4: "Phone",
-        5: "Mobile",
-    }
-    const billsActions = {
-        1: "getWaterBill",
-        2: "getElectricityBill",
-        3: "getGasBill",
-        4: "getPhoneBill",
-        5: "getMciBill",
-    }
-    function billsHandler(callback, billType) {
 
+    function billsHandler(callback, billType) {
 
         if (!callback.hasOwnProperty('Parameters') || !callback.Parameters.hasOwnProperty('Amount') || !callback.Parameters.hasOwnProperty('ValidForPayment')) {
             UIkit.notification(langs.requirementsError, {
@@ -50,8 +36,39 @@ $(document).ready(function () {
         $('#BillInfoContainer').html($template);
 
         toggleWizard('third-card')
+    }
 
+    function phoneBillsHandler(callback, billType) {
 
+        console.log(callback)
+        console.log(billType)
+
+        if (!callback.hasOwnProperty('parameters') || !callback.parameters.hasOwnProperty('midTerm') || !callback.parameters.hasOwnProperty('finalTerm')) {
+            UIkit.notification(langs.requirementsError, {
+                status: 'danger', pos: 'bottom-center', timeout: 7000
+            });
+            return false;
+        }
+        var checkTerms = (!hasValue(callback.parameters.midTerm) && !hasValue(callback.parameters.finalTerm)),
+            checkTermsAmount = (callback.parameters.midTerm.amount == 0 && callback.parameters.finalTerm.amount == 0)
+
+        if (checkTerms || checkTermsAmount) {
+            UIkit.notification(langs.noBillDebt, {
+                status: 'danger', pos: 'bottom-center', timeout: 7000
+            });
+            return false;
+        }
+
+        const billName = hasValue(billType) ? `قبض ${billTypesEnum[billType]}` : 'قبض';
+        $("#BillInfoTitle").text(`${billName}`);
+
+        let $template = $($('#PhoneBillInfoTemplate').html());
+        // $template.find('#BillName').text(billName + ' ' + callback.Parameters.FullName.trim());
+        // $template.find('#BillInfoId').text(`شناسه قبض: ${callback.Parameters.BillID.trim()}`);
+        // $template.find('#BillAmount').text(commaSeparator(callback.Parameters.Amount))
+        $('#BillInfoContainer').html($template);
+
+        toggleWizard('third-card')
     }
 
     $('#BillForm').validate();
@@ -186,6 +203,24 @@ $(document).ready(function () {
                                         timeout: 7000,
                                     });
                                 }
+                            });
+                        }
+                        e.preventDefault();
+                        break;
+                    case 'getMciBill':
+                        if ($('#Mobile').valid()) {
+                            let billParams = $('#Mobile').serializeArray();
+
+                            billParams = hasValue(billParams) ? convertJSON(billParams) : null;
+
+                            if (validateCellNumber(toCamel(billParams).mobile) != 1) {
+                                UIkit.notification(messageReFormat(langs.invalidOperatorNumber, langs.mci), {
+                                    status: 'danger', pos: 'bottom-center', timeout: 7000
+                                });
+                                return false;
+                            }
+                            ajaxHandler(billInquiryUrl + '/mci-mobile', 'POST', toCamel(billParams), null, function (callback) {
+                                phoneBillsHandler(toCamel(callback.d), billType);
                             });
                         }
                         e.preventDefault();
