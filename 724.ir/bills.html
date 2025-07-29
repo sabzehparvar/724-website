@@ -451,10 +451,8 @@
                                                             width="24" />
                                                     </div>
                                                     <div class="uk-width-expand uk-margin-small-left">
-                                                        <span class="uk-display-block uk-heading-xsmall">قبض همراه
-                                                            اول</span>
-                                                        <small class="uk-text-muted uk-text-default">شماره موبایل:
-                                                            ۰۹۱۲۱۲۳۴۵۶۷</small>
+                                                        <span id="BillName" class="uk-display-block uk-heading-xsmall"></span>
+                                                        <small id="BillNumber" class="uk-text-muted uk-text-default fontface-vazir-fa"></small>
                                                     </div>
                                                 </div>
                                             </legend>
@@ -467,8 +465,7 @@
                                                 <div class="uk-width-expand uk-grid-collapse uk-flex-middle " uk-grid>
                                                     <div class="uk-width-expand uk-margin-small-left">
                                                         <span class="uk-text-muted">مبلغ میان دوره:</span>
-                                                        <span class="uk-display-block uk-heading-medium">۱۵۰,۰۰۰
-                                                            ریال</span>
+                                                        <span id="BillMidAmount" class="uk-display-block uk-heading-medium fontface-vazir-fa"></span>
                                                     </div>
                                                 </div>
 
@@ -483,13 +480,12 @@
                                                 <div class="uk-width-expand uk-grid-collapse uk-flex-middle " uk-grid>
                                                     <div class="uk-width-expand uk-margin-small-left">
                                                         <span class="uk-text-muted">مبلغ پایان دوره:</span>
-                                                        <span class="uk-display-block uk-heading-medium">۲۷۵,۸۰۰
-                                                            ریال</span>
+                                                        <span id="BillFinalAmount" class="uk-display-block uk-heading-medium fontface-vazir-fa"></span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="uk-margin-medium-top uk-text-center">
-                                                <button
+                                                <button id="BillPayButton"
                                                     class="uk-button uk-button-primary uk-button-large uk-border-rounded uk-width-1-1"
                                                     data-action="">
                                                     پرداخت

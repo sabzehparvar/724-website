@@ -38,10 +38,8 @@ $(document).ready(function () {
         toggleWizard('third-card')
     }
 
-    function phoneBillsHandler(callback, billType) {
+    function phoneBillsHandler(callback, billType, number) {
 
-        console.log(callback)
-        console.log(billType)
 
         if (!callback.hasOwnProperty('parameters') || !callback.parameters.hasOwnProperty('midTerm') || !callback.parameters.hasOwnProperty('finalTerm')) {
             UIkit.notification(langs.requirementsError, {
@@ -63,9 +61,11 @@ $(document).ready(function () {
         $("#BillInfoTitle").text(`${billName}`);
 
         let $template = $($('#PhoneBillInfoTemplate').html());
-        // $template.find('#BillName').text(billName + ' ' + callback.Parameters.FullName.trim());
-        // $template.find('#BillInfoId').text(`شناسه قبض: ${callback.Parameters.BillID.trim()}`);
-        // $template.find('#BillAmount').text(commaSeparator(callback.Parameters.Amount))
+        $template.find('#BillName').text(billName);
+        $template.find('#BillNumber').text(`شماره ${billType == 4 ? 'تلفن' : 'موبایل'}: ${number}`);
+        $template.find('#BillMidAmount').text(commaSeparator(callback.parameters.midTerm.amount + ' ' + langs.irr))
+        $template.find('#BillFinalAmount').text(commaSeparator(callback.parameters.finalTerm.amount) + ' ' + langs.irr)
+
         $('#BillInfoContainer').html($template);
 
         toggleWizard('third-card')
@@ -220,7 +220,7 @@ $(document).ready(function () {
                                 return false;
                             }
                             ajaxHandler(billInquiryUrl + '/mci-mobile', 'POST', toCamel(billParams), null, function (callback) {
-                                phoneBillsHandler(toCamel(callback.d), billType);
+                                phoneBillsHandler(toCamel(callback.d), billType, billParams.Mobile);
                             });
                         }
                         e.preventDefault();
