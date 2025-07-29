@@ -41,8 +41,9 @@ $(document).ready(function () {
     function phoneBillsHandler(callback, billType, number) {
 
 
-        if (!callback.hasOwnProperty('parameters') || !callback.parameters.hasOwnProperty('midTerm') || !callback.parameters.hasOwnProperty('finalTerm')) {
-            UIkit.notification(langs.requirementsError, {
+        if (!callback?.parameters?.midTerm || !callback?.parameters?.finalTerm) {
+
+            UIkit.notification(callback.status.description ? callback.status.description : langs.requirementsError, {
                 status: 'danger', pos: 'bottom-center', timeout: 7000
             });
             return false;
@@ -63,8 +64,8 @@ $(document).ready(function () {
         let $template = $($('#PhoneBillInfoTemplate').html());
         $template.find('#BillName').text(billName);
         $template.find('#BillNumber').text(`شماره ${billType == 4 ? 'تلفن' : 'موبایل'}: ${number}`);
-        $template.find('#BillMidAmount').text(commaSeparator(callback.parameters.midTerm.amount + ' ' + langs.irr))
-        $template.find('#BillFinalAmount').text(commaSeparator(callback.parameters.finalTerm.amount) + ' ' + langs.irr)
+        $template.find('#BillMidAmount').text(commaSeparator(callback.parameters.midTerm.amount ? callback.parameters.midTerm.amount : '0') + ' ' + langs.irr)
+        $template.find('#BillFinalAmount').text(commaSeparator(callback.parameters.finalTerm.amount ? callback.parameters.finalTerm.amount : '0') + ' ' + langs.irr)
 
         $('#BillInfoContainer').html($template);
 
@@ -114,6 +115,9 @@ $(document).ready(function () {
                         if (billType == 5) {
                             $("#BillId input").attr("maxlength", '11')
                             $("#BillId input").rules('add', { digits: true, cellNumber: true, rangelength: [11, 11] });
+                        } if (billType == 4) {
+                            $("#BillId input").attr("maxlength", '11')
+                            $("#BillId input").rules('add', { digits: true, rangelength: [11, 11] });
                         } else {
                             $("#BillId input").rules('add', { digits: true, minlength: 5 });
                             $("#BillId input").removeAttr("maxlength")
@@ -221,6 +225,25 @@ $(document).ready(function () {
                             }
                             ajaxHandler(billInquiryUrl + '/mci-mobile', 'POST', toCamel(billParams), null, function (callback) {
                                 phoneBillsHandler(toCamel(callback.d), billType, billParams.Mobile);
+                            });
+                        }
+                        e.preventDefault();
+                        break;
+                    case 'getPhoneBill':
+                        if ($('#Phone').valid()) {
+                            let billParams = $('#Phone').serializeArray();
+
+                            billParams = hasValue(billParams) ? convertJSON(billParams) : null
+
+                            if (validateCellNumber(toCamel(billParams).phone)) {
+                                UIkit.notification(messageReFormat(langs.invalidOperatorNumber, langs.tci), {
+                                    status: 'danger', pos: 'bottom-center', timeout: 7000
+                                });
+                                return false;
+                            }
+
+                            ajaxHandler(billInquiryUrl + '/fixed-line', 'POST', toCamel(billParams), null, function (callback) {
+                                phoneBillsHandler(toCamel(callback.d), billType, billParams.Phone);
                             });
                         }
                         e.preventDefault();
