@@ -39,19 +39,11 @@ $(document).ready(function () {
     }
 
     function phoneBillsHandler(callback, billType, number) {
+        const midTerm = callback?.parameters?.midTerm;
+        const finalTerm = callback?.parameters?.finalTerm;
 
-
-        if (!hasValue(callback?.parameters?.midTerm) || !hasValue(callback?.parameters?.finalTerm)) {
-            UIkit.notification(callback?.status?.description || langs.requirementsError, {
-                status: 'danger',
-                pos: 'bottom-center',
-                timeout: 7000
-            });
-            return false;
-        }
-
-        var checkTerms = (!hasValue(callback.parameters.midTerm) && !hasValue(callback.parameters.finalTerm)),
-            checkTermsAmount = (callback.parameters.midTerm.amount == 0 && callback.parameters.finalTerm.amount == 0)
+        const checkTerms = (!hasValue(midTerm) && !hasValue(finalTerm));
+        const checkTermsAmount = (midTerm?.amount == 0 && finalTerm?.amount == 0);
 
         if (checkTerms || checkTermsAmount) {
             UIkit.notification(langs.noBillDebt, {
@@ -61,18 +53,18 @@ $(document).ready(function () {
         }
 
         const billName = hasValue(billType) ? `قبض ${billTypesEnum[billType]}` : 'قبض';
-        $("#BillInfoTitle").text(`${billName}`);
+        $("#BillInfoTitle").text(billName);
 
-        let $template = $($('#PhoneBillInfoTemplate').html());
+        const $template = $($('#PhoneBillInfoTemplate').html());
         $template.find('#BillName').text(billName);
         $template.find('#BillNumber').text(`شماره ${billType == 4 ? 'تلفن' : 'موبایل'}: ${number}`);
-        $template.find('#BillMidAmount').text(commaSeparator(callback.parameters.midTerm.amount ? callback.parameters.midTerm.amount : '0') + ' ' + langs.irr)
-        $template.find('#BillFinalAmount').text(commaSeparator(callback.parameters.finalTerm.amount ? callback.parameters.finalTerm.amount : '0') + ' ' + langs.irr)
+        $template.find('#BillMidAmount').text(commaSeparator(midTerm?.amount || '0') + ' ' + langs.irr);
+        $template.find('#BillFinalAmount').text(commaSeparator(finalTerm?.amount || '0') + ' ' + langs.irr);
 
         $('#BillInfoContainer').html($template);
-
-        toggleWizard('third-card')
+        toggleWizard('third-card');
     }
+
 
     $('#BillForm').validate();
 
@@ -116,10 +108,10 @@ $(document).ready(function () {
 
                         if (billType == 5) {
                             $("#BillId input").attr("maxlength", '11')
-                            $("#BillId input").rules('add', { digits: true, cellNumber: true, rangelength: [11, 11] });
+                            $("#BillId input").rules('add', { digits: true, cellNumber: true, minlength: 11 });
                         } if (billType == 4) {
                             $("#BillId input").attr("maxlength", '11')
-                            $("#BillId input").rules('add', { digits: true, rangelength: [11, 11] });
+                            $("#BillId input").rules('add', { digits: true, minlength: 11 });
                         } else {
                             $("#BillId input").rules('add', { digits: true, minlength: 5 });
                             $("#BillId input").removeAttr("maxlength")
