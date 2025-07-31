@@ -41,13 +41,15 @@ $(document).ready(function () {
     function phoneBillsHandler(callback, billType, number) {
 
 
-        if (!callback?.parameters?.midTerm || !callback?.parameters?.finalTerm) {
-
-            UIkit.notification(callback.status.description ? callback.status.description : langs.requirementsError, {
-                status: 'danger', pos: 'bottom-center', timeout: 7000
+        if (!hasValue(callback?.parameters?.midTerm) || !hasValue(callback?.parameters?.finalTerm)) {
+            UIkit.notification(callback?.status?.description || langs.requirementsError, {
+                status: 'danger',
+                pos: 'bottom-center',
+                timeout: 7000
             });
             return false;
         }
+
         var checkTerms = (!hasValue(callback.parameters.midTerm) && !hasValue(callback.parameters.finalTerm)),
             checkTermsAmount = (callback.parameters.midTerm.amount == 0 && callback.parameters.finalTerm.amount == 0)
 
