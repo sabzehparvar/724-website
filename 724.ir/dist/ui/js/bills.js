@@ -60,8 +60,22 @@ $(document).ready(function () {
         const $template = $($('#PhoneBillInfoTemplate').html());
         $template.find('#BillName').text(billName);
         $template.find('#BillNumber').text(`شماره ${billType == 4 ? 'تلفن' : 'موبایل'}: ${number}`);
-        $template.find('#BillMidAmount').text(commaSeparator(midTerm?.amount || '0') + ' ' + langs.irr);
-        $template.find('#BillFinalAmount').text(commaSeparator(finalTerm?.amount || '0') + ' ' + langs.irr);
+
+        if (!midTerm?.amount || midTerm?.amount == 0) {
+            $template.find('#BillMidAmount').text('0' + ' ' + langs.irr);
+            $template.find('#MidtermAmount').attr('disabled', true);
+        } else {
+            $template.find('#BillMidAmount').text(commaSeparator(midTerm?.amount) + ' ' + langs.irr);
+            $template.find('#MidtermAmount').removeAttr('disabled');
+        }
+
+        if (!finalTerm?.amount || finalTerm?.amount == 0) {
+            $template.find('#BillFinalAmount').text('0' + ' ' + langs.irr);
+            $template.find('#FinalTermAmount').attr('disabled', true);
+        } else {
+            $template.find('#BillFinalAmount').text(commaSeparator(finalTerm?.amount) + ' ' + langs.irr);
+            $template.find('#FinalTermAmount').removeAttr('disabled');
+        }
 
         $('#BillInfoContainer').html($template);
         toggleWizard('third-card');
@@ -220,7 +234,20 @@ $(document).ready(function () {
                                 return false;
                             }
                             ajaxHandler(billInquiryUrl + '/mci-mobile', 'POST', toCamel(billParams), null, function (callback) {
-                                phoneBillsHandler(toCamel(callback.d), billType, billParams.Mobile);
+
+                                if (hasValue(callback) && callback.hasOwnProperty("d") && callback?.d?.Status?.IsSuccess) {
+
+                                    phoneBillsHandler(toCamel(callback.d), billType, billParams.Mobile);
+
+                                } else {
+                                    const message = hasValue(callback?.d?.Status?.Description) ? callback.d.Status.Description : langs.serviceException;
+                                    UIkit.notification(message, {
+                                        status: "danger",
+                                        pos: "bottom-center",
+                                        timeout: 7000,
+                                    });
+                                }
+
                             }, true);
                         }
                         e.preventDefault();
@@ -239,7 +266,21 @@ $(document).ready(function () {
                             }
 
                             ajaxHandler(billInquiryUrl + '/fixed-line', 'POST', toCamel(billParams), null, function (callback) {
-                                phoneBillsHandler(toCamel(callback.d), billType, billParams.Phone);
+
+                                if (hasValue(callback) && callback.hasOwnProperty("d") && callback?.d?.Status?.IsSuccess) {
+
+                                    phoneBillsHandler(toCamel(callback.d), billType, billParams.Phone);
+
+
+                                } else {
+                                    const message = hasValue(callback?.d?.Status?.Description) ? callback.d.Status.Description : langs.serviceException;
+                                    UIkit.notification(message, {
+                                        status: "danger",
+                                        pos: "bottom-center",
+                                        timeout: 7000,
+                                    });
+                                }
+
                             }, true);
                         }
                         e.preventDefault();
