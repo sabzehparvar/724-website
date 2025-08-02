@@ -11,14 +11,15 @@ $(document).ready(function () {
 
     function billsHandler(callback, billType) {
 
-        if (!callback.hasOwnProperty('Parameters') || !callback.Parameters.hasOwnProperty('Amount') || !callback.Parameters.hasOwnProperty('ValidForPayment')) {
+
+        if (!callback.hasOwnProperty('parameters') || !callback.parameters.hasOwnProperty('amount')) {
             UIkit.notification(langs.requirementsError, {
                 status: 'danger', pos: 'bottom-center', timeout: 7000
             });
             return false;
         }
 
-        if (callback.Parameters.Amount == 0) {
+        if (callback.parameters.amount == 0) {
             UIkit.notification(langs.noBillDebt, {
                 status: 'danger', pos: 'bottom-center', timeout: 7000
             });
@@ -27,12 +28,15 @@ $(document).ready(function () {
         }
 
         const billName = hasValue(billType) ? `قبض ${billTypesEnum[billType]}` : 'قبض';
+        const fullName = callback?.parameters?.fullName?.trim() || '';
+        const billID = callback?.parameters?.billID?.toString().trim() || '';
+        const amount = callback?.parameters?.amount?.toString().trim() || '';
         $("#BillInfoTitle").text(`${billName}`);
 
-        let $template = $($('#BillInfoTemplate').html());
-        $template.find('#BillName').text(billName + ' ' + callback.Parameters.FullName.trim());
-        $template.find('#BillInfoId').text(`شناسه قبض: ${callback.Parameters.BillID.trim()}`);
-        $template.find('#BillAmount').text(commaSeparator(callback.Parameters.Amount))
+        const $template = $($('#BillInfoTemplate').html());
+        $template.find('#BillName').text(`${billName} ${fullName}`);
+        $template.find('#BillInfoId').text(`شناسه قبض: ${billID}`);
+        $template.find('#BillAmount').text(commaSeparator(amount));
         $('#BillInfoContainer').html($template);
 
         toggleWizard('third-card')
@@ -142,7 +146,7 @@ $(document).ready(function () {
                             ajaxHandler(billInquiryUrl + '/electricity', 'POST', toCamel(billParams), null, function (callback) {
 
                                 if (hasValue(callback) && callback.hasOwnProperty("d") && callback?.d?.Status?.IsSuccess) {
-                                    billsHandler(callback.d, billType)
+                                    billsHandler(toCamel(callback.d), billType)
 
                                 } else {
                                     const message = hasValue(callback?.d?.Status?.Description) ? callback.d.Status.Description : langs.serviceException;
@@ -166,7 +170,7 @@ $(document).ready(function () {
 
                             ajaxHandler(billInquiryUrl + '/water', 'POST', toCamel(billParams), null, function (callback) {
                                 if (hasValue(callback) && callback.hasOwnProperty("d") && callback?.d?.Status?.IsSuccess) {
-                                    billsHandler(callback.d, billType)
+                                    billsHandler(toCamel(callback.d), billType)
 
                                 } else {
                                     const message = hasValue(callback?.d?.Status?.Description) ? callback.d.Status.Description : langs.serviceException;
@@ -191,7 +195,7 @@ $(document).ready(function () {
                             ajaxHandler(billInquiryUrl + '/gaz', 'POST', toCamel(billParams), null, function (callback) {
                                 if (hasValue(callback) && callback.hasOwnProperty("d") && callback?.d?.Status?.IsSuccess) {
 
-                                    billsHandler(callback.d, billType)
+                                    billsHandler(toCamel(callback.d), billType)
 
                                 } else {
                                     const message = hasValue(callback?.d?.Status?.Description) ? callback.d.Status.Description : langs.serviceException;
