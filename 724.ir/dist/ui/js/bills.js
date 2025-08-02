@@ -11,7 +11,6 @@ $(document).ready(function () {
 
     function billsHandler(callback, billType) {
 
-
         if (!callback.hasOwnProperty('parameters') || !callback.parameters.hasOwnProperty('amount')) {
             UIkit.notification(langs.requirementsError, {
                 status: 'danger', pos: 'bottom-center', timeout: 7000
@@ -38,14 +37,13 @@ $(document).ready(function () {
         $template.find('#BillInfoId').text(`شناسه قبض: ${billID}`);
         $template.find('#BillAmount').text(commaSeparator(amount));
         $('#BillInfoContainer').html($template);
-
         toggleWizard('third-card')
     }
 
     function phoneBillsHandler(callback, billType, number) {
+
         const midTerm = callback?.parameters?.midTerm;
         const finalTerm = callback?.parameters?.finalTerm;
-
         const checkTerms = (!hasValue(midTerm) && !hasValue(finalTerm));
         const checkTermsAmount = (midTerm?.amount == 0 && finalTerm?.amount == 0);
 
@@ -113,7 +111,7 @@ $(document).ready(function () {
                         if (billType == 5) {
                             $("#BillId input").attr("maxlength", '11')
                             $("#BillId input").rules('add', { digits: true, cellNumber: true, minlength: 11 });
-                        } if (billType == 4) {
+                        } else if (billType == 4) {
                             $("#BillId input").attr("maxlength", '11')
                             $("#BillId input").rules('add', { digits: true, minlength: 11 });
                         } else {
@@ -156,7 +154,7 @@ $(document).ready(function () {
                                         timeout: 7000,
                                     });
                                 }
-                            });
+                            }, true);
                         }
                         e.preventDefault();
                         break;
@@ -181,7 +179,7 @@ $(document).ready(function () {
                                     });
                                 }
 
-                            });
+                            }, true);
                         }
                         e.preventDefault();
                         break;
@@ -205,7 +203,7 @@ $(document).ready(function () {
                                         timeout: 7000,
                                     });
                                 }
-                            });
+                            }, true);
                         }
                         e.preventDefault();
                         break;
@@ -223,7 +221,7 @@ $(document).ready(function () {
                             }
                             ajaxHandler(billInquiryUrl + '/mci-mobile', 'POST', toCamel(billParams), null, function (callback) {
                                 phoneBillsHandler(toCamel(callback.d), billType, billParams.Mobile);
-                            });
+                            }, true);
                         }
                         e.preventDefault();
                         break;
@@ -242,7 +240,7 @@ $(document).ready(function () {
 
                             ajaxHandler(billInquiryUrl + '/fixed-line', 'POST', toCamel(billParams), null, function (callback) {
                                 phoneBillsHandler(toCamel(callback.d), billType, billParams.Phone);
-                            });
+                            }, true);
                         }
                         e.preventDefault();
                         break;
