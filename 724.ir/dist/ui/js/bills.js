@@ -81,6 +81,40 @@ $(document).ready(function () {
         toggleWizard('third-card');
     }
 
+    function paperBillsHandler(billParams) {
+        var billResult = getBillData(toCamel(billParams).billId, toCamel(billParams).payId);
+
+
+        if (billResult.verificationBillId == false) {
+            UIkit.notification(langs.invalidBillId, {
+                status: 'danger', pos: 'bottom-center', timeout: 7000
+            });
+            return false;
+        }
+        if (billResult.verificationBillPayment == false) {
+            UIkit.notification(langs.invalidPaymentId, {
+                status: 'danger', pos: 'bottom-center', timeout: 7000
+            });
+            return false;
+        }
+        if (billResult.validationBill == false) {
+            UIkit.notification(langs.invalidBill, {
+                status: 'danger', pos: 'bottom-center', timeout: 7000
+            });
+            return false;
+        }
+
+        ajaxHandler(asmxUrl + '/api/v1/bill/get-bill-info', 'GET', toCamel(billParams), null, function (callback) {
+
+            if (callback.billAmount == 0) {
+                UIkit.modal('#NoDebtModal').show();
+                return false;
+            }
+
+
+        });
+    }
+
 
     $('#BillForm').validate();
 
@@ -294,9 +328,9 @@ $(document).ready(function () {
                         e.preventDefault();
                         break;
                     case 'getPaperBill':
-                        if ($('#PaperBill').valid()) {
-                            var billParams = $('#PaperBill').serializeArray(), billParams = hasValue(billParams) ? convertJSON(billParams) : null;
-                            paperBillsHandler(billParams, 'paperBill', selfThis);
+                        if ($('#BillForm').valid()) {
+                            var billParams = $('#BillForm').serializeArray(), billParams = hasValue(billParams) ? convertJSON(billParams) : null;
+                            paperBillsHandler(billParams)
                         }
                         e.preventDefault();
                         break;
