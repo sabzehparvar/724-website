@@ -233,6 +233,7 @@ const billsInputId = {
   3: "GazParticipateCode",
   4: "Phone",
   5: "Mobile",
+  6: "BillId"
 }
 const billsActions = {
   1: "getWaterBill",

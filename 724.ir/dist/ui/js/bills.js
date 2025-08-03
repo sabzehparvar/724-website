@@ -95,13 +95,17 @@ $(document).ready(function () {
 
                     case "showSecondCard": {
                         let billName, billIdLabel
-                        if (billType === 'paper-bill') {
+                        if (billType == 6) {
 
-                            $('#BillPayment').removeClass('uk-hidden')
-                            billName = 'پرداخت با شناسه قبض';
+                            $('#BillPaymentInput').removeClass('uk-hidden')
                             billIdLabel = 'شناسه قبض'
+
+                            billName = 'پرداخت با شناسه قبض و پرداخت';
+                            $("#BillIdInput label").attr('for', billsInputId[billType]);
+                            $("#BillIdInput input").attr("id", billsInputId[billType]).attr("name", billsInputId[billType]);
+                            $("#BillInquiryButton button").attr("data-action", billsActions[billType]).attr("data-bill-type", billType);
                         } else {
-                            $('#BillPayment').addClass('uk-hidden')
+                            $('#BillPaymentInput').addClass('uk-hidden')
                             billName = hasValue(billType) ? `قبض ${billTypesEnum[billType]}` : 'قبض';
                             $("#BillIdInput label").attr('for', billsInputId[billType]);
                             $("#BillIdInput input").attr("id", billsInputId[billType]).attr("name", billsInputId[billType]);
