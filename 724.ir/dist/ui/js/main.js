@@ -181,14 +181,14 @@ const operatorIcons = {
   5: "ic-shatel",
   6: "ic-telekish",
 };
-var durationTypes = {
+const durationTypes = {
   1: "ساعته",
   2: "روزه",
   3: "هفته",
   4: "ماهه",
   5: "ساله",
 };
-var billTypes = {
+const billTypes = {
   water: "آب",
   electricity: "برق",
   gas: "گاز",
@@ -198,7 +198,7 @@ var billTypes = {
   traffic: "راهنمایی رانندگی",
 };
 
-var billTypesEnum = {
+const billTypesEnum = {
   1: "آب",
   2: "برق",
   3: "گاز",
@@ -208,7 +208,7 @@ var billTypesEnum = {
   7: "راهنمایی رانندگی",
 };
 
-var billTypesEnumEng = {
+const billTypesEnumEng = {
   1: "water",
   2: "electricity",
   3: "gas",
@@ -218,7 +218,7 @@ var billTypesEnumEng = {
   7: "traffic",
 };
 
-var billLableEnum = {
+const billLableEnum = {
   1: "شناسه قبض آب",
   2: "شناسه قبض برق",
   3: "شماره اشتراک قبض گاز",
@@ -240,6 +240,7 @@ const billsActions = {
   3: "getGasBill",
   4: "getPhoneBill",
   5: "getMciBill",
+  6: "getPaperBill"
 }
 function validateCellNumber(value, checkRegex = false) {
   var value = normalize(value.trim()).toString(),
@@ -359,3 +360,12 @@ $.validator.setDefaults({
     error.appendTo(element.closest("div"));
   },
 });
+
+function getBillData(billId, payId) {
+  var bill = new billify(billId, payId),
+    billResult = bill.getData();
+  if (billResult) {
+    $.extend(true, billResult, { billId, payId });
+  }
+  return billResult;
+}

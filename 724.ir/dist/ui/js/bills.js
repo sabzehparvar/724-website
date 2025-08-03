@@ -103,9 +103,8 @@ $(document).ready(function () {
                         } else {
                             $('#BillPayment').addClass('uk-hidden')
                             billName = hasValue(billType) ? `قبض ${billTypesEnum[billType]}` : 'قبض';
-                            $("#BillId label").attr('for', billsInputId[billType]);
-                            $("#BillId input").attr("id", billsInputId[billType]);
-                            $("#BillId input").attr("name", billsInputId[billType]);
+                            $("#BillIdInput label").attr('for', billsInputId[billType]);
+                            $("#BillIdInput input").attr("id", billsInputId[billType]).attr("name", billsInputId[billType]);
                             $("#BillInquiryButton button").attr("data-action", billsActions[billType]).attr("data-bill-type", billType);
                             if (billType <= 3) {
                                 billIdLabel = 'شناسه قبض'
@@ -115,22 +114,22 @@ $(document).ready(function () {
                         }
 
                         $("#BillFormTitle").text(`${billName}`);
-                        $("#BillId label").text(`${billIdLabel}  رو وارد کن`);
-                        $("#BillId input").attr("data-bill-type", billType).val("").attr("placeholder", billIdLabel);
+                        $("#BillIdInput label").text(`${billIdLabel}  رو وارد کن`);
+                        $("#BillIdInput input").attr("data-bill-type", billType).val("").attr("placeholder", billIdLabel);
 
                         toggleWizard("second-card");
 
-                        $("#BillId input").rules('remove');
+                        $("#BillIdInput input").rules('remove');
 
                         if (billType == 5) {
-                            $("#BillId input").attr("maxlength", '11')
-                            $("#BillId input").rules('add', { digits: true, cellNumber: true, minlength: 11 });
+                            $("#BillIdInput input").attr("maxlength", '11')
+                            $("#BillIdInput input").rules('add', { digits: true, cellNumber: true, minlength: 11 });
                         } else if (billType == 4) {
-                            $("#BillId input").attr("maxlength", '11')
-                            $("#BillId input").rules('add', { digits: true, minlength: 11 });
+                            $("#BillIdInput input").attr("maxlength", '11')
+                            $("#BillIdInput input").rules('add', { digits: true, minlength: 11 });
                         } else {
-                            $("#BillId input").rules('add', { digits: true, minlength: 5 });
-                            $("#BillId input").removeAttr("maxlength")
+                            $("#BillIdInput input").rules('add', { digits: true, minlength: 5 });
+                            $("#BillIdInput input").removeAttr("maxlength")
                         }
 
                         e.preventDefault();
