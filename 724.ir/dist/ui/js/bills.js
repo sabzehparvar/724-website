@@ -124,13 +124,18 @@ $(document).ready(function () {
                         toggleWizard("second-card");
 
                         $("#BillIdInput input").rules('remove');
-
-                        if (billType == 5) {
-                            $("#BillIdInput input").attr("maxlength", '11')
-                            $("#BillIdInput input").rules('add', { digits: true, cellNumber: true, minlength: 11 });
-                        } else if (billType == 4) {
+                        if (billType == 4) {
                             $("#BillIdInput input").attr("maxlength", '11')
                             $("#BillIdInput input").rules('add', { digits: true, minlength: 11 });
+                        } else if (billType == 5) {
+                            $("#BillIdInput input").attr("maxlength", '11')
+                            $("#BillIdInput input").rules('add', { digits: true, cellNumber: true, minlength: 11 });
+                        } else if (billType == 6) {
+
+                            $("#BillIdInput input").rules('add', { digits: true, minlength: 5 });
+                            $("#BillPaymentInput input").rules('add', { digits: true, minlength: 5 });
+                            $("#BillIdInput input").removeAttr("maxlength")
+
                         } else {
                             $("#BillIdInput input").rules('add', { digits: true, minlength: 5 });
                             $("#BillIdInput input").removeAttr("maxlength")
