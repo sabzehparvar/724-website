@@ -84,7 +84,6 @@ $(document).ready(function () {
     function paperBillsHandler(billParams) {
         var billResult = getBillData(toCamel(billParams).billId, toCamel(billParams).payId);
 
-
         if (billResult.verificationBillId == false) {
             UIkit.notification(langs.invalidBillId, {
                 status: 'danger', pos: 'bottom-center', timeout: 7000
@@ -104,15 +103,44 @@ $(document).ready(function () {
             return false;
         }
 
-        ajaxHandler(asmxUrl + '/api/v1/bill/get-bill-info', 'GET', toCamel(billParams), null, function (callback) {
 
-            if (callback.billAmount == 0) {
-                UIkit.modal('#NoDebtModal').show();
-                return false;
+
+        ajaxHandler(asmxUrl + '/api/v1/bill/get-bill-info', 'GET', toCamel(billParams), null, function (callback) {
+            callback = toCamel(callback)
+            if (hasValue(callback) && callback.isSuccess) {
+
+                if (!callback.data.billAmount || callback.data.billAmount === 0) {
+                    UIkit.notification(langs.noBillDebt, {
+                        status: 'danger', pos: 'bottom-center', timeout: 7000
+                    });
+                    return;
+                }
+
+                const billName = hasValue(callback.data?.billType) ? callback.data?.billType : 'قبض';
+                const billID = callback?.data?.billId?.toString().trim() || '';
+                const amount = callback?.data?.billAmount?.toString().trim() || '';
+
+                $("#BillInfoTitle").text(`${billName}`);
+                const $template = $($('#BillInfoTemplate').html());
+                $template.find('#BillName').text(`${billName}`);
+                $template.find('#BillInfoId').text(`شناسه قبض: ${billID}`);
+                $template.find('#BillAmount').text(commaSeparator(amount) + ' ' + langs.irr);
+                $('#BillInfoContainer').html($template);
+                toggleWizard('third-card')
+
+            } else {
+                const message = hasValue(callback?.status?.description) ? callback.status.description : langs.serviceException;
+                UIkit.notification(message, {
+                    status: "danger",
+                    pos: "bottom-center",
+                    timeout: 7000,
+                });
             }
 
 
-        });
+
+
+        }, true);
     }
 
 
