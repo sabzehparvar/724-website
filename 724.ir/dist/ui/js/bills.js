@@ -285,6 +285,13 @@ $(document).ready(function () {
                         }
                         e.preventDefault();
                         break;
+                    case 'getPaperBill':
+                        if ($('#PaperBill').valid()) {
+                            var billParams = $('#PaperBill').serializeArray(), billParams = hasValue(billParams) ? convertJSON(billParams) : null;
+                            paperBillsHandler(billParams, 'paperBill', selfThis);
+                        }
+                        e.preventDefault();
+                        break;
                 }
             }
         }
