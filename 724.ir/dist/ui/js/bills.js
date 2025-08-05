@@ -164,7 +164,7 @@ $(document).ready(function () {
                             $('#BillPaymentInput').removeClass('uk-hidden')
                             billIdLabel = 'شناسه قبض'
 
-                            billName = 'پرداخت با شناسه قبض و پرداخت';
+                            billName = 'پرداخت با شناسه';
                             $("#BillIdInput label").attr('for', billsInputId[billType]);
                             $("#BillIdInput input").attr("id", billsInputId[billType]).attr("name", billsInputId[billType]);
                             $("#BillInquiryButton button").attr("data-action", billsActions[billType]).attr("data-bill-type", billType);
