@@ -370,7 +370,31 @@ $(document).ready(function () {
                     case 'payBill': {
                         const billId = hasValue(selfThis.attr("data-billid")) ? selfThis.attr("data-billid").trim() : null;
                         const payId = hasValue(selfThis.attr("data-payid")) ? selfThis.attr("data-payid").trim() : null;
-                        console.log(billId, payId)
+
+                        if (billId && payId) {
+
+                            const tokenParams = {
+                                billId,
+                                payId,
+                                ThirdPartyCallBack: "http://localhost:701/724.ir/receipt.html"
+                            };
+
+                            ajaxHandler('http://localhost:43197/api/v1/bill/get-token', 'GET', tokenParams, null, function (response) {
+
+                                if (response && response.IsSuccess && response.Data) {
+                                    const { IpgUrl, Token } = response.Data;
+
+                                    $.redirect(IpgUrl, { token: Token, GetMethod: true }, 'POST');
+
+                                } else {
+                                    UIkit.notification(langs.serviceException, {
+                                        status: "danger",
+                                        pos: "bottom-center",
+                                        timeout: 7000,
+                                    });
+                                }
+                            }, true, true, true);
+                        }
                         e.preventDefault();
                         break;
                     }
