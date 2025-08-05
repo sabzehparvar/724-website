@@ -27,14 +27,17 @@ $(document).ready(function () {
         }
         const billName = hasValue(billType) ? `قبض ${billTypesEnum[billType]}` : 'قبض';
         const fullName = callback?.parameters?.fullName?.trim() || '';
-        const billID = callback?.parameters?.billID?.toString().trim() || '';
+        const billId = callback?.parameters?.billID?.toString().trim() || '';
+        const payId = callback?.parameters?.paymentID?.toString().trim() || '';
         const amount = callback?.parameters?.amount?.toString().trim() || '';
         $("#BillInfoTitle").text(`${billName}`);
 
         const $template = $($('#BillInfoTemplate').html());
         $template.find('#BillName').text(`${billName} ${fullName}`);
-        $template.find('#BillInfoId').text(`شناسه قبض: ${billID}`);
+        $template.find('#BillInfoId').text(`شناسه قبض: ${billId}`);
         $template.find('#BillAmount').text(commaSeparator(amount));
+        $template.find('#BillPayButton button').attr('data-billid', billId);
+        $template.find('#BillPayButton button').attr('data-payid', payId)
         $template.find('.ui-bill-amount-icon img').attr('src', `./dist/ui/img/icon/app/${billsIcons[billType]}.svg`)
         $('#BillInfoContainer').html($template);
         toggleWizard('third-card')
@@ -364,6 +367,13 @@ $(document).ready(function () {
                         }
                         e.preventDefault();
                         break;
+                    case 'payBill': {
+                        const billId = hasValue(selfThis.attr("data-billid")) ? selfThis.attr("data-billid").trim() : null;
+                        const payId = hasValue(selfThis.attr("data-payid")) ? selfThis.attr("data-payid").trim() : null;
+                        console.log(billId, payId)
+                        e.preventDefault();
+                        break;
+                    }
                 }
             }
         }
