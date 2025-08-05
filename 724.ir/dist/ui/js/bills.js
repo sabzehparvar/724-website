@@ -25,7 +25,6 @@ $(document).ready(function () {
 
             return false;
         }
-
         const billName = hasValue(billType) ? `قبض ${billTypesEnum[billType]}` : 'قبض';
         const fullName = callback?.parameters?.fullName?.trim() || '';
         const billID = callback?.parameters?.billID?.toString().trim() || '';
@@ -36,6 +35,7 @@ $(document).ready(function () {
         $template.find('#BillName').text(`${billName} ${fullName}`);
         $template.find('#BillInfoId').text(`شناسه قبض: ${billID}`);
         $template.find('#BillAmount').text(commaSeparator(amount));
+        $template.find('.ui-bill-amount-icon img').attr('src', `./dist/ui/img/icon/app/${billsIcons[billType]}.svg`)
         $('#BillInfoContainer').html($template);
         toggleWizard('third-card')
     }
@@ -60,7 +60,7 @@ $(document).ready(function () {
         const $template = $($('#PhoneBillInfoTemplate').html());
         $template.find('#BillName').text(billName);
         $template.find('#BillNumber').text(`شماره ${billType == 4 ? 'تلفن' : 'موبایل'}: ${number}`);
-
+        $template.find('.ui-bill-amount-icon img').attr('src', `./dist/ui/img/icon/app/${billsIcons[billType]}.svg`)
         if (!midTerm?.amount || midTerm?.amount == 0) {
             $template.find('#BillMidAmount').text('0' + ' ' + langs.irr);
             $template.find('#MidtermAmount').attr('disabled', true);
@@ -117,6 +117,7 @@ $(document).ready(function () {
                 }
 
                 const billName = hasValue(callback.data?.billType) ? callback.data?.billType : 'قبض';
+                const billTypeId = hasValue(callback.data?.billTypeId) ? callback.data?.billTypeId : null;
                 const billID = callback?.data?.billId?.toString().trim() || '';
                 const amount = callback?.data?.billAmount?.toString().trim() || '';
 
@@ -125,6 +126,7 @@ $(document).ready(function () {
                 $template.find('#BillName').text(`${billName}`);
                 $template.find('#BillInfoId').text(`شناسه قبض: ${billID}`);
                 $template.find('#BillAmount').text(commaSeparator(amount) + ' ' + langs.irr);
+                $template.find('.ui-bill-amount-icon img').attr('src', `./dist/ui/img/icon/app/${billsIcons[billTypeId] ? billsIcons[billTypeId] : 'ic-paper-bill'}.svg`)
                 $('#BillInfoContainer').html($template);
                 toggleWizard('third-card')
 

@@ -181,6 +181,14 @@ const operatorIcons = {
   5: "ic-shatel",
   6: "ic-telekish",
 };
+const billsIcons = {
+  1: "ic-bill-water",
+  2: "ic-bill-tavanir",
+  3: "ic-bill-gas",
+  4: "ic-bill-mokhaberat",
+  5: "ic-hamrah-aval",
+  6: "ic-municipality"
+};
 const durationTypes = {
   1: "ساعته",
   2: "روزه",
@@ -194,8 +202,6 @@ const billTypes = {
   gas: "گاز",
   phone: "تلفن",
   hamrahAval: "همراه اول",
-  municipality: "شهرداری",
-  traffic: "راهنمایی رانندگی",
 };
 
 const billTypesEnum = {
@@ -204,8 +210,6 @@ const billTypesEnum = {
   3: "گاز",
   4: "تلفن",
   5: "همراه اول",
-  6: "شهرداری",
-  7: "راهنمایی رانندگی",
 };
 
 const billTypesEnumEng = {
@@ -214,8 +218,6 @@ const billTypesEnumEng = {
   3: "gas",
   4: "phone",
   5: "hamrahAval",
-  6: "municipality",
-  7: "traffic",
 };
 
 const billLableEnum = {
@@ -225,7 +227,6 @@ const billLableEnum = {
   4: "شماره تلفن",
   5: "شماره تلفن همراه",
   6: "شناسه قبض",
-  7: "شماره پلاک خودرو",
 };
 const billsInputId = {
   1: "WatterBillId",
