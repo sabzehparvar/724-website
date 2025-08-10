@@ -36,9 +36,8 @@ $(document).ready(function () {
         $template.find('#BillName').text(`${billName} ${fullName}`);
         $template.find('#BillInfoId').text(`شناسه قبض: ${billId}`);
         $template.find('#BillAmount').text(commaSeparator(amount));
-        $template.find('#BillPayButton button').attr('data-billid', billId);
-        $template.find('#BillPayButton button').attr('data-payid', payId)
-        $template.find('.ui-bill-amount-icon img').attr('src', `./dist/ui/img/icon/app/${billsIcons[billType]}.svg`)
+        $template.find('#BillPayButton button').attr('data-billid', billId).attr('data-payid', payId);
+        $template.find('.ui-bill-amount-icon img').attr('src', `./dist/ui/img/icon/app/${billsIcons[billType]}.svg`);
         $('#BillInfoContainer').html($template);
         toggleWizard('third-card')
     }
@@ -65,19 +64,24 @@ $(document).ready(function () {
         $template.find('#BillNumber').text(`شماره ${billType == 4 ? 'تلفن' : 'موبایل'}: ${number}`);
         $template.find('.ui-bill-amount-icon img').attr('src', `./dist/ui/img/icon/app/${billsIcons[billType]}.svg`)
         if (!midTerm?.amount || midTerm?.amount == 0) {
-            $template.find('#BillMidAmount').text('0' + ' ' + langs.irr);
-            $template.find('#MidtermAmount').attr('disabled', true);
+            $template.find('#MidTermAmount').text('0' + ' ' + langs.irr);
+            $template.find('#MidTermInput').attr('disabled', true);
+            $template.find('#MidTermInput').removeAttr('data-billid').removeAttr('data-payid');
         } else {
-            $template.find('#BillMidAmount').text(commaSeparator(midTerm?.amount) + ' ' + langs.irr);
-            $template.find('#MidtermAmount').removeAttr('disabled');
+            $template.find('#MidTermInput').attr('data-billid', midTerm?.billID || '').attr('data-payid', midTerm?.paymentID || '');
+            $template.find('#MidTermAmount').text(commaSeparator(midTerm?.amount) + ' ' + langs.irr);
+            $template.find('#MidTermInput').removeAttr('disabled');
         }
 
         if (!finalTerm?.amount || finalTerm?.amount == 0) {
-            $template.find('#BillFinalAmount').text('0' + ' ' + langs.irr);
-            $template.find('#FinalTermAmount').attr('disabled', true);
+            $template.find('#FinalTermAmount').text('0' + ' ' + langs.irr);
+            $template.find('#FinalTermInput').attr('disabled', true);
+            $template.find('#FinalTermInput').removeAttr('data-billid').removeAttr('data-payid');
+
         } else {
-            $template.find('#BillFinalAmount').text(commaSeparator(finalTerm?.amount) + ' ' + langs.irr);
-            $template.find('#FinalTermAmount').removeAttr('disabled');
+            $template.find('#FinalTermInput').attr('data-billid', finalTerm?.billID || '').attr('data-payid', finalTerm?.paymentID || '');
+            $template.find('#FinalTermAmount').text(commaSeparator(finalTerm?.amount) + ' ' + langs.irr);
+            $template.find('#FinalTermInput').removeAttr('disabled');
         }
 
         $('#BillInfoContainer').html($template);
