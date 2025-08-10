@@ -194,15 +194,21 @@ $(document).ready(function () {
     const queryString = new URLSearchParams(window.location.search);
     const token = queryString.get("token");
     const resNum = queryString.get("resNum");
+    const rNum = queryString.get("r");
+    const tid = queryString.get("tid");
+
     const getReceiptParam = {
         token,
         resNum
     };
-    if (!token || !resNum) {
-        showReceiptError()
-    } else {
-        ajaxHandler(asmxUrl + '/api/v1/ipg-top-up/get-receipt', 'GET', getReceiptParam, null, function (callback) {
-           
+
+    if (token && resNum) {
+
+        ajaxHandler(asmxUrl + '/api/v1/ipg-top-up/get-receipt', 'GET', {
+            token,
+            resNum
+        }, null, function (callback) {
+
             if (hasValue(callback) && callback.IsSuccess && callback.Code === 2000) {
                 const { Detail, Transaction, TopUpPackage } = callback.Data;
                 if (Detail.TopUpSuccess) {
@@ -216,6 +222,32 @@ $(document).ready(function () {
             }
 
         }, true, true, true);
+
+    } else if (rNum && tid) {
+
+        ajaxHandler(asmxUrl + '/api/v1/bill/get-receipt-by-tid', 'GET', {
+            tid,
+            resNum: rNum
+        }, null, function (callback) {
+
+            console.log(callback)
+            if (hasValue(callback) && callback.IsSuccess && callback.Code === 2000) {
+                console.log(callback)
+                // const { Detail, Transaction, TopUpPackage } = callback.Data;
+                // if (Detail.TopUpSuccess) {
+                //     showSuccessReceipt(Detail, Transaction, TopUpPackage);
+
+                // } else {
+                //     showFailedReceipt(Detail);
+                // }
+            } else {
+                showReceiptError();
+            }
+
+        }, true, true, true);
+
+    } else {
+        showReceiptError()
     }
 
 })
