@@ -65,9 +65,11 @@ $(document).ready(function () {
         $template.find('.ui-bill-amount-icon img').attr('src', `./dist/ui/img/icon/app/${billsIcons[billType]}.svg`)
         if (!midTerm?.amount || midTerm?.amount == 0) {
             $template.find('#MidTermAmount').text('0' + ' ' + langs.irr);
-            $template.find('#MidTermInput').removeAttr('data-billid').removeAttr('data-payid').attr('disabled', true).attr('checked', false);
+            $template.find('#MidTermInput').attr('disabled', true).attr('checked', false);
+            $template.find('label[for="MidTermInput"]').removeAttr('data-billid').removeAttr('data-payid');
         } else {
-            $template.find('#MidTermInput').attr('data-billid', midTerm?.billID || '').attr('data-payid', midTerm?.paymentID || '').removeAttr('disabled').attr('checked', true);
+            $template.find('label[for="MidTermInput"]').attr('data-billid', midTerm?.billID || '').attr('data-payid', midTerm?.paymentID || '');
+            $template.find('#MidTermInput').removeAttr('disabled').attr('checked', true);
             $template.find('#MidTermAmount').text(commaSeparator(midTerm?.amount) + ' ' + langs.irr);
             $template.find('#BillPayButton button').attr('data-billid', midTerm?.billID || '').attr('data-payid', midTerm?.paymentID || '');
         }
@@ -75,10 +77,10 @@ $(document).ready(function () {
         if (!finalTerm?.amount || finalTerm?.amount == 0) {
             $template.find('#FinalTermAmount').text('0' + ' ' + langs.irr);
             $template.find('#FinalTermInput').attr('disabled', true);
-            $template.find('#FinalTermInput').removeAttr('data-billid').removeAttr('data-payid');
+            $template.find('label[for="FinalTermInput"]').removeAttr('data-billid').removeAttr('data-payid');
 
         } else {
-            $template.find('#FinalTermInput').attr('data-billid', finalTerm?.billID || '').attr('data-payid', finalTerm?.paymentID || '');
+            $template.find('label[for="FinalTermInput"]').attr('data-billid', finalTerm?.billID || '').attr('data-payid', finalTerm?.paymentID || '');
             $template.find('#FinalTermAmount').text(commaSeparator(finalTerm?.amount) + ' ' + langs.irr);
             $template.find('#FinalTermInput').removeAttr('disabled');
         }
@@ -432,6 +434,17 @@ $(document).ready(function () {
                             }, true, true, true);
                         }
                         e.preventDefault();
+                        break;
+                    }
+                    case 'selectPhoneBill': {
+
+                        const billId = hasValue(selfThis.attr("data-billid")) ? selfThis.attr("data-billid").trim() : null;
+                        const payId = hasValue(selfThis.attr("data-payid")) ? selfThis.attr("data-payid").trim() : null;
+                        if (billId && payId) {
+
+                            $('#BillPayButton button').attr('data-billid', billId).attr('data-payid', payId);
+
+                        }
                         break;
                     }
                 }
