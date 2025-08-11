@@ -65,12 +65,11 @@ $(document).ready(function () {
         $template.find('.ui-bill-amount-icon img').attr('src', `./dist/ui/img/icon/app/${billsIcons[billType]}.svg`)
         if (!midTerm?.amount || midTerm?.amount == 0) {
             $template.find('#MidTermAmount').text('0' + ' ' + langs.irr);
-            $template.find('#MidTermInput').attr('disabled', true);
-            $template.find('#MidTermInput').removeAttr('data-billid').removeAttr('data-payid');
+            $template.find('#MidTermInput').removeAttr('data-billid').removeAttr('data-payid').attr('disabled', true).attr('checked', false);
         } else {
-            $template.find('#MidTermInput').attr('data-billid', midTerm?.billID || '').attr('data-payid', midTerm?.paymentID || '');
+            $template.find('#MidTermInput').attr('data-billid', midTerm?.billID || '').attr('data-payid', midTerm?.paymentID || '').removeAttr('disabled').attr('checked', true);
             $template.find('#MidTermAmount').text(commaSeparator(midTerm?.amount) + ' ' + langs.irr);
-            $template.find('#MidTermInput').removeAttr('disabled');
+            $template.find('#BillPayButton button').attr('data-billid', midTerm?.billID || '').attr('data-payid', midTerm?.paymentID || '');
         }
 
         if (!finalTerm?.amount || finalTerm?.amount == 0) {
