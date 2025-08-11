@@ -63,24 +63,26 @@ $(document).ready(function () {
         $template.find('#BillName').text(billName);
         $template.find('#BillNumber').text(`شماره ${billType == 4 ? 'تلفن' : 'موبایل'}: ${number}`);
         $template.find('.ui-bill-amount-icon img').attr('src', `./dist/ui/img/icon/app/${billsIcons[billType]}.svg`)
+        $template.find('#BillPayButton button').attr('data-billid', midTerm?.billID || '')
+
         if (!midTerm?.amount || midTerm?.amount == 0) {
             $template.find('#MidTermAmount').text('0' + ' ' + langs.irr);
             $template.find('#MidTermInput').attr('disabled', true).attr('checked', false);
-            $template.find('label[for="MidTermInput"]').removeAttr('data-billid').removeAttr('data-payid');
+
         } else {
-            $template.find('label[for="MidTermInput"]').attr('data-billid', midTerm?.billID || '').attr('data-payid', midTerm?.paymentID || '');
+            $template.find('label[for="MidTermInput"]').attr('data-payid', midTerm?.paymentID || '');
             $template.find('#MidTermInput').removeAttr('disabled').attr('checked', true);
             $template.find('#MidTermAmount').text(commaSeparator(midTerm?.amount) + ' ' + langs.irr);
-            $template.find('#BillPayButton button').attr('data-billid', midTerm?.billID || '').attr('data-payid', midTerm?.paymentID || '');
+            $template.find('#BillPayButton button').attr('data-payid', midTerm?.paymentID || '');
         }
 
         if (!finalTerm?.amount || finalTerm?.amount == 0) {
             $template.find('#FinalTermAmount').text('0' + ' ' + langs.irr);
             $template.find('#FinalTermInput').attr('disabled', true);
-            $template.find('label[for="FinalTermInput"]').removeAttr('data-billid').removeAttr('data-payid');
+
 
         } else {
-            $template.find('label[for="FinalTermInput"]').attr('data-billid', finalTerm?.billID || '').attr('data-payid', finalTerm?.paymentID || '');
+            $template.find('label[for="FinalTermInput"]').attr('data-payid', finalTerm?.paymentID || '');
             $template.find('#FinalTermAmount').text(commaSeparator(finalTerm?.amount) + ' ' + langs.irr);
             $template.find('#FinalTermInput').removeAttr('disabled');
         }
@@ -124,15 +126,18 @@ $(document).ready(function () {
 
                 const billName = hasValue(callback.data?.billType) ? callback.data?.billType : 'قبض';
                 const billTypeId = hasValue(callback.data?.billTypeId) ? callback.data?.billTypeId : null;
-                const billID = callback?.data?.billId?.toString().trim() || '';
+                const billId = callback?.data?.billId?.toString().trim() || '';
+                const payId = callback?.data?.payId?.toString().trim() || '';
                 const amount = callback?.data?.billAmount?.toString().trim() || '';
 
                 $("#BillInfoTitle").text(`${billName}`);
                 const $template = $($('#BillInfoTemplate').html());
                 $template.find('#BillName').text(`${billName}`);
-                $template.find('#BillInfoId').text(`شناسه قبض: ${billID}`);
+                $template.find('#BillInfoId').text(`شناسه قبض: ${billId}`);
                 $template.find('#BillAmount').text(commaSeparator(amount) + ' ' + langs.irr);
-                $template.find('.ui-bill-amount-icon img').attr('src', `./dist/ui/img/icon/app/${billsIcons[billTypeId] ? billsIcons[billTypeId] : 'ic-paper-bill'}.svg`)
+                $template.find('.ui-bill-amount-icon img').attr('src', `./dist/ui/img/icon/app/${billsIcons[billTypeId] ? billsIcons[billTypeId] : 'ic-paper-bill'}.svg`);
+                $template.find('#BillPayButton button').attr('data-billid', billId).attr('data-payid', payId);
+
                 $('#BillInfoContainer').html($template);
                 toggleWizard('third-card')
 
@@ -432,11 +437,10 @@ $(document).ready(function () {
                     }
                     case 'selectPhoneBill': {
 
-                        const billId = hasValue(selfThis.attr("data-billid")) ? selfThis.attr("data-billid").trim() : null;
                         const payId = hasValue(selfThis.attr("data-payid")) ? selfThis.attr("data-payid").trim() : null;
-                        if (billId && payId) {
+                        if (payId) {
 
-                            $('#BillPayButton button').attr('data-billid', billId).attr('data-payid', payId);
+                            $('#BillPayButton button').attr('data-payid', payId);
 
                         }
                         break;
