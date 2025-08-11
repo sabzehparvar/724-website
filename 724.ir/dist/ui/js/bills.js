@@ -111,8 +111,6 @@ $(document).ready(function () {
             return false;
         }
 
-
-
         ajaxHandler(asmxUrl + '/api/v1/bill/get-bill-info', 'GET', toCamel(billParams), null, function (callback) {
             callback = toCamel(callback)
             if (hasValue(callback) && callback.isSuccess) {
@@ -260,19 +258,14 @@ $(document).ready(function () {
                         e.preventDefault();
                         break;
                     }
-                    case 'getElectricityBill':
+                    case 'getElectricityBill': {
 
                         if ($('#BarghBillId').valid()) {
-
                             let billParams = $('#BarghBillId').serializeArray()
-
                             billParams = hasValue(billParams) ? convertJSON(billParams) : null;
-
                             ajaxHandler(billInquiryUrl + '/electricity', 'POST', toCamel(billParams), null, function (callback) {
-
                                 if (hasValue(callback) && callback.hasOwnProperty("d") && callback?.d?.Status?.IsSuccess) {
                                     billsHandler(toCamel(callback.d), billType)
-
                                 } else {
                                     const message = hasValue(callback?.d?.Status?.Description) ? callback.d.Status.Description : langs.serviceException;
                                     UIkit.notification(message, {
@@ -285,14 +278,12 @@ $(document).ready(function () {
                         }
                         e.preventDefault();
                         break;
-                    case 'getWaterBill':
+                    }
+                    case 'getWaterBill': {
 
                         if ($('#WatterBillId').valid()) {
-
                             let billParams = $('#WatterBillId').serializeArray()
-
                             billParams = hasValue(billParams) ? convertJSON(billParams) : null;
-
                             ajaxHandler(billInquiryUrl + '/water', 'POST', toCamel(billParams), null, function (callback) {
                                 if (hasValue(callback) && callback.hasOwnProperty("d") && callback?.d?.Status?.IsSuccess) {
                                     billsHandler(toCamel(callback.d), billType)
@@ -310,13 +301,12 @@ $(document).ready(function () {
                         }
                         e.preventDefault();
                         break;
-                    case 'getGasBill':
+                    }
+                    case 'getGasBill': {
+
                         if ($('#GazParticipateCode').valid()) {
-
                             let billParams = $('#GazParticipateCode').serializeArray()
-
                             billParams = hasValue(billParams) ? convertJSON(billParams) : null;
-
                             ajaxHandler(billInquiryUrl + '/gaz', 'POST', toCamel(billParams), null, function (callback) {
                                 if (hasValue(callback) && callback.hasOwnProperty("d") && callback?.d?.Status?.IsSuccess) {
 
@@ -334,7 +324,8 @@ $(document).ready(function () {
                         }
                         e.preventDefault();
                         break;
-                    case 'getMciBill':
+                    }
+                    case 'getMciBill': {
                         if ($('#Mobile').valid()) {
                             let billParams = $('#Mobile').serializeArray();
 
@@ -365,7 +356,8 @@ $(document).ready(function () {
                         }
                         e.preventDefault();
                         break;
-                    case 'getPhoneBill':
+                    }
+                    case 'getPhoneBill': {
                         if ($('#Phone').valid()) {
                             let billParams = $('#Phone').serializeArray();
 
@@ -398,13 +390,15 @@ $(document).ready(function () {
                         }
                         e.preventDefault();
                         break;
-                    case 'getPaperBill':
+                    }
+                    case 'getPaperBill': {
                         if ($('#BillForm').valid()) {
                             var billParams = $('#BillForm').serializeArray(), billParams = hasValue(billParams) ? convertJSON(billParams) : null;
                             paperBillsHandler(billParams)
                         }
                         e.preventDefault();
                         break;
+                    }
                     case 'payBill': {
                         const billId = hasValue(selfThis.attr("data-billid")) ? selfThis.attr("data-billid").trim() : null;
                         const payId = hasValue(selfThis.attr("data-payid")) ? selfThis.attr("data-payid").trim() : null;
