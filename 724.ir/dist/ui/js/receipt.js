@@ -2,102 +2,106 @@
 
 $(document).ready(function () {
 
-    function showSuccessReceipt(detail, transaction, packageInfo) {
+    function showSuccessReceipt(callback) {
 
-        const data = {
-            PackageFullTitle: hasValue(detail.TopUpDescription) ? detail.TopUpDescription.trim() : null,
-            Amount: hasValue(detail.Amount) ? detail.Amount : null,
-            CellNumber: hasValue(detail.CellNumber) ? detail.CellNumber.trim() : null,
-            OperatorName: hasValue(operatorTypes[detail.OperatorCode])
-                ? operatorTypes[detail.OperatorCode].trim()
-                : null,
-            SecurePan: hasValue(transaction.SecurePan) ? transaction.SecurePan.trim() : null,
-            PersianPayedOn: hasValue(transaction.PersianPayedOn)
-                ? transaction.PersianPayedOn.trim()
-                : null,
-            TraceNo: hasValue(transaction.TraceNo) ? transaction.TraceNo.trim() : null,
-            DurationType: packageInfo && hasValue(packageInfo.DurationType) ? packageInfo.DurationType : null,
-            ChargeTypeDescription: packageInfo && hasValue(packageInfo.ChargeTypeDescription) ? packageInfo.ChargeTypeDescription : null
-        };
-
-        const schema = [
-            {
-                key: 'Amount',
-                label: 'مبلغ',
-                labelClass: 'uk-text-muted',
-                valueClass: 'uk-text-left',
-                attrs: {},
-                formatter: val => commaSeparator(val) + ' ' + langs.irr
-            },
-            {
-                key: 'CellNumber',
-                label: 'برای شماره',
-                labelClass: 'uk-text-muted',
-                valueClass: 'uk-text-left',
-                attrs: { dir: 'ltr' },
-            },
-            {
-                key: 'OperatorName',
-                label: 'اپراتور',
-                labelClass: 'uk-text-muted',
-                valueClass: 'uk-text-left',
-                attrs: {}
-            },
-            {
-                key: 'DurationType',
-                label: 'مدت',
-                labelClass: 'uk-text-muted',
-                valueClass: 'uk-text-left',
-                attrs: {},
-                formatter: val => {
-                    const dur = packageInfo.Duration;
-                    const typeLabel = durationTypes[val] || '';
-                    return dur + ' ' + typeLabel;
-                }
-            },
-            {
-                key: 'ChargeTypeDescription',
-                label: 'نوع شارژ',
-                labelClass: 'uk-text-muted',
-                valueClass: 'uk-text-left',
-                attrs: {},
-                formatter: val => {
-                    switch (val) {
-                        case 'Shoorangiz': return langs.topupExcitingPkg;
-                        case 'Wow': return langs.topupAmazingPkg;
-                        case 'Normal': return langs.topupNormalPkg;
-                        default: return null;
+        let data;
+        let schema;
+        if (hasValue(callback?.detail) && hasValue(callback?.transaction) && hasValue(callback?.topUpPackage)) {
+            const { detail, transaction, topUpPackage } = callback;
+            data = {
+                PackageFullTitle: hasValue(detail.topUpDescription) ? detail.topUpDescription.trim() : null,
+                Amount: hasValue(detail.amount) ? detail.amount : null,
+                CellNumber: hasValue(detail.cellNumber) ? detail.cellNumber.trim() : null,
+                OperatorName: hasValue(operatorTypes[detail.operatorCode])
+                    ? operatorTypes[detail.operatorCode].trim()
+                    : null,
+                SecurePan: hasValue(transaction.securePan) ? transaction.securePan.trim() : null,
+                PersianPayedOn: hasValue(transaction.persianPayedOn)
+                    ? transaction.persianPayedOn.trim()
+                    : null,
+                TraceNo: hasValue(transaction.traceNo) ? transaction.traceNo.trim() : null,
+                DurationType: topUpPackage && hasValue(topUpPackage.durationType) ? topUpPackage.durationType : null,
+                ChargeTypeDescription: topUpPackage && hasValue(topUpPackage.chargeTypeDescription) ? topUpPackage.chargeTypeDescription : null
+            };
+            schema = [
+                {
+                    key: 'Amount',
+                    label: 'مبلغ',
+                    labelClass: 'uk-text-muted',
+                    valueClass: 'uk-text-left',
+                    attrs: {},
+                    formatter: val => commaSeparator(val) + ' ' + langs.irr
+                },
+                {
+                    key: 'CellNumber',
+                    label: 'برای شماره',
+                    labelClass: 'uk-text-muted',
+                    valueClass: 'uk-text-left',
+                    attrs: { dir: 'ltr' },
+                },
+                {
+                    key: 'OperatorName',
+                    label: 'اپراتور',
+                    labelClass: 'uk-text-muted',
+                    valueClass: 'uk-text-left',
+                    attrs: {}
+                },
+                {
+                    key: 'DurationType',
+                    label: 'مدت',
+                    labelClass: 'uk-text-muted',
+                    valueClass: 'uk-text-left',
+                    attrs: {},
+                    formatter: val => {
+                        const dur = topUpPackage.duration;
+                        const typeLabel = durationTypes[val] || '';
+                        return dur + ' ' + typeLabel;
                     }
+                },
+                {
+                    key: 'ChargeTypeDescription',
+                    label: 'نوع شارژ',
+                    labelClass: 'uk-text-muted',
+                    valueClass: 'uk-text-left',
+                    attrs: {},
+                    formatter: val => {
+                        switch (val) {
+                            case 'Shoorangiz': return langs.topupExcitingPkg;
+                            case 'Wow': return langs.topupAmazingPkg;
+                            case 'Normal': return langs.topupNormalPkg;
+                            default: return null;
+                        }
+                    }
+                },
+                {
+                    key: 'SecurePan',
+                    label: 'پرداخت با کارت',
+                    labelClass: 'uk-text-muted',
+                    valueClass: 'uk-text-left',
+                    attrs: { dir: 'ltr' }
+                },
+                {
+                    key: 'PersianPayedOn',
+                    label: 'تاریخ و زمان',
+                    labelClass: 'uk-text-muted',
+                    valueClass: 'uk-text-left',
+                    attrs: { dir: 'ltr' }
+                },
+                {
+                    key: 'TraceNo',
+                    label: 'شماره پیگیری',
+                    labelClass: 'uk-text-muted uk-text-nowrap',
+                    valueClass: 'uk-text-left',
+                    attrs: { dir: 'ltr' }
                 }
-            },
-            {
-                key: 'SecurePan',
-                label: 'پرداخت با کارت',
-                labelClass: 'uk-text-muted',
-                valueClass: 'uk-text-left',
-                attrs: { dir: 'ltr' }
-            },
-            {
-                key: 'PersianPayedOn',
-                label: 'تاریخ و زمان',
-                labelClass: 'uk-text-muted',
-                valueClass: 'uk-text-left',
-                attrs: { dir: 'ltr' }
-            },
-            {
-                key: 'TraceNo',
-                label: 'شماره پیگیری',
-                labelClass: 'uk-text-muted uk-text-nowrap',
-                valueClass: 'uk-text-left',
-                attrs: { dir: 'ltr' }
-            }
 
-        ];
+            ];
+        }
 
         const templateHtml = $('#SuccessReceiptTemplate').html();
         const template = $('<div>').html(templateHtml);
 
-        template.find('p[data-field="PackageFullTitle"]').text(data.PackageFullTitle || '-');
+        template.find('p[data-field="PackageFullTitle"]').text(data?.PackageFullTitle || '-');
 
         const tableBody = template.find('.ui-receipt-table table tbody');
         tableBody.find('tr').not('#ReceiptAppDownload').remove();
@@ -197,25 +201,21 @@ $(document).ready(function () {
     const rNum = queryString.get("r");
     const tid = queryString.get("tid");
 
-    const getReceiptParam = {
-        token,
-        resNum
-    };
-
     if (token && resNum) {
 
         ajaxHandler(asmxUrl + '/api/v1/ipg-top-up/get-receipt', 'GET', {
             token,
             resNum
         }, null, function (callback) {
+            callback = toCamel(callback)
 
-            if (hasValue(callback) && callback.IsSuccess && callback.Code === 2000) {
-                const { Detail, Transaction, TopUpPackage } = callback.Data;
-                if (Detail.TopUpSuccess) {
-                    showSuccessReceipt(Detail, Transaction, TopUpPackage);
+            if (hasValue(callback) && callback.isSuccess && callback.code === 2000 && hasValue(callback.data)) {
+
+                if (callback.data?.detail?.topUpSuccess) {
+                    showSuccessReceipt(callback.data);
 
                 } else {
-                    showFailedReceipt(Detail);
+                    showFailedReceipt(callback.data.detail);
                 }
             } else {
                 showReceiptError();
@@ -230,16 +230,10 @@ $(document).ready(function () {
             resNum: rNum
         }, null, function (callback) {
 
-            console.log(callback)
+
             if (hasValue(callback) && callback.IsSuccess && callback.Code === 2000) {
                 console.log(callback)
-                // const { Detail, Transaction, TopUpPackage } = callback.Data;
-                // if (Detail.TopUpSuccess) {
-                //     showSuccessReceipt(Detail, Transaction, TopUpPackage);
 
-                // } else {
-                //     showFailedReceipt(Detail);
-                // }
             } else {
                 showReceiptError();
             }
