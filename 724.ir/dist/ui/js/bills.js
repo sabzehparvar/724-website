@@ -413,7 +413,7 @@ $(document).ready(function () {
                             const tokenParams = {
                                 billId,
                                 payId,
-                                ThirdPartyCallBack: "http://localhost:701/724.ir/receipt.html"
+                                ThirdPartyCallBack: ThirdPartyCallBackUrl
                             };
 
                             ajaxHandler('http://localhost:43197/api/v1/bill/get-token', 'GET', tokenParams, null, function (response) {

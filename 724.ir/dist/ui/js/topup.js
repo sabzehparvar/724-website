@@ -126,7 +126,7 @@ $(document).ready(function () {
                 ChargeDescription: packageText,
                 Amount: packageAmount,
                 TopUpType: "Charge",
-                ThirdPartyCallBack: "http://127.0.0.1:5500/724.ir/receipt.html"
+                ThirdPartyCallBack: ThirdPartyCallBackUrl
               };
 
               ajaxHandler(

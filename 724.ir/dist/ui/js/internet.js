@@ -121,7 +121,7 @@ $(document).ready(function () {
                 ChargeDescription: packageText,
                 Amount: packageAmount,
                 TopUpType: "InternetPackage",
-                ThirdPartyCallBack: "http://127.0.0.1:5500/724.ir/receipt.html"
+                ThirdPartyCallBack: ThirdPartyCallBackUrl
               };
 
               ajaxHandler(asmxUrl + '/api/v1/ipg-top-up/get-token', 'GET', tokenParams, null, function (response) {
@@ -151,7 +151,7 @@ $(document).ready(function () {
           case 'getInternetPackages': {
             if ($('#InternetPackageForm').valid()) {
               getDurations()
-              
+
             }
 
             e.preventDefault();
@@ -179,13 +179,13 @@ $(document).ready(function () {
           const iconUrl = "./dist/ui/img/icon/operators/" + operatorIcons[item.Code] + ".svg";
           items += $("#InternetOperators").html().replace("%Code%", item.Code).replace("%IconSrc%", iconUrl).replaceAll("%Name%", item.Description);
         });
-        
+
 
         $("#InternetOperator ul").empty().append(items);
         getTypes();
       } else {
         $("#InternetOperator").empty().append($("#ServiceError").html());
-       
+
       }
     },
       true
@@ -205,7 +205,7 @@ $(document).ready(function () {
         $('#InternetSimTypeList ul').empty().append(items);
         $("button[data-action='getInternetPackages']").removeClass('uk-hidden')
       } else {
-         $("#InternetSimTypeList").removeClass("uk-hidden").empty().append($("#ServiceError").html());
+        $("#InternetSimTypeList").removeClass("uk-hidden").empty().append($("#ServiceError").html());
       }
 
     }, true);
@@ -221,9 +221,9 @@ $(document).ready(function () {
           items += $('#InternetDurations').html().replace('%Class%', className).replaceAll('%Code%', item.Code).replace('%Duration%', item.Name).replace('%Name%', item.Description);
         });
         $('#InternetDurationList ul').empty().append(items);
-        
+
         getInternetPackages()
-            
+
       } else {
         UIkit.notification(langs.serviceException, {
           status: "danger",
@@ -293,12 +293,12 @@ $(document).ready(function () {
               .attr('data-type', typeId)
               .attr('data-duration', durationId);
             $('#BuyInternetPackageButton').removeClass('uk-hidden');
-            
+
 
           } else {
             $('#InternetPackageList ul').removeAttr('data-operator data-type data-duration').empty().append($("#EmptyInternet").html());
             $('#BuyInternetPackageButton').addClass('uk-hidden')
-            
+
           }
           toggleWizard("second-card");
 
