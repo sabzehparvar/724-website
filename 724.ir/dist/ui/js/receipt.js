@@ -122,14 +122,12 @@ $(document).ready(function () {
 
     }
 
-
-
-    function showFailedReceipt(detail = {}) {
+    function showPackageFailedReceipt(detail) {
 
         const data = {
-            PackageFullTitle: hasValue(detail.TopUpDescription) ? detail.TopUpDescription.trim() : null,
-            Amount: hasValue(detail.Amount) ? detail.Amount : null,
-            CellNumber: hasValue(detail.CellNumber) ? detail.CellNumber.trim() : null,
+            PackageFullTitle: hasValue(detail.topUpDescription) ? detail.topUpDescription.trim() : null,
+            Amount: hasValue(detail.amount) ? detail.amount : null,
+            CellNumber: hasValue(detail.cellNumber) ? detail.cellNumber.trim() : null,
         };
         const schema = [
             {
@@ -188,11 +186,97 @@ $(document).ready(function () {
 
         $('#ReceiptContainer').empty().append(template.children());
     }
+
     function showReceiptError() {
         $("#ReceiptContainer").empty().append($("#ReceiptErrorTemplate").html());
     }
 
+    function showBillSuccessReceipt(callback) {
 
+        console.log(callback)
+
+    }
+
+    function showBillFailedReceipt(callback) {
+
+        const data = {
+            PackageFullTitle: 'پرداخت قبض ناموفق',
+            Amount: hasValue(callback.amount) ? callback.amount : null,
+            PayId: hasValue(callback.payId) ? callback.payId.toString().trim() : null,
+            BillId: hasValue(callback.billId) ? callback.billId.toString().trim() : null,
+            TraceNo: hasValue(callback.traceNo) ? callback.traceNo.trim() : null,
+
+        };
+        const schema = [
+            {
+                key: 'Amount',
+                label: 'مبلغ',
+                labelClass: 'uk-text-muted',
+                valueClass: 'uk-text-left',
+                attrs: {},
+                formatter: val => commaSeparator(val) + ' ' + langs.irr
+            },
+            {
+                key: 'BillId',
+                label: 'شناسه قبض',
+                labelClass: 'uk-text-muted',
+                valueClass: 'uk-text-left',
+                attrs: { dir: 'ltr' }
+            },
+            {
+                key: 'PayId',
+                label: 'شناسه پرداخت',
+                labelClass: 'uk-text-muted',
+                valueClass: 'uk-text-left',
+                attrs: { dir: 'ltr' }
+            },
+            {
+                key: 'TraceNo',
+                label: 'شماره پیگیری',
+                labelClass: 'uk-text-muted uk-text-nowrap',
+                valueClass: 'uk-text-left',
+                attrs: { dir: 'ltr' }
+            }
+        ];
+
+        const templateHtml = $('#FailedReceiptTemplate').html();
+        const template = $('<div>').html(templateHtml);
+
+
+        template
+            .find('p[data-field="PackageFullTitle"]')
+            .text(data.PackageFullTitle || '-');
+
+
+        const tableBody = template.find('.ui-receipt-table table tbody');
+
+
+        tableBody.find('tr').not('#ReceiptAppDownload').remove();
+
+
+        schema.forEach(col => {
+            const val = data[col.key];
+            if (val != null) {
+                const tr = $('<tr>');
+
+                $('<td>')
+                    .addClass(col.labelClass)
+                    .text(col.label)
+                    .appendTo(tr);
+
+                const valTd = $('<td>')
+                    .addClass(col.valueClass)
+                    .appendTo(tr);
+                Object.entries(col.attrs).forEach(([attr, val]) => valTd.attr(attr, val));
+                valTd.text(col.formatter ? col.formatter(val) : val);
+
+                tr.insertBefore(tableBody.find('#ReceiptAppDownload'));
+            }
+        });
+
+
+        $('#ReceiptContainer').empty().append(template.children());
+    }
     const queryString = new URLSearchParams(window.location.search);
     const token = queryString.get("token");
     const resNum = queryString.get("resNum");
@@ -206,22 +290,24 @@ $(document).ready(function () {
             resNum
         }, null, function (callback) {
             callback = toCamel(callback)
-            console.log(callback)
+
             if (hasValue(callback) && callback?.isSuccess && callback?.code === 2000 && hasValue(callback?.data)) {
 
                 const detail = callback.data?.detail
                 const transaction = callback.data?.transaction
                 const topUpPackage = callback.data?.topUpPackage
+                if (detail) {
+                    if (transaction && topUpPackage && detail?.topUpSuccess) {
 
-                if (detail && transaction && topUpPackage && detail.topUpSuccess) {
+                        showPackageSuccessReceipt(detail, transaction, topUpPackage);
+                        return
 
-                    showPackageSuccessReceipt(detail, transaction, topUpPackage);
-
+                    } else {
+                        showPackageFailedReceipt(detail);
+                    }
                 } else {
-                    showFailedReceipt(detail);
+                    showReceiptError();
                 }
-
-
             } else {
                 showReceiptError();
             }
@@ -234,10 +320,42 @@ $(document).ready(function () {
             tid,
             resNum: rNum
         }, null, function (callback) {
+            callback = toCamel(callback)
 
+            if (hasValue(callback) && callback?.isSuccess && callback?.code === 2000 && hasValue(callback?.data)) {
+                if (callback.data[0].state === 'Success') {
 
-            if (hasValue(callback) && callback.IsSuccess && callback.Code === 2000) {
-                console.log(callback)
+                    showBillSuccessReceipt(callback)
+                    return
+                }
+                if (callback.data[0].state === 'Failed') {
+
+                    showBillFailedReceipt(callback.data[0])
+                    return
+                }
+
+            } else {
+                showReceiptError();
+            }
+
+        }, true, true, true);
+
+    } else if (rNum && !tid) {
+
+        ajaxHandler(asmxUrl + '/api/v1/bill/get-receipt-by-tid', 'GET', {
+            resNum: rNum
+        }, null, function (callback) {
+
+            if (hasValue(callback) && callback?.isSuccess && callback?.code === 2000 && hasValue(callback?.data)) {
+
+                if (callback.data.state === 'Success') {
+                    showBillSuccessReceipt(callback)
+                    return
+                }
+                if (callback.data.state === 'Failed') {
+                    showBillFailedReceipt()
+                    return
+                }
 
             } else {
                 showReceiptError();
