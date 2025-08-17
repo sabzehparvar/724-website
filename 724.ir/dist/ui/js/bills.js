@@ -7,6 +7,63 @@ $(document).ready(function () {
         $(`.ui-card-wizard[data-wizard="${currentWizard}"]`).fadeIn();
     }
 
+    function showBillDetails(callback, element) {
+        const data = {
+            PaymentDate: hasValue(callback.paymentDate) ? callback.paymentDate.trim() : null,
+            PayId: hasValue(callback.paymentID) ? callback.paymentID.toString().trim() : null,
+            Address: hasValue(callback.address) ? callback.address.trim() : null,
+        };
+
+        const schema = [
+            {
+                key: "PayId",
+                label: "شناسه پرداخت",
+                labelClass: "uk-text-muted",
+                valueClass: "uk-text-left fontface-vazir-fa",
+                attrs: { dir: "ltr" }
+            },
+            {
+                key: "PaymentDate",
+                label: "مهلت پرداخت",
+                labelClass: "uk-text-muted ",
+                valueClass: "uk-text-left fontface-vazir-fa",
+                attrs: { dir: "ltr" }
+            },
+            {
+                key: "Address",
+                label: "آدرس",
+                labelClass: "uk-text-muted",
+                valueClass: "uk-text-left",
+                attrs: { dir: "ltr" }
+            }
+        ];
+
+        const $table = $("<table>").addClass("uk-table uk-table-divider uk-margin-remove-bottom uk-margin-top");
+        const $tbody = $("<tbody>").appendTo($table);
+
+        schema.forEach((col) => {
+            const raw = data[col.key];
+            if (raw != null) {
+                const formatted = col.formatter ? col.formatter(raw) : raw;
+                if (formatted != null) {
+                    const $tr = $("<tr>");
+                    $("<td>").addClass(col.labelClass).text(col.label).appendTo($tr);
+
+                    const $td = $("<td>").addClass(col.valueClass).appendTo($tr);
+                    if (col.attrs) {
+                        Object.entries(col.attrs).forEach(([key, val]) => $td.attr(key, val));
+                    }
+                    $td.text(formatted);
+
+                    $tbody.append($tr);
+                }
+            }
+        });
+
+        element.find(".ui-bills-details").empty().append($table);
+    }
+
+
     function billsHandler(callback, billType) {
         if (!callback.hasOwnProperty("parameters") || !callback.parameters.hasOwnProperty("amount")) {
             UIkit.notification(langs.requirementsError, {
@@ -40,6 +97,7 @@ $(document).ready(function () {
         $template.find("#BillPayButton button").attr("data-billid", billId).attr("data-payid", payId);
         $template.find(".ui-bill-amount-icon img").attr("src", `./dist/ui/img/icon/app/${billsIcons[billType]}.svg`);
         $("#BillInfoContainer").html($template);
+        showBillDetails(callback.parameters, $template);
         toggleWizard("third-card");
     }
 
@@ -211,10 +269,10 @@ $(document).ready(function () {
                     case "showSecondCard": {
                         let billName, billIdLabel;
                         if (billType == 6) {
-                            $("#BillPaymentInput").val("").removeClass("uk-hidden");
                             billIdLabel = "شناسه قبض";
-
                             billName = "پرداخت با شناسه";
+                            $("#BillPaymentInput").removeClass("uk-hidden");
+                            $("#BillPaymentInput input").val("");
                             $("#BillIdInput label").attr("for", billsInputId[billType]);
                             $("#BillIdInput input").attr("id", billsInputId[billType]).attr("name", billsInputId[billType]);
                             $("#BillInquiryButton button").attr("data-action", billsActions[billType]).attr("data-bill-type", billType);
@@ -474,6 +532,10 @@ $(document).ready(function () {
                         if (payId) {
                             $("#BillPayButton button").attr("data-payid", payId);
                         }
+                        break;
+                    }
+                    case "toggleBillDetails": {
+                        $(".ui-bills-details").slideToggle(500);
                         break;
                     }
                 }

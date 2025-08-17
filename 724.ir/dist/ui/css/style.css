@@ -1132,3 +1132,7 @@
   padding: 10px;
   border-radius: 14px;
 }
+
+.ui-bills-details{
+  display: none;
+}
