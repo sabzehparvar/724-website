@@ -8,15 +8,46 @@ $(document).ready(function () {
     }
 
     function showBillDetails(callback, element) {
+
         const data = {
-            PaymentDate: hasValue(callback.paymentDate) ? callback.paymentDate.trim() : null,
-            PayId: hasValue(callback.paymentID) ? callback.paymentID.toString().trim() : null,
+            PaymentDate: hasValue(callback.paymentDate)
+                ? (
+                    moment(callback.paymentDate, 'MM/DD/YYYY HH:mm:ss', true).isValid()
+                        ? moment(callback.paymentDate, 'MM/DD/YYYY').locale('fa').format('YYYY/MM/DD')
+                        : callback.paymentDate
+                )
+                : null,
+            CurrentDate: hasValue(callback.currentDate)
+                ? (
+                    moment(callback.currentDate, 'MM/DD/YYYY HH:mm:ss', true).isValid()
+                        ? moment(callback.currentDate, 'MM/DD/YYYY').locale('fa').format('YYYY/MM/DD')
+                        : callback.currentDate
+                )
+                : null,
+            PreviousDate: hasValue(callback.previousDate)
+                ? (
+                    moment(callback.previousDate, 'MM/DD/YYYY HH:mm:ss', true).isValid()
+                        ? moment(callback.previousDate, 'MM/DD/YYYY').locale('fa').format('YYYY/MM/DD')
+                        : callback.previousDate
+                )
+                : null,
+            PaymentId: hasValue(callback.paymentID) ? callback.paymentID.toString().trim() : null,
+            PayId: hasValue(callback.payId) ? callback.payId.toString().trim() : null,
             Address: hasValue(callback.address) ? callback.address.trim() : null,
+            BillCompany: hasValue(callback.billCompany) ? callback.billCompany.trim() : null,
+
         };
 
         const schema = [
             {
                 key: "PayId",
+                label: "شناسه پرداخت",
+                labelClass: "uk-text-muted",
+                valueClass: "uk-text-left fontface-vazir-fa",
+                attrs: { dir: "ltr" }
+            },
+            {
+                key: "PaymentId",
                 label: "شناسه پرداخت",
                 labelClass: "uk-text-muted",
                 valueClass: "uk-text-left fontface-vazir-fa",
@@ -30,11 +61,32 @@ $(document).ready(function () {
                 attrs: { dir: "ltr" }
             },
             {
+                key: "CurrentDate",
+                label: "تاریخ قرائت کنونی",
+                labelClass: "uk-text-muted ",
+                valueClass: "uk-text-left fontface-vazir-fa",
+                attrs: { dir: "ltr" }
+            },
+            {
+                key: "PreviousDate",
+                label: "تاریخ قرائت پیشین",
+                labelClass: "uk-text-muted ",
+                valueClass: "uk-text-left fontface-vazir-fa",
+                attrs: { dir: "ltr" }
+            },
+            {
                 key: "Address",
                 label: "آدرس",
                 labelClass: "uk-text-muted",
                 valueClass: "uk-text-left",
-                attrs: { dir: "ltr" }
+
+            },
+            {
+                key: "BillCompany",
+                label: "شرکت",
+                labelClass: "uk-text-muted",
+                valueClass: "uk-text-left",
+
             }
         ];
 
@@ -208,6 +260,8 @@ $(document).ready(function () {
                     $template.find("#BillPayButton button").attr("data-billid", billId).attr("data-payid", payId);
 
                     $("#BillInfoContainer").html($template);
+                    showBillDetails(callback.data, $template);
+
                     toggleWizard("third-card");
                 } else {
                     const message = hasValue(callback?.status?.description) ? callback.status.description : langs.serviceException;
