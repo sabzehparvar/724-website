@@ -193,7 +193,83 @@ $(document).ready(function () {
 
     function showBillSuccessReceipt(callback) {
 
-        console.log(callback)
+        const data = {
+            PackageFullTitle: 'پرداخت قبض موفق',
+            Amount: hasValue(callback.amount) ? callback.amount : null,
+            PersianPayedOn: hasValue(callback.persianPayedOn)
+                ? callback.persianPayedOn.trim()
+                : null,
+            PayId: hasValue(callback.payId) ? callback.payId.toString().trim() : null,
+            BillId: hasValue(callback.billId) ? callback.billId.toString().trim() : null,
+            TraceNo: hasValue(callback.traceNo) ? callback.traceNo.trim() : null,
+
+        };
+
+        const schema = [
+            {
+                key: 'Amount',
+                label: 'مبلغ',
+                labelClass: 'uk-text-muted',
+                valueClass: 'uk-text-left',
+                attrs: {},
+                formatter: val => commaSeparator(val) + ' ' + langs.irr
+            },
+            {
+                key: 'BillId',
+                label: 'شناسه قبض',
+                labelClass: 'uk-text-muted',
+                valueClass: 'uk-text-left',
+                attrs: { dir: 'ltr' }
+            },
+            {
+                key: 'PayId',
+                label: 'شناسه پرداخت',
+                labelClass: 'uk-text-muted',
+                valueClass: 'uk-text-left',
+                attrs: { dir: 'ltr' }
+            },
+            {
+                key: 'PersianPayedOn',
+                label: 'تاریخ و زمان',
+                labelClass: 'uk-text-muted',
+                valueClass: 'uk-text-left',
+                attrs: { dir: 'ltr' }
+            },
+            {
+                key: 'TraceNo',
+                label: 'شماره پیگیری',
+                labelClass: 'uk-text-muted uk-text-nowrap',
+                valueClass: 'uk-text-left',
+                attrs: { dir: 'ltr' }
+            }
+
+        ];
+        const templateHtml = $('#SuccessReceiptTemplate').html();
+        const template = $('<div>').html(templateHtml);
+
+        template.find('p[data-field="PackageFullTitle"]').text(data?.PackageFullTitle || '-');
+
+        const tableBody = template.find('.ui-receipt-table table tbody');
+        tableBody.find('tr').not('#ReceiptAppDownload').remove();
+
+        schema.forEach(col => {
+            const raw = data[col.key];
+            if (raw != null) {
+                const formatted = col.formatter ? col.formatter(raw) : raw;
+                if (formatted != null) {
+                    const tr = $('<tr>');
+                    $('<td>').addClass(col.labelClass).text(col.label).appendTo(tr);
+
+                    const td = $('<td>').addClass(col.valueClass).appendTo(tr);
+                    Object.entries(col.attrs).forEach(([key, val]) => td.attr(key, val));
+                    td.text(formatted);
+
+                    tr.insertBefore(tableBody.find('#ReceiptAppDownload'));
+                }
+            }
+        });
+
+        $('#ReceiptContainer').empty().append(template.children());
 
     }
 
@@ -323,37 +399,14 @@ $(document).ready(function () {
             callback = toCamel(callback)
 
             if (hasValue(callback) && callback?.isSuccess && callback?.code === 2000 && hasValue(callback?.data)) {
-                if (callback.data[0].state === 'Success') {
+                if (callback.data[0].state === 'OK') {
 
-                    showBillSuccessReceipt(callback)
+                    showBillSuccessReceipt(callback.data[0])
                     return
                 }
                 if (callback.data[0].state === 'Failed') {
 
                     showBillFailedReceipt(callback.data[0])
-                    return
-                }
-
-            } else {
-                showReceiptError();
-            }
-
-        }, true, true, true);
-
-    } else if (rNum && !tid) {
-
-        ajaxHandler(asmxUrl + '/api/v1/bill/get-receipt-by-tid', 'GET', {
-            resNum: rNum
-        }, null, function (callback) {
-
-            if (hasValue(callback) && callback?.isSuccess && callback?.code === 2000 && hasValue(callback?.data)) {
-
-                if (callback.data.state === 'Success') {
-                    showBillSuccessReceipt(callback)
-                    return
-                }
-                if (callback.data.state === 'Failed') {
-                    showBillFailedReceipt()
                     return
                 }
 
