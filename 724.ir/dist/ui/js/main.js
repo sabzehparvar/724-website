@@ -12,15 +12,13 @@ const langs = {
   cancel: "انصراف",
   serviceUnavailable: "خطا در برقراری ارتباط با سرویس وب",
   somethingWentWrong: "خطایی در انجام فرآیند رخ داده است",
-  successBillConflict:
-    "درخواست بررسی مغایرت قبض با موفقیت ارسال شد، در صورت لزوم با شما تماس خواهیم گرفت",
+  successBillConflict: "درخواست بررسی مغایرت قبض با موفقیت ارسال شد، در صورت لزوم با شما تماس خواهیم گرفت",
   serviceException: "خطا در دریافت پاسخ از سرویس وب",
   serviceTimeout: "پاسخ از سرویس وب در محدوده زمانی مجاز دریافت نشد",
   validationError: "خطا در اعتبارسنجی مقادیر ارسالی",
   tokenError: "خطا در دریافت توکن از سرویس وب",
   requirementsError: "خطا در دریافت مقادیر اطلاعاتی مورد نیاز",
-  temporarilyDeactivate:
-    "این سرویس به دلیل به‌روز‌رسانی موقتا از دسترس خارج است",
+  temporarilyDeactivate: "این سرویس به دلیل به‌روز‌رسانی موقتا از دسترس خارج است",
   irr: "ریال",
   billType: "نوع قبض",
   billId: "شناسه قبض",
@@ -55,12 +53,10 @@ const langs = {
   telekish: "تله کیش",
   invalidOperatorNumber: "شماره وارد شده متعلق به {0} نیست",
   orderReport: "جزئیات",
-  subscriberInvalid:
-    "امکان استعلام بدهی و پرداخت برای سیم‌کارت‌های اعتباری وجود ندارد",
+  subscriberInvalid: "امکان استعلام بدهی و پرداخت برای سیم‌کارت‌های اعتباری وجود ندارد",
   municipalityTypeInvalid: "قبض وارد شده متعلق به شهرداری نیست",
   inquiryDebt: "استعلام",
-  conformRemoveBill:
-    "آیا از حذف قبض <em>{0}</em> با شناسه <em>{1}</em> از سبد پرداخت مطمئن هستید؟",
+  conformRemoveBill: "آیا از حذف قبض <em>{0}</em> با شناسه <em>{1}</em> از سبد پرداخت مطمئن هستید؟",
   requiredCellNumber: "لطفا شماره تلفن همراه را وارد کنید",
   inavilableInquiryDate: "تاکنون استعلام نشده",
   invalidCellNumber: "شماره تلفن همراه وارد شده معتبر نیست",
@@ -69,16 +65,13 @@ const langs = {
   topupExcitingPkg: "شور انگیز",
   package: "بسته",
   selectingOne: "انتخاب کنید",
-  topupPackageName:
-    "شارژ {0} {1} ریالی (مبلغ با احتساب مالیات: {2} ریال) (کد: {3})",
+  topupPackageName: "شارژ {0} {1} ریالی (مبلغ با احتساب مالیات: {2} ریال) (کد: {3})",
   topupPackageText: "شارژ {0} {1} ریالی {2} (کد: {3})",
   successProccessOrder: "پردازش سفارش با موفقیت انجام شد",
-  internetPackageName:
-    "بسته اینترنت {0} (مبلغ با احتساب مالیات: {1} ریال) (کد: {2})",
+  internetPackageName: "بسته اینترنت {0} (مبلغ با احتساب مالیات: {1} ریال) (کد: {2})",
   internetPackageText: "بسته اینترنت {0} {1} (کد: {2})",
   topupNoMatchFound: "هیچ شارژی برای اپراتور انتخاب شده یافت نشد",
-  internetNoMatchFound:
-    "هیچ بسته اینترنتی برای اپراتور با فیلتر انتخاب شده یافت نشد",
+  internetNoMatchFound: "هیچ بسته اینترنتی برای اپراتور با فیلتر انتخاب شده یافت نشد",
   orderDetail: "مشاهده جزئبات",
   orderState: "وضعیت سفارش",
   orderStateDone: "انجام شده",
@@ -88,49 +81,38 @@ const langs = {
   orderStatePreOrder: "پیش سفارش",
   orderDate: "تاریخ سفارش",
   orderTransactionCount: "نتیجه درخواست",
-  orderTransactionResult:
-    'موفق: <em class="uk-text-success">{0}</em> | ناموفق: <em class="uk-text-danger">{1}</em>',
+  orderTransactionResult: 'موفق: <em class="uk-text-success">{0}</em> | ناموفق: <em class="uk-text-danger">{1}</em>',
   orderSuccessCreate: "پردازش و ثبت سفارش با موفقیت انجام شد",
   orderId: "شناسه سفارش",
   orderDescription: "عنوان سفارش",
-  orderFreewayResult:
-    'مجموع: <em class="uk-text-muted">{0}</em> | موفق: <em class="uk-text-success">{1}</em> | ناموفق: <em class="uk-text-danger">{2}</em>',
+  orderFreewayResult: 'مجموع: <em class="uk-text-muted">{0}</em> | موفق: <em class="uk-text-success">{1}</em> | ناموفق: <em class="uk-text-danger">{2}</em>',
   selectingTopupPackage: "لطفا نوع شارژ را برای خرید انتخاب کنید",
   selectingInternetPackage: "لطفا نوع بسته را برای خرید انتخاب کنید",
   emptyBasket: "سبد پرداخت قبض شما خالی می‌باشد",
-  billNotPayed:
-    "قبض وارد شده توسط سامانه‌های پرداخت الکترونیک سامان تا این لحظه پرداخت نشده است.",
+  billNotPayed: "قبض وارد شده توسط سامانه‌های پرداخت الکترونیک سامان تا این لحظه پرداخت نشده است.",
   undefined: "تعریف نشده",
   billSuccess: "موفق",
   billFailed: "ناموفق",
   billPayed: "پرداخت شده",
-  conformRemovePlateNumber:
-    "آیا از حذف پلاک <em>{0}</em> از لیست خودروهای خود مطمئن هستید؟",
-  conformRemoveAllPlateNumber:
-    "آیا از حذف پلاک‌های انتخاب شده از لیست خودروهای خود مطمئن هستید؟",
+  conformRemovePlateNumber: "آیا از حذف پلاک <em>{0}</em> از لیست خودروهای خود مطمئن هستید؟",
+  conformRemoveAllPlateNumber: "آیا از حذف پلاک‌های انتخاب شده از لیست خودروهای خود مطمئن هستید؟",
   emptyFreewayToll: "هیچ گزارشی برای عوارض آزادراهی یافت نشد",
   iran: "ایران",
   successRemove: "رکورد با موفقیت حذف/غیرفعال شد",
-  notEnoughForMultipleDelete:
-    "تعداد موارد انتخاب شده برای حذف گروهی کافی نیست",
-  notEnoughForMultipleAction:
-    "تعداد موارد انتخاب شده برای این عملیات گروهی کافی نیست",
-  freewayTollInquiryNoMatch:
-    "هیچ پلاکی انتخاب نشده است، لطفا حداقل پلاک یک وسیله نقلیه را انتخاب کنید",
+  notEnoughForMultipleDelete: "تعداد موارد انتخاب شده برای حذف گروهی کافی نیست",
+  notEnoughForMultipleAction: "تعداد موارد انتخاب شده برای این عملیات گروهی کافی نیست",
+  freewayTollInquiryNoMatch: "هیچ پلاکی انتخاب نشده است، لطفا حداقل پلاک یک وسیله نقلیه را انتخاب کنید",
   freewayTollInquiryFailed: "خطا در استعلام بدهی عوارض آزادراهی",
   notEnoughForInquiry: "تعداد موارد انتخاب شده برای استعلام کافی نیست",
-  notEnoughForPaymentFreewayToll:
-    "هیچ پلاکی انتخاب نشده و یا پلاک‌های انتخاب شده بدهی عوارض آزادراهی ندارند",
+  notEnoughForPaymentFreewayToll: "هیچ پلاکی انتخاب نشده و یا پلاک‌های انتخاب شده بدهی عوارض آزادراهی ندارند",
   freewayTollOrder: "سند پرداخت عوارض آزادراهی",
   freewayTollOrderError: "خطا در اقلام اطلاعاتی سفارش",
   walletNotAllowed: "امکان پرداخت این قبض با کیف پول وجود ندارد.",
   successSubmitFile: "فایل با موفقیت ارسال شد",
-  callbackRequirementsError:
-    "مقادیر اطلاعاتی مورد نیاز با پاسخ دریافتی از سرویس مطابقت ندارد",
+  callbackRequirementsError: "مقادیر اطلاعاتی مورد نیاز با پاسخ دریافتی از سرویس مطابقت ندارد",
   removeError: "حذف با خطا مواجه شد",
   fileProgressCompleted: "پردازش فایل با موفقیت به اتمام رسید",
-  fileProgressFailed:
-    "پردازش فایل با تکمیل نشد، ممکن است تعدادی از قبوض شما پردازش نشده باشد",
+  fileProgressFailed: "پردازش فایل با تکمیل نشد، ممکن است تعدادی از قبوض شما پردازش نشده باشد",
   itemDontAddToBasket: "موردی برای افزودن به سبد قبض یافت نشد",
   itemAddToBasket: "قبض با موفقیت به سبد قبض اضافه شد",
   noItemIsSelected: "قبضی انتخاب نشده است",
@@ -144,25 +126,21 @@ const langs = {
   dateGreaterThan: "محدوده تاریخ انتخاب شده معتبر نمی‌باشد",
   diffInDays: "تاریخ شروع و پایان جستجو نمی‌تواند بیشتر از ۳۱ روز باشد",
   confirmRemoveAllCategories: "آیا از حذف دسته‌های انتخاب شده مطمئن هستید؟",
-  confirmRemoveAllBills:
-    "تمامی قبوض انتخاب شده و اطلاعات مربوط به آن‌ها حذف خواهد شد، آیا مطمئن هستید؟",
-  conformRemoveBill:
-    'آیا از حذف قبض <em uk-tooltip="title:{1}; pos:bottom">{0}</em> از لیست قبوض خود مطمئن هستید؟',
+  confirmRemoveAllBills: "تمامی قبوض انتخاب شده و اطلاعات مربوط به آن‌ها حذف خواهد شد، آیا مطمئن هستید؟",
+  conformRemoveBill: 'آیا از حذف قبض <em uk-tooltip="title:{1}; pos:bottom">{0}</em> از لیست قبوض خود مطمئن هستید؟',
   theRecordWasDeleted: "با موفقیت حذف شد",
   theRecordWasUpdated: "با موفقیت به‌رو‌زرسانی شد",
   billIsUnpayable: "قبض قابل پرداخت نیست و یا قبلا پرداخت شده",
-  pleaseWaitForProcessingToComplete:
-    "لطفا کمی صبر کنید تا درخواست‌های در حال انجام به اتمام برسد",
+  pleaseWaitForProcessingToComplete: "لطفا کمی صبر کنید تا درخواست‌های در حال انجام به اتمام برسد",
   unSuccessfullyAddedToBsket: "به سبد قبض اضافه نشد",
   categoryStatus: "نتیجه پردازش",
-  billsAreUnpayable:
-    "قبوض انتخاب شده قابل پرداخت نیست و یا قبلا پرداخت شده است",
+  billsAreUnpayable: "قبوض انتخاب شده قابل پرداخت نیست و یا قبلا پرداخت شده است",
   ajaxRequestNotFinished: "صبر کنید تا تمام قبوض استعلام شود",
   duplicateCategory: "نام دسته بندی تکراری است",
   fileTypeError: "فرمت فایل آپلود شده اشتباه است",
   fileEmptyError: "فایل آپلود شده محتوایی ندارد",
   fileContentLenghtError: "فایل آپلود شده با فایل نمونه مطابقت ندارد",
-  noBillDebt: "برای قبض وارد شده بدهی یافت نشد"
+  noBillDebt: "برای قبض وارد شده بدهی یافت نشد",
 };
 const validationMessage = {
   nationalId: "کد ملی وارد شده معتبر نیست.",
@@ -187,7 +165,7 @@ const billsIcons = {
   3: "ic-bill-gas",
   4: "ic-bill-mokhaberat",
   5: "ic-hamrah-aval",
-  6: "ic-municipality"
+  6: "ic-municipality",
 };
 const durationTypes = {
   1: "ساعته",
@@ -234,16 +212,16 @@ const billsInputId = {
   3: "GazParticipateCode",
   4: "Phone",
   5: "Mobile",
-  6: "BillId"
-}
+  6: "BillId",
+};
 const billsActions = {
   1: "getWaterBill",
   2: "getElectricityBill",
   3: "getGasBill",
   4: "getPhoneBill",
   5: "getMciBill",
-  6: "getPaperBill"
-}
+  6: "getPaperBill",
+};
 function validateCellNumber(value, checkRegex = false) {
   var value = normalize(value.trim()).toString(),
     regex = {
@@ -260,11 +238,7 @@ function validateCellNumber(value, checkRegex = false) {
         return operator;
       }
     } else {
-      if (
-        value.length == 11 &&
-        value.match(regex[operator]) &&
-        !/(.)\1{6,}/.test(value)
-      ) {
+      if (value.length == 11 && value.match(regex[operator]) && !/(.)\1{6,}/.test(value)) {
         return operator;
       }
     }
@@ -277,11 +251,7 @@ function validateMciPostPaidNumber(value) {
       1: /^0910|0911|0912|0913|0914|0915|0916|0917|0918|0919$/,
     };
   for (var operator in regex) {
-    if (
-      value.length == 11 &&
-      value.match(regex[operator]) &&
-      !/(.)\1{6,}/.test(value)
-    ) {
+    if (value.length == 11 && value.match(regex[operator]) && !/(.)\1{6,}/.test(value)) {
       return true;
     }
   }
@@ -328,8 +298,6 @@ function messageReFormat(message, bracZero, bracOne = null, bracTwo = null, brac
   var message = message.replace("{0}", bracZero).replace("{1}", bracOne).replace("{2}", bracTwo).replace("{3}", bracThree);
   return message;
 }
-
-
 
 function getBillData(billId, payId) {
   var bill = new billify(billId, payId),

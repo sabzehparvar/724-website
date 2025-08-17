@@ -58,13 +58,11 @@ $(document).ready(function () {
             .children()
             .find("[data-value=" + operatorId + "]");
           if (!operatorActiveItem.hasClass("ui-active-operator")) {
-            $("#Operator").val(operatorId) &
-              removeOperatorActiveItem() &
-              operatorActiveItem.addClass("ui-active-operator");
+            $("#Operator").val(operatorId) & removeOperatorActiveItem() & operatorActiveItem.addClass("ui-active-operator");
           }
         }
       } else if (value.length < 4) {
-        $("#Operator").val('');
+        $("#Operator").val("");
         removeOperatorActiveItem();
         $("#NormalTopup ul").empty();
         $("#AmazingTopup ul").empty();
@@ -79,14 +77,11 @@ $(document).ready(function () {
       if (action) {
         switch (action) {
           case "changeTopupOperator": {
-
             const cellNumber = hasValue($("#CellNumber").val()) ? normalize($("#CellNumber").val().trim()) : null;
             if ($("#TopupNumber").valid()) {
               const value = hasValue($(this).attr("data-value")) ? $(this).attr("data-value").trim() : null;
               $("#Operator").val(value) & removeOperatorActiveItem() & selfThis.addClass("ui-active-operator");
-
             } else {
-
               if (!cellNumber || !validateCellNumber(cellNumber)) {
                 UIkit.notification(!cellNumber ? langs.requiredCellNumber : langs.invalidCellNumber, {
                   status: "primary",
@@ -101,15 +96,14 @@ $(document).ready(function () {
           }
 
           case "buyTopupPackage": {
-
             const cellNumber = hasValue($("#CellNumber").val()) ? normalize($("#CellNumber").val().trim()) : null;
             let operatorId = null,
               chargeCode = null,
               packageAmount = 0,
               packageText = null;
 
-            const activeTab = document.querySelector('#TopupPackageSwitcher > .uk-active');
-            const activePackage = activeTab?.querySelector('li.uk-active');
+            const activeTab = document.querySelector("#TopupPackageSwitcher > .uk-active");
+            const activePackage = activeTab?.querySelector("li.uk-active");
 
             if (activePackage) {
               operatorId = activePackage.getAttribute("data-operator") || null;
@@ -118,7 +112,6 @@ $(document).ready(function () {
               packageText = activePackage.getAttribute("data-text") || null;
             }
             if (operatorId && chargeCode && packageText && cellNumber && packageAmount) {
-
               const tokenParams = {
                 CellNumber: cellNumber,
                 ChargeCode: chargeCode,
@@ -126,21 +119,19 @@ $(document).ready(function () {
                 ChargeDescription: packageText,
                 Amount: packageAmount,
                 TopUpType: "Charge",
-                ThirdPartyCallBack: ThirdPartyCallBackUrl
+                ThirdPartyCallBack: ThirdPartyCallBackUrl,
               };
 
               ajaxHandler(
-                asmxUrl + '/api/v1/ipg-top-up/get-token', 'GET', tokenParams, null, function (response) {
-
+                asmxUrl + "/api/v1/ipg-top-up/get-token",
+                "GET",
+                tokenParams,
+                null,
+                function (response) {
                   if (response && response.IsSuccess && response.Data) {
                     const { IpgUrl, GetMethod, Value, ResNum } = response.Data;
 
-                    $.redirect(
-                      IpgUrl,
-                      { token: Value, GetMethod: true },
-                      'POST'
-                    );
-
+                    $.redirect(IpgUrl, { token: Value, GetMethod: true }, "POST");
                   } else {
                     UIkit.notification(langs.serviceException, {
                       status: "danger",
@@ -148,9 +139,11 @@ $(document).ready(function () {
                       timeout: 7000,
                     });
                   }
-                }, true, true, true);
-
-
+                },
+                true,
+                true,
+                true
+              );
             } else {
               UIkit.notification(langs.selectingTopupPackage, {
                 status: "danger",
@@ -180,20 +173,24 @@ $(document).ready(function () {
   });
 
   function getOperators() {
-    ajaxHandler(asmxUrl + "/controllers/eChargeController.asmx/getOperators", "GET", null, null, function (callback) {
-      if (hasValue(callback) && callback.hasOwnProperty("d") && hasValue(callback.d)) {
-        let items = "";
-        $.each(callback.d, function (index, item) {
-          const iconUrl = "./dist/ui/img/icon/operators/" + operatorIcons[item.Code] + ".svg";
-          items += $("#Operators").html().replace("%Code%", item.Code).replace("%IconSrc%", iconUrl).replaceAll("%Name%", item.Description);
-        });
-        $("#TopupOperator ul").empty().append(items);
-        $('button[data-action="getTopupPackage"]').removeClass('uk-hidden')
-      } else {
-        $("#TopupOperator").empty().append($("#ServiceError").html());
-
-      }
-    },
+    ajaxHandler(
+      asmxUrl + "/controllers/eChargeController.asmx/getOperators",
+      "GET",
+      null,
+      null,
+      function (callback) {
+        if (hasValue(callback) && callback.hasOwnProperty("d") && hasValue(callback.d)) {
+          let items = "";
+          $.each(callback.d, function (index, item) {
+            const iconUrl = "./dist/ui/img/icon/operators/" + operatorIcons[item.Code] + ".svg";
+            items += $("#Operators").html().replace("%Code%", item.Code).replace("%IconSrc%", iconUrl).replaceAll("%Name%", item.Description);
+          });
+          $("#TopupOperator ul").empty().append(items);
+          $('button[data-action="getTopupPackage"]').removeClass("uk-hidden");
+        } else {
+          $("#TopupOperator").empty().append($("#ServiceError").html());
+        }
+      },
       true
     );
   }
@@ -206,61 +203,61 @@ $(document).ready(function () {
       return toggleWizard("second-card");
     }
 
-    ajaxHandler(asmxUrl + "/controllers/eChargeController.asmx/getNormalPackages", "GET", { chargeOperatorCode: operatorId, }, null, function (callback) {
-      if (hasValue(callback) && callback.hasOwnProperty("d")) {
-        if (hasValue(callback.d)) {
+    ajaxHandler(
+      asmxUrl + "/controllers/eChargeController.asmx/getNormalPackages",
+      "GET",
+      { chargeOperatorCode: operatorId },
+      null,
+      function (callback) {
+        if (hasValue(callback) && callback.hasOwnProperty("d")) {
+          if (hasValue(callback.d)) {
+            let normalItems = "",
+              amazingItems = "",
+              amazingLabel = operatorId == 3 ? langs.topupExcitingPkg : langs.topupAmazingPkg;
+            const topupPackages = callback.d;
+            if (topupPackages.length) {
+              $.each(topupPackages.sort(sortByType), function (index, item) {
+                if (hasValue(item.Amount)) {
+                  const chargeType = item.ChargeType == 0 ? langs.topupNormalPkg : amazingLabel;
+                  const html = $("#Packages")
+                    .html()
+                    .replace("%Operator%", operatorId)
+                    .replaceAll("%Code%", item.SepChargeCode)
+                    .replace("%OperatorName%", operatorTypes[operatorId])
+                    .replaceAll("%Type%", chargeType)
+                    .replaceAll("%Description%", commaSeparator(hasValue(item.AmountWithoutVAT) ? item.AmountWithoutVAT : item.Amount))
+                    .replace("%ChargeAmount%", item.Amount);
 
-          let normalItems = "", amazingItems = "",
-            amazingLabel = operatorId == 3 ? langs.topupExcitingPkg : langs.topupAmazingPkg;
-          const topupPackages = callback.d
-          if (topupPackages.length) {
-            $.each(topupPackages.sort(sortByType), function (index, item) {
-
-              if (hasValue(item.Amount)) {
-                const chargeType = item.ChargeType == 0 ? langs.topupNormalPkg : amazingLabel;
-                const html = $("#Packages").html()
-                  .replace("%Operator%", operatorId)
-                  .replaceAll("%Code%", item.SepChargeCode)
-                  .replace("%OperatorName%", operatorTypes[operatorId])
-                  .replaceAll("%Type%", chargeType)
-                  .replaceAll("%Description%",
-                    commaSeparator(hasValue(item.AmountWithoutVAT) ? item.AmountWithoutVAT : item.Amount))
-                  .replace("%ChargeAmount%", item.Amount);
-
-                if (item.ChargeType == 1) {
-                  amazingItems += html;
-                } else {
-                  normalItems += html;
+                  if (item.ChargeType == 1) {
+                    amazingItems += html;
+                  } else {
+                    normalItems += html;
+                  }
                 }
-              }
+              });
+              $("#TopupPackageSwitcher").attr("data-operator", operatorId);
+              $("#NormalTopup ul").empty().append(normalItems);
+              $("#AmazingTopup ul").empty().append(amazingItems);
+            }
+            amazingItems.length ? $(".ui-topup-type-title").removeClass("uk-hidden") & $("#ValTopupType").text(amazingLabel) : $(".ui-topup-type-title").addClass("uk-hidden");
+            toggleWizard("second-card");
+          } else {
+            return UIkit.notification(langs.topupNoMatchFound, {
+              status: "primary",
+              pos: "bottom-center",
+              timeout: 7000,
             });
-            $("#TopupPackageSwitcher").attr("data-operator", operatorId);
-            $("#NormalTopup ul").empty().append(normalItems);
-            $("#AmazingTopup ul").empty().append(amazingItems);
           }
-          amazingItems.length ? $(".ui-topup-type-title").removeClass("uk-hidden") & $("#ValTopupType").text(amazingLabel) : $(".ui-topup-type-title").addClass("uk-hidden");
-          toggleWizard("second-card");
-
         } else {
-          return UIkit.notification(langs.topupNoMatchFound, {
-            status: "primary",
+          return UIkit.notification(langs.serviceException, {
+            status: "danger",
             pos: "bottom-center",
             timeout: 7000,
           });
         }
-
-      } else {
-        return UIkit.notification(langs.serviceException, {
-          status: "danger",
-          pos: "bottom-center",
-          timeout: 7000,
-        });
-      }
-
-    }, true
+      },
+      true
     );
-
-
   }
 
   function sortByType(firstList, secondList) {
