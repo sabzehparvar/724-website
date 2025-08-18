@@ -176,11 +176,13 @@ $(document).ready(function () {
     function showBillSuccessReceipt(callback) {
         const data = {
             PackageFullTitle: "پرداخت قبض موفق",
-            Amount: hasValue(callback.amount) ? callback.amount : null,
+            Amount: hasValue(callback.amount) ? callback.amount.toString().trim() : null,
             PersianPayedOn: hasValue(callback.persianPayedOn) ? callback.persianPayedOn.trim() : null,
             PayId: hasValue(callback.payId) ? callback.payId.toString().trim() : null,
             BillId: hasValue(callback.billId) ? callback.billId.toString().trim() : null,
-            TraceNo: hasValue(callback.traceNo) ? callback.traceNo.trim() : null,
+            TraceNo: hasValue(callback.traceNo) ? callback.traceNo.toString().trim() : null,
+            Rrn: hasValue(callback.rrn) ? callback.rrn.toString().trim() : null,
+
         };
 
         const schema = [
@@ -220,6 +222,13 @@ $(document).ready(function () {
                 valueClass: "uk-text-left",
                 attrs: { dir: "ltr" },
             },
+            {
+                key: "Rrn",
+                label: "شماره مرجع",
+                labelClass: "uk-text-muted uk-text-nowrap",
+                valueClass: "uk-text-left",
+                attrs: { dir: "ltr" },
+            },
         ];
         const templateHtml = $("#SuccessReceiptTemplate").html();
         const template = $("<div>").html(templateHtml);
@@ -252,10 +261,10 @@ $(document).ready(function () {
     function showBillFailedReceipt(callback) {
         const data = {
             PackageFullTitle: "پرداخت قبض ناموفق",
-            Amount: hasValue(callback.amount) ? callback.amount : null,
+            Amount: hasValue(callback.amount) ? callback.amount.toString().trim() : null,
             PayId: hasValue(callback.payId) ? callback.payId.toString().trim() : null,
             BillId: hasValue(callback.billId) ? callback.billId.toString().trim() : null,
-            TraceNo: hasValue(callback.traceNo) ? callback.traceNo.trim() : null,
+            TraceNo: hasValue(callback.traceNo) ? callback.traceNo.toString().trim() : null,
         };
         const schema = [
             {
