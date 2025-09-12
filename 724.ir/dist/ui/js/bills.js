@@ -139,7 +139,7 @@ $(document).ready(function () {
         const fullName = callback?.parameters?.fullName?.trim() || "";
         const billId = callback?.parameters?.billID?.toString().trim() || "";
         const payId = callback?.parameters?.paymentID?.toString().trim() || "";
-        const amount = callback?.parameters?.amount?.toString().trim() || "";
+        const amount = callback?.parameters?.amount?.toString().trim() + ' ' + langs.irr || "";
         $("#BillInfoTitle").text(`${billName}`);
 
         const $template = $($("#BillInfoTemplate").html());
