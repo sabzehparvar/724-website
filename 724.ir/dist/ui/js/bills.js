@@ -2,6 +2,7 @@
 
 $(document).ready(function () {
     const billInquiryUrl = "http://localhost:43197/api/v1/bill-inquiry";
+
     function toggleWizard(currentWizard) {
         $(".ui-card-wizard").hide();
         $(`.ui-card-wizard[data-wizard="${currentWizard}"]`).fadeIn();
@@ -147,7 +148,7 @@ $(document).ready(function () {
         $template.find("#BillInfoId").text(`شناسه قبض: ${billId}`);
         $template.find("#BillAmount").text(commaSeparator(amount));
         $template.find("#BillPayButton button").attr("data-billid", billId).attr("data-payid", payId);
-        $template.find(".ui-bill-amount-icon img").attr("src", `./dist/ui/img/icon/app/${billsIcons[billType]}.svg`);
+        $template.find(".ui-bill-amount-icon img").attr("src", `../dist/ui/img/icon/app/${billsIcons[billType]}.svg`);
         $("#BillInfoContainer").html($template);
         showBillDetails(callback.parameters, $template);
         toggleWizard("third-card");
@@ -174,7 +175,7 @@ $(document).ready(function () {
         const $template = $($("#PhoneBillInfoTemplate").html());
         $template.find("#BillName").text(billName);
         $template.find("#BillNumber").text(`شماره ${billType == 4 ? "تلفن" : "موبایل"}: ${number}`);
-        $template.find(".ui-bill-amount-icon img").attr("src", `./dist/ui/img/icon/app/${billsIcons[billType]}.svg`);
+        $template.find(".ui-bill-amount-icon img").attr("src", `../dist/ui/img/icon/app/${billsIcons[billType]}.svg`);
         $template.find("#BillPayButton button").attr("data-billid", midTerm?.billID || "");
 
         if (!midTerm?.amount || midTerm?.amount == 0) {
@@ -311,6 +312,25 @@ $(document).ready(function () {
     });
 
     $("#BillForm").validate();
+
+    if (document.getElementById("BarghBillId") || document.getElementById("WatterBillId") || document.getElementById("GazParticipateCode")) {
+        $("#BillForm input").rules("add", { digits: true, minlength: 5 });
+
+    }
+    if (document.getElementById("Phone")) {
+        $("#BillForm input").attr("maxlength", "11");
+        $("#BillForm input").rules("add", { digits: true, minlength: 11 });
+    }
+    if (document.getElementById("Mobile")) {
+        console.log('s')
+        $("#BillForm input").attr("maxlength", "11");
+        $("#BillForm input").rules("add", { digits: true, cellNumber: true, minlength: 11 });
+    }
+    // if (billType == 6) {
+    //     $("#BillIdInput input").rules("add", { digits: true, minlength: 5 });
+    //     $("#BillPaymentInput input").rules("add", { digits: true, minlength: 5 });
+    //     $("#BillIdInput input").removeAttr("maxlength");
+    // }
 
     $(document).on("click", ".uk-button, .uk-link", function (e) {
         if (!$(this).hasClass("on-progress")) {
