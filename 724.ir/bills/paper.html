@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
   <head>
-    <title>قبض</title>
+    <title>پرداخت با شناسه</title>
 
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge,10,11" />
@@ -218,103 +218,29 @@
           </nav>
         </div>
       </header>
+      <!-- electricity bill inquiry  -->
       <div class="uk-section">
         <div class="uk-container">
           <div class="uk-flex uk-flex-middle uk-flex-center">
             <div class="uk-card uk-card-body uk-card-small uk-width-2-3@s uk-border-rounded-large uk-position-relative ui-border-grey">
               <div class="uk-flex uk-flex-middle uk-flex-center">
-                <div class="uk-width-2-3@m uk-margin-medium-bottom ui-card-wizard" data-wizard="first-card">
-                  <p class="uk-margin-top">نوع قبض رو انتخاب کن</p>
-                  <div class="uk-child-width-1-2@s uk-grid-small" uk-grid>
-                    <div>
-                      <div class="uk-card uk-card-body uk-card-small uk-border-rounded uk-link uk-text-decoration-none ui-bill-item" data-action="showSecondCard" data-bill-type="1">
-                        <div class="uk-margin-bottom">
-                          <img data-src="../dist/ui/img/icon/app/ic-bill-water.svg" width="40" height="40" class="uk-preserve" uk-img uk-svg />
-                        </div>
-                        <div class="uk-flex uk-flex-middle uk-flex-between">
-                          <span class="uk-heading-xsmall uk-margin-remove">قبض آب</span>
-                          <i class="ti ti-chevron-left uk-margin-small-right uk-text-muted"></i>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <div class="uk-card uk-card-body uk-card-small uk-border-rounded uk-link uk-text-decoration-none ui-bill-item" data-action="showSecondCard" data-bill-type="2">
-                        <div class="uk-margin-bottom">
-                          <img data-src="../dist/ui/img/icon/app/ic-bill-tavanir.svg" width="40" height="40" class="uk-preserve" uk-img uk-svg />
-                        </div>
-                        <div class="uk-flex uk-flex-middle uk-flex-between">
-                          <span class="uk-heading-xsmall uk-margin-remove">قبض برق</span>
-                          <i class="ti ti-chevron-left uk-margin-small-right uk-text-muted"></i>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <div class="uk-card uk-card-body uk-card-small uk-border-rounded uk-link uk-text-decoration-none ui-bill-item" data-action="showSecondCard" data-bill-type="3">
-                        <div class="uk-margin-bottom">
-                          <img data-src="../dist/ui/img/icon/app/ic-bill-gas.svg" width="40" height="40" class="uk-preserve" uk-img uk-svg />
-                        </div>
-                        <div class="uk-flex uk-flex-middle uk-flex-between">
-                          <span class="uk-heading-xsmall uk-margin-remove">قبض گاز</span>
-                          <i class="ti ti-chevron-left uk-margin-small-right uk-text-muted"></i>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <div class="uk-card uk-card-body uk-card-small uk-border-rounded uk-link uk-text-decoration-none ui-bill-item" data-action="showSecondCard" data-bill-type="4">
-                        <div class="uk-margin-bottom">
-                          <img data-src="../dist/ui/img/icon/app/ic-bill-mokhaberat.svg" width="40" height="40" class="uk-preserve" uk-img uk-svg />
-                        </div>
-                        <div class="uk-flex uk-flex-middle uk-flex-between">
-                          <span class="uk-heading-xsmall uk-margin-remove">قبض تلفن ثابت</span>
-                          <i class="ti ti-chevron-left uk-margin-small-right uk-text-muted"></i>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <div class="uk-card uk-card-body uk-card-small uk-border-rounded uk-link uk-text-decoration-none ui-bill-item" data-action="showSecondCard" data-bill-type="5">
-                        <div class="uk-margin-bottom">
-                          <img data-src="../dist/ui/img/icon/app/ic-hamrah-aval.svg" width="40" height="40" class="uk-preserve" uk-img uk-svg />
-                        </div>
-                        <div class="uk-flex uk-flex-middle uk-flex-between">
-                          <span class="uk-heading-xsmall uk-margin-remove">قبض همراه اول</span>
-                          <i class="ti ti-chevron-left uk-margin-small-right uk-text-muted"></i>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <div class="uk-card uk-card-body uk-card-small uk-border-rounded uk-link uk-text-decoration-none ui-bill-item" data-action="showSecondCard" data-bill-type="6">
-                        <div class="uk-margin-bottom">
-                          <img data-src="../dist/ui/img/icon/app/ic-paper-bill.svg" width="40" height="40" class="uk-preserve" uk-img uk-svg />
-                        </div>
-                        <div class="uk-flex uk-flex-middle uk-flex-between">
-                          <span class="uk-heading-xsmall uk-margin-remove">پرداخت با شناسه</span>
-                          <i class="ti ti-chevron-left uk-margin-small-right uk-text-muted"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
                 <div class="uk-width-2-3@m ui-card-wizard" data-wizard="second-card">
                   <div class="uk-panel">
-                    <div class="uk-margin-bottom uk-position-relative">
-                      <a href="#" class="uk-text-decoration-none uk-text-secondary uk-link" data-action="returnFirstCard">
-                        <i class="ti ti-arrow-right uk-border-circle uk-margin-small-left ui-return-arrow"></i>
-                        بازگشت
-                      </a>
-                      <span id="BillFormTitle" class="uk-position-center uk-text-bold"> قبض </span>
+                    <div class="uk-margin-bottom uk-margin-small-top uk-position-relative">
+                      <span class="uk-position-center uk-text-bold">پرداخت با شناسه</span>
                     </div>
                     <div class="uk-margin-top">
                       <form id="BillForm" name="BillForm" autocomplete="off" class="uk-text-right">
                         <div id="BillIdInput" class="uk-margin-medium-top">
                           <label for="BillId" class="uk-form-label uk-text-default">شناسه قبض رو وارد کن</label>
-                          <input id="BillId" name="BillId" type="tel" class="uk-input uk-form-large uk-border-rounded uk-text-center uk-text-default uk-margin-small-top ui-letter-spacing ui-bg-grey fontface-vazir-fa" required placeholder="" />
+                          <input id="BillId" name="BillId" type="tel" class="uk-input uk-form-large uk-border-rounded uk-text-center uk-text-default uk-margin-small-top ui-letter-spacing ui-bg-grey fontface-vazir-fa" required placeholder="شناسه قبض" />
                         </div>
-                        <div id="BillPaymentInput" class="uk-margin-top uk-hidden">
+                        <div id="BillPaymentInput" class="uk-margin-top">
                           <label for="PayId" class="uk-form-label uk-text-default">شناسه پرداخت رو وارد کن</label>
                           <input id="PayId" name="PayId" type="tel" class="uk-input uk-form-large uk-border-rounded uk-text-center uk-text-default uk-margin-small-top ui-letter-spacing ui-bg-grey fontface-vazir-fa" required placeholder="شناسه پرداخت" />
                         </div>
                         <div id="BillInquiryButton" class="uk-margin-medium-top uk-text-center">
-                          <button class="uk-button uk-button-default uk-button-large uk-border-rounded uk-width-1-1 uk-text-primary">استعلام</button>
+                          <button class="uk-button uk-button-default uk-button-large uk-border-rounded uk-width-1-1 uk-text-primary" data-action="getPaperBill">استعلام</button>
                         </div>
                       </form>
                     </div>
@@ -341,46 +267,6 @@
         </div>
       </div>
     </div>
-    <script id="PhoneBillInfoTemplate" type="text/template">
-      <form id="PhoneBillInfo" name="PhoneBillInfo" autocomplete="off" class="uk-text-right uk-margin-top">
-        <fieldset class="uk-fieldset">
-          <legend class="uk-legend">
-            <div class="uk-width-1-1 uk-grid-collapse uk-flex-middle ui-bill-amount" uk-grid>
-              <div class="uk-margin-left ui-bill-amount-icon">
-                <img src="" width="24" />
-              </div>
-              <div class="uk-width-expand uk-margin-small-left">
-                <span id="BillName" class="uk-display-block uk-heading-xsmall"></span>
-                <small id="BillNumber" class="uk-text-muted uk-text-default fontface-vazir-fa"></small>
-              </div>
-            </div>
-          </legend>
-          <div class="uk-flex uk-flex-middle uk-width-expand uk-margin uk-position-relative ui-bill-amount">
-            <input id="MidTermInput" class="uk-radio uk-margin-left" type="radio" name="PhoneBillAmount" checked />
-            <label for="MidTermInput" class="uk-link uk-overlay uk-position-cover uk-padding-remove" data-action="selectPhoneBill"></label>
-            <div class="uk-width-expand uk-grid-collapse uk-flex-middle" uk-grid>
-              <div class="uk-width-expand uk-margin-small-left">
-                <span class="uk-text-muted">مبلغ میان دوره:</span>
-                <span id="MidTermAmount" class="uk-display-block uk-heading-medium fontface-vazir-fa"></span>
-              </div>
-            </div>
-          </div>
-          <div class="uk-flex uk-flex-middle uk-width-expand uk-margin uk-position-relative ui-bill-amount">
-            <input id="FinalTermInput" class="uk-radio uk-margin-left" type="radio" name="PhoneBillAmount" />
-            <label for="FinalTermInput" class="uk-link uk-overlay uk-position-cover uk-padding-remove" data-action="selectPhoneBill"></label>
-            <div class="uk-width-expand uk-grid-collapse uk-flex-middle" uk-grid>
-              <div class="uk-width-expand uk-margin-small-left">
-                <span class="uk-text-muted">مبلغ پایان دوره:</span>
-                <span id="FinalTermAmount" class="uk-display-block uk-heading-medium fontface-vazir-fa"></span>
-              </div>
-            </div>
-          </div>
-          <div id="BillPayButton" class="uk-margin-top uk-text-center">
-            <button class="uk-button uk-button-primary uk-button-large uk-border-rounded uk-width-1-1" data-action="payBill">پرداخت</button>
-          </div>
-        </fieldset>
-      </form>
-    </script>
     <script id="BillInfoTemplate" type="text/template">
          <div id="BillInfo" name="BillInfo" autocomplete="off" class="uk-text-right uk-margin-top">
         <div class="uk-width-1-1 uk-grid-collapse uk-flex-middle ui-bill-amount" uk-grid>
