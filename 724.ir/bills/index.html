@@ -342,92 +342,71 @@
       </div>
     </div>
     <script id="PhoneBillInfoTemplate" type="text/template">
-      <form id="PhoneBillInfo" name="PhoneBillInfo" autocomplete="off"
-                                     class="uk-text-right uk-margin-top">
-                                     <fieldset class="uk-fieldset">
-
-                                         <legend class="uk-legend">
-                                             <div class="uk-width-1-1 uk-grid-collapse uk-flex-middle ui-bill-amount"
-                                                 uk-grid>
-                                                 <div class="uk-margin-left ui-bill-amount-icon">
-                                                     <img src=""
-                                                         width="24" />
-                                                 </div>
-                                                 <div class="uk-width-expand uk-margin-small-left">
-                                                     <span id="BillName" class="uk-display-block uk-heading-xsmall"></span>
-                                                     <small id="BillNumber" class="uk-text-muted uk-text-default fontface-vazir-fa"></small>
-                                                 </div>
-                                             </div>
-                                         </legend>
-                                         <div
-                                             class="uk-flex uk-flex-middle uk-width-expand uk-margin uk-position-relative ui-bill-amount">
-                                             <input id="MidTermInput" class="uk-radio uk-margin-left" type="radio"
-                                                 name="PhoneBillAmount" checked>
-                                             <label for="MidTermInput" class="uk-link uk-overlay uk-position-cover uk-padding-remove" data-action="selectPhoneBill"></label>
-                                             <div class="uk-width-expand uk-grid-collapse uk-flex-middle " uk-grid>
-                                                 <div class="uk-width-expand uk-margin-small-left ">
-                                                     <span class="uk-text-muted">مبلغ میان دوره:</span>
-                                                     <span id="MidTermAmount" class="uk-display-block uk-heading-medium fontface-vazir-fa"></span>
-                                                 </div>
-                                             </div>
-                                         </div>
-                                         <div
-                                             class="uk-flex uk-flex-middle uk-width-expand uk-margin uk-position-relative ui-bill-amount">
-                                             <input id="FinalTermInput" class="uk-radio uk-margin-left" type="radio"
-                                                 name="PhoneBillAmount">
-                                             <label for="FinalTermInput" class="uk-link uk-overlay uk-position-cover uk-padding-remove" data-action="selectPhoneBill"></label>
-                                             <div class="uk-width-expand uk-grid-collapse uk-flex-middle " uk-grid>
-                                                 <div class="uk-width-expand uk-margin-small-left">
-                                                     <span class="uk-text-muted">مبلغ پایان دوره:</span>
-                                                     <span id="FinalTermAmount" class="uk-display-block uk-heading-medium fontface-vazir-fa"></span>
-                                                 </div>
-                                             </div>
-                                         </div>
-                                         <div id="BillPayButton" class="uk-margin-top uk-text-center">
-                                             <button
-                                                 class="uk-button uk-button-primary uk-button-large uk-border-rounded uk-width-1-1"
-                                                 data-action="payBill">
-                                                 پرداخت
-                                             </button>
-                                         </div>
-                                     </fieldset>
-                                 </form>
+      <form id="PhoneBillInfo" name="PhoneBillInfo" autocomplete="off" class="uk-text-right uk-margin-top">
+        <fieldset class="uk-fieldset">
+          <legend class="uk-legend">
+            <div class="uk-width-1-1 uk-grid-collapse uk-flex-middle ui-bill-amount" uk-grid>
+              <div class="uk-margin-left ui-bill-amount-icon">
+                <img src="" width="24" />
+              </div>
+              <div class="uk-width-expand uk-margin-small-left">
+                <span id="BillName" class="uk-display-block uk-heading-xsmall"></span>
+                <small id="BillNumber" class="uk-text-muted uk-text-default fontface-vazir-fa"></small>
+              </div>
+            </div>
+          </legend>
+          <div class="uk-flex uk-flex-middle uk-width-expand uk-margin uk-position-relative ui-bill-amount">
+            <input id="MidTermInput" class="uk-radio uk-margin-left" type="radio" name="PhoneBillAmount" checked />
+            <label for="MidTermInput" class="uk-link uk-overlay uk-position-cover uk-padding-remove" data-action="selectPhoneBill"></label>
+            <div class="uk-width-expand uk-grid-collapse uk-flex-middle" uk-grid>
+              <div class="uk-width-expand uk-margin-small-left">
+                <span class="uk-text-muted">مبلغ میان دوره:</span>
+                <span id="MidTermAmount" class="uk-display-block uk-heading-medium fontface-vazir-fa"></span>
+              </div>
+            </div>
+          </div>
+          <div class="uk-flex uk-flex-middle uk-width-expand uk-margin uk-position-relative ui-bill-amount">
+            <input id="FinalTermInput" class="uk-radio uk-margin-left" type="radio" name="PhoneBillAmount" />
+            <label for="FinalTermInput" class="uk-link uk-overlay uk-position-cover uk-padding-remove" data-action="selectPhoneBill"></label>
+            <div class="uk-width-expand uk-grid-collapse uk-flex-middle" uk-grid>
+              <div class="uk-width-expand uk-margin-small-left">
+                <span class="uk-text-muted">مبلغ پایان دوره:</span>
+                <span id="FinalTermAmount" class="uk-display-block uk-heading-medium fontface-vazir-fa"></span>
+              </div>
+            </div>
+          </div>
+          <div id="BillPayButton" class="uk-margin-top uk-text-center">
+            <button class="uk-button uk-button-primary uk-button-large uk-border-rounded uk-width-1-1" data-action="payBill">پرداخت</button>
+          </div>
+        </fieldset>
+      </form>
     </script>
     <script id="BillInfoTemplate" type="text/template">
-      <div id="BillInfo" name="BillInfo" autocomplete="off"
-                                        class="uk-text-right uk-margin-top">
-                                        <div class="uk-width-1-1 uk-grid-collapse uk-flex-middle ui-bill-amount"
-                                            uk-grid>
-                                            <div class="uk-margin-left ui-bill-amount-icon">
-                                                <img src="" width="24" />
-                                            </div>
-                                            <div class="uk-width-expand uk-margin-small-left">
-                                                <span id="BillName" class="uk-display-block uk-heading-xsmall"></span>
-                                                <small id="BillInfoId" class="uk-text-muted uk-text-default fontface-vazir-fa"></small>
-                                            </div>
-                                        </div>
-                                        <div class="uk-margin uk-flex uk-flex-column uk-flex-center ui-bill-amount">
-                                            <div class="uk-text-muted">مبلغ:</div>
-                                            <div
-                                                class="uk-heading-medium uk-margin-remove-bottom uk-flex uk-flex-middle uk-flex-between">
-                                                <span id="BillAmount" class="fontface-vazir-fa"></span>
-                                                <button href="#"
-                                                    class="uk-button ui-button-gray uk-padding-small uk-padding-remove-vertical uk-border-pill" data-action="toggleBillDetails">
-                                                    <span class="uk-text-default">جزئیات قبض</span>
-                                                </button>
-                                            </div>
-                                            <div class="ui-bills-details">
-                                            </div>
-                                        <div id="BillPayButton" class="uk-margin-medium-top uk-text-center">
-                                            <button
-                                                class="uk-button uk-button-primary uk-button-large uk-border-rounded uk-width-1-1"
-                                                data-action="payBill">
-                                                پرداخت
-                                            </button>
-                                        </div>
-                                    </div>
+         <div id="BillInfo" name="BillInfo" autocomplete="off" class="uk-text-right uk-margin-top">
+        <div class="uk-width-1-1 uk-grid-collapse uk-flex-middle ui-bill-amount" uk-grid>
+          <div class="uk-margin-left ui-bill-amount-icon">
+            <img src="" width="24" />
+          </div>
+          <div class="uk-width-expand uk-margin-small-left">
+            <span id="BillName" class="uk-display-block uk-heading-xsmall"></span>
+            <small id="BillInfoId" class="uk-text-muted uk-text-default fontface-vazir-fa"></small>
+          </div>
+        </div>
+        <div class="uk-margin uk-flex uk-flex-column uk-flex-center ui-bill-amount">
+          <div class="uk-text-muted">مبلغ:</div>
+          <div class="uk-heading-medium uk-margin-remove-bottom uk-flex uk-flex-middle uk-flex-between">
+            <span id="BillAmount" class="fontface-vazir-fa"></span>
+            <button href="#" class="uk-button ui-button-gray uk-padding-small uk-padding-remove-vertical uk-border-pill" data-action="toggleBillDetails">
+              <span class="uk-text-default">جزئیات قبض</span>
+            </button>
+          </div>
+          <div class="ui-bills-details"></div>
+          <div id="BillPayButton" class="uk-margin-medium-top uk-text-center">
+            <button class="uk-button uk-button-primary uk-button-large uk-border-rounded uk-width-1-1" data-action="payBill">پرداخت</button>
+          </div>
+        </div>
+      </div>
     </script>
-
     <script src="../../../cdn/pkg/jquery/js/jquery.min.js" as="script"></script>
     <script src="../../../cdn/pkg/jquery/js/jquery-mask.min.js" as="script"></script>
     <script src="../../../cdn/pkg/bootstrap/js/bootstrap.bundle.min.js" as="script"></script>

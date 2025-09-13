@@ -257,7 +257,7 @@ $(document).ready(function () {
                     $template.find("#BillName").text(`${billName}`);
                     $template.find("#BillInfoId").text(`شناسه قبض: ${billId}`);
                     $template.find("#BillAmount").text(commaSeparator(amount) + " " + langs.irr);
-                    $template.find(".ui-bill-amount-icon img").attr("src", `./dist/ui/img/icon/app/${billsIcons[billTypeId] ? billsIcons[billTypeId] : "ic-paper-bill"}.svg`);
+                    $template.find(".ui-bill-amount-icon img").attr("src", `../dist/ui/img/icon/app/${billsIcons[billTypeId] ? billsIcons[billTypeId] : "ic-paper-bill"}.svg`);
                     $template.find("#BillPayButton button").attr("data-billid", billId).attr("data-payid", payId);
 
                     $("#BillInfoContainer").html($template);
