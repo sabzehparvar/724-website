@@ -315,7 +315,6 @@ $(document).ready(function () {
 
     if (document.getElementById("BarghBillId") || document.getElementById("WatterBillId") || document.getElementById("GazParticipateCode")) {
         $("#BillForm input").rules("add", { digits: true, minlength: 5 });
-
     }
     if (document.getElementById("Phone")) {
         $("#BillForm input").attr("maxlength", "11");
@@ -326,11 +325,11 @@ $(document).ready(function () {
         $("#BillForm input").attr("maxlength", "11");
         $("#BillForm input").rules("add", { digits: true, cellNumber: true, minlength: 11 });
     }
-    // if (billType == 6) {
-    //     $("#BillIdInput input").rules("add", { digits: true, minlength: 5 });
-    //     $("#BillPaymentInput input").rules("add", { digits: true, minlength: 5 });
-    //     $("#BillIdInput input").removeAttr("maxlength");
-    // }
+    if (document.getElementById("BillId") && document.getElementById("PayId")) {
+        $("#BillId").rules("add", { digits: true, minlength: 5 });
+        $("#PayId").rules("add", { digits: true, minlength: 5 });
+        $("#BillId").removeAttr("maxlength");
+    }
 
     $(document).on("click", ".uk-button, .uk-link", function (e) {
         if (!$(this).hasClass("on-progress")) {
