@@ -345,7 +345,7 @@ $(document).ready(function () {
 
                         $("#BillFormTitle").text(`${billName}`);
                         $("#BillIdInput label").text(`${billIdLabel}  رو وارد کن`);
-                        $("#BillIdInput input").attr("data-bill-type", billType).val("").attr("placeholder", billIdLabel);
+                        $("#BillIdInput input").val("").attr("placeholder", billIdLabel);
 
                         toggleWizard("second-card");
 
