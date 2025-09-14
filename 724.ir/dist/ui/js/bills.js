@@ -321,7 +321,6 @@ $(document).ready(function () {
         $("#BillForm input").rules("add", { digits: true, minlength: 11 });
     }
     if (document.getElementById("Mobile")) {
-        console.log('s')
         $("#BillForm input").attr("maxlength", "11");
         $("#BillForm input").rules("add", { digits: true, cellNumber: true, minlength: 11 });
     }
