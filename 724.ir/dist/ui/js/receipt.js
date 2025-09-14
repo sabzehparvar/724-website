@@ -174,15 +174,15 @@ $(document).ready(function () {
     }
 
     function showBillSuccessReceipt(callback) {
+
         const data = {
             PackageFullTitle: "پرداخت قبض موفق",
             Amount: hasValue(callback.amount) ? callback.amount.toString().trim() : null,
-            PersianPayedOn: hasValue(callback.persianPayedOn) ? callback.persianPayedOn.trim() : null,
             PayId: hasValue(callback.payId) ? callback.payId.toString().trim() : null,
             BillId: hasValue(callback.billId) ? callback.billId.toString().trim() : null,
             TraceNo: hasValue(callback.traceNo) ? callback.traceNo.toString().trim() : null,
             Rrn: hasValue(callback.rrn) ? callback.rrn.toString().trim() : null,
-
+            PayedOn: hasValue(callback.payedOn) ? parseInt(callback.payedOn.toString().trim().replace(/\/Date\((\d+)\)\//, "$1"), 10) : null,
         };
 
         const schema = [
@@ -195,6 +195,14 @@ $(document).ready(function () {
                 formatter: (val) => commaSeparator(val) + " " + langs.irr,
             },
             {
+                key: "PayedOn",
+                label: "تاریخ و زمان",
+                labelClass: "uk-text-muted",
+                valueClass: "uk-text-left",
+                attrs: { dir: "ltr" },
+                formatter: (val) => moment(val).format("jYYYY/jMM/jDD HH:mm"),
+            },
+            {
                 key: "BillId",
                 label: "شناسه قبض",
                 labelClass: "uk-text-muted",
@@ -204,13 +212,6 @@ $(document).ready(function () {
             {
                 key: "PayId",
                 label: "شناسه پرداخت",
-                labelClass: "uk-text-muted",
-                valueClass: "uk-text-left",
-                attrs: { dir: "ltr" },
-            },
-            {
-                key: "PersianPayedOn",
-                label: "تاریخ و زمان",
                 labelClass: "uk-text-muted",
                 valueClass: "uk-text-left",
                 attrs: { dir: "ltr" },
