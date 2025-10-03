@@ -81,10 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
       subNavbar.style.left = "-" + (subNavbar.offsetWidth - 1) + "px";
     });
 
-    observer.observe(subNavbar, {
-      attributes: true,
-      attributeFilter: ["style"],
-    });
+    observer.observe(subNavbar, { attributes: true, attributeFilter: ["style"] });
   });
 });
 
@@ -93,7 +90,11 @@ function onLoadFunctions() {
 }
 
 function removePageNumberForNews() {
-  if (document.getElementById("es-content").childNodes[0].textContent.search("لیست اخبار") == 0) {
-    document.getElementById("es-content").childNodes[0].nodeValue = "";
+  const contentEl = document.getElementById("es-content");
+  if (contentEl && contentEl.childNodes.length > 0) {
+    const firstChild = contentEl.childNodes[0];
+    if (firstChild.textContent && firstChild.textContent.search("لیست اخبار") === 0) {
+      firstChild.nodeValue = "";
+    }
   }
 }
